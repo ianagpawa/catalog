@@ -10,15 +10,6 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind = engine)
 session = DBSession()
 
-#Fake Restaurants
-# restaurant = {'name': 'The CRUDdy Crab', 'id': '1'}
-#
-# restaurants = [{'name': 'The CRUDdy Crab', 'id': '1'}, {'name':'Blue Burgers', 'id':'2'},{'name':'Taco Hut', 'id':'3'}]
-#
-#
-# #Fake Menu Items
-# items = [ {'name':'Cheese Pizza', 'description':'made with fresh cheese', 'price':'$5.99','course' :'Entree', 'id':'1'}, {'name':'Chocolate Cake','description':'made with Dutch Chocolate', 'price':'$3.99', 'course':'Dessert','id':'2'},{'name':'Caesar Salad', 'description':'with fresh organic vegetables','price':'$5.99', 'course':'Entree','id':'3'},{'name':'Iced Tea', 'description':'with lemon','price':'$.99', 'course':'Beverage','id':'4'},{'name':'Spinach Dip', 'description':'creamy dip with fresh spinach','price':'$1.99', 'course':'Appetizer','id':'5'} ]
-# item =  {'name':'Cheese Pizza','description':'made with fresh cheese','price':'$5.99','course' :'Entree'}
 
 def get_restaurant(restaurant_id):
     return session.query(Restaurant).filter_by(id = restaurant_id).one()
@@ -28,16 +19,18 @@ def add_to_db(obj):
     session.add(obj)
     session.commit()
 
+
+
 @app.route("/restaurants/JSON/")
 def showRestaurantsJSON():
-    restaurants = session.query(Restaurants).all()
+    restaurants = session.query(Restaurant).all()
     return jsonify(Restaurants = [restaurant.serialize for restaurant in restaurants])
 
 
 @app.route("/")
 @app.route("/restaurants/")
 def showRestaurants():
-    restaurants = session.query(Restaurants).all()
+    restaurants = session.query(Restaurant).all()
     return render_template("restaurants.html", restaurants = restaurants)
 
 
@@ -63,7 +56,6 @@ def editRestaurant(restaurant_id):
             add_to_db(restaurant)
             flash('Restaurant name has been edited!')
             return redirect(url_for('showRestaurants'))
-
     else:
         return render_template("editrestaurant.html", restaurant = restaurant)
 
@@ -165,5 +157,6 @@ def deleteMenuItem(restaurant_id, item_id):
 
 
 if __name__ == '__main__':
+    app.secret_key = 'super_secret_key'
     app.debug = True
     app.run(host='0.0.0.0', port = 5000)
