@@ -24,36 +24,36 @@ item =  {'name':'Cheese Pizza','description':'made with fresh cheese','price':'$
 @app.route("/")
 @app.route("/restaurant/")
 def showRestaurants():
-    return 'This page will show all my restaurants'
+    return render_template("restaurants.html", restaurants = restaurants)
 
 @app.route("/restaurant/new/")
 def newRestaurant():
-    return "This page will be for making a new restaurant"
+    return render_template("newrestaurant.html")
 
 @app.route("/restaurant/restaurant_id/edit/")
 def editRestaurant():
-    return "This page will be for editing restaurant %s"
+    return render_template("editrestaurant.html", restaurant = restaurant)
 
 @app.route("/restaurant/restaurant_id/delete/")
 def deleteRestaurant():
-    return "This page will be for deleting restaurant %s"
+    return render_template('deleterestaurant.html', restaurant = restaurant)
 
 @app.route("/restaurant/restaurant_id/")
 @app.route("/restaurant/restaurant_id/menu/")
 def showMenu():
-    return "This page is the menu for restaurant %s"
+    return render_template('menu.html', restaurant = restaurant, items = items)
 
 @app.route("/restaurant/restaurant_id/menu/new/")
 def newMenuItem():
-    return "This page is for making a new menu item for restaurant %s"
+    return render_template('newmenuitem.html', restaurant = restaurant)
 
 @app.route("/restaurant/restaurant_id/menu/menu_id/edit/")
 def editMenuItem():
-    return "This page is for editing menu item %s"
+    return render_template('editmenuitem.html', item = item)
 
 @app.route("/restaurant/restaurant_id/menu/menu_id/delete/")
 def deleteMenuItem():
-    return "This page is for deleting menu item %s"
+    return render_template('deletemenuitem.html', item = item)
 
 
 

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Delete Menu Item</h1>
+<h3>Are you sure you want to delete {{item.name}}?</h3>
+<h4 id='warning'>This cannot be undone</h4>
+<form method='post'>
+    <input type='submit' name='delete_menu_item' value='Delete'>
+</form>
+
+
+
+{% endblock %}

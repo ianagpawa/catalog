@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Edit a menu item</h1>
+<form method='post'>
+    <input type='text' size='30' name='edit_menu_item_name'
+        placeholder="{{item.name}}">
+    <input type='text' size='10' name='edit_menu_item_price'
+        placeholder="{{item.price}}">
+    <br>
+    <textarea name='edit_menu_item_description'
+        placeholder="{{item.description}}"></textarea>
+    <br>
+    <input type='submit' value='Edit'>
+</form>
+
+
+
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Edit Restaurant</h1>
+<form method='post'>
+    <input type='text' size='30' name='edit_restaurant_name' placeholder="{{restaurant.name}}">
+    <input type='submit' value='Edit'>
+</form>
+
+
+{% endblock %}

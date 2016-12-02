@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% for restaurant in restaurants %}
+    <div>{{restaurant.name}}</div>
+    <p>
+        <a href="#">Edit Restaurant Name</a>
+    </p>
+{% endfor %}
+
+{% endblock %}
