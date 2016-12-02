@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Edit a menu item</h1>
+
+<h1>Edit menu item from {{restaurant.id}}</h1>
 <form method='post'>
     <input type='text' size='30' name='edit_menu_item_name'
         placeholder="{{item.name}}">
