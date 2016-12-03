@@ -71,7 +71,12 @@ def newRestaurant():
 def editRestaurant(restaurant_id):
     if 'username' not in login_session:
         return redirect('/login')
+
     restaurant = get_restaurant(restaurant_id)
+
+    if restaurant.user_id != login_session['user_id']:
+        return "<script>function myFunction() {alert('You are not authorized to edit this restaurant. Please create your own restaurant in order to edit.');}</script><body onload='myFunction()''>"
+
     if request.method == 'POST':
         if request.form['edit_restaurant_name']:
             editted_name = request.form['edit_restaurant_name']
@@ -89,9 +94,12 @@ def editRestaurant(restaurant_id):
 def deleteRestaurant(restaurant_id):
     if 'username' not in login_session:
         return redirect('/login')
-    if restaurant.user_id != login_session['user_id']:
-        return "<script>function myFunction() {}"
+
     restaurant = session.query(Restaurant).filter_by(id = restaurant_id).one()
+
+    if restaurant.user_id != login_session['user_id']:
+        return "<script>function myFunction() {alert('You are not authorized to delete this restaurant. Please create your own restaurant in order to delete.');}</script><body onload='myFunction()''>"
+
     if request.method == 'POST':
         if request.form['delete_restaurant']:
             session.delete(restaurant)
@@ -127,6 +135,10 @@ def showMenu(restaurant_id):
                                 creator = creator)
 
 
+@app.route('/restaurant/<int:restaurant_id>/menu/<int:item_id>/JSON/')
+def showMenuItemJSON(restaurant_id, item_id):
+    item = session.query(MenuItem).filter_by(id = item_id).one()
+    return jsonify(MenuItems = item.serialize)
 
 @app.route("/restaurant/<int:restaurant_id>/menu/new/",
             methods = ['GET', 'POST'])
@@ -151,18 +163,19 @@ def newMenuItem(restaurant_id):
         return render_template('newmenuitem.html', restaurant = restaurant)
 
 
-@app.route('/restaurant/<int:restaurant_id>/menu/<int:item_id>/JSON/')
-def showMenuItemJSON(restaurant_id, item_id):
-    item = session.query(MenuItem).filter_by(id = item_id).one()
-    return jsonify(MenuItems = item.serialize)
 
 @app.route("/restaurant/<int:restaurant_id>/menu/<int:item_id>/edit/",
             methods = ['GET', 'POST'])
 def editMenuItem(restaurant_id, item_id):
     if 'username' not in login_session:
         return redirect('/login')
+
     restaurant = get_restaurant(restaurant_id)
     item = session.query(MenuItem).filter_by(id=item_id).one()
+
+    if login_session['user_id'] != restaurant.user_id:
+        return "<script>function myFunction() {alert('You are not authorized to edit menu items to this restaurant. Please create your own restaurant in order to edit items.');}</script><body onload='myFunction()''>"
+
     if request.method == "POST":
         if request.form['edit_item_name']:
             editted_item_name = request.form['edit_item_name']
@@ -187,7 +200,13 @@ def editMenuItem(restaurant_id, item_id):
 def deleteMenuItem(restaurant_id, item_id):
     if 'username' not in login_session:
         return redirect('/login')
+
+    restaurant = get_restaurant(restaurant_id)
     item = session.query(MenuItem).filter_by(id=item_id).one()
+
+    if login_session['user_id'] != restaurant.user_id:
+        return "<script>function myFunction() {alert('You are not authorized to delete menu items to this restaurant. Please create your own restaurant in order to delete items.');}</script><body onload='myFunction()''>"
+
     if request.method == 'POST':
         if request.form['delete_menu_item']:
             session.delete(item)
