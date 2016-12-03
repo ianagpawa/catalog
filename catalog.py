@@ -140,6 +140,7 @@ def showMenuItemJSON(restaurant_id, item_id):
     item = session.query(MenuItem).filter_by(id = item_id).one()
     return jsonify(MenuItems = item.serialize)
 
+
 @app.route("/restaurant/<int:restaurant_id>/menu/new/",
             methods = ['GET', 'POST'])
 def newMenuItem(restaurant_id):
