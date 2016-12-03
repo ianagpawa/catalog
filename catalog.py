@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from db_setup import Base, Restaurant, MenuItem
+from db_setup import Base, Restaurant, MenuItem, User
 #   imports for authentication
 from flask import session as login_session
 import random, string
@@ -19,7 +19,7 @@ APPLICATION_NAME = 'Music Catalog Application'
 
 app = Flask(__name__)
 
-engine = create_engine('sqlite:///restaurantmenu.db')
+engine = create_engine('sqlite:///restaurantmenuwithusers.db')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind = engine)
@@ -46,7 +46,10 @@ def showRestaurantsJSON():
 @app.route("/restaurants/")
 def showRestaurants():
     restaurants = session.query(Restaurant).all()
-    return render_template("restaurants.html", restaurants = restaurants)
+    if 'username' not in login_session:
+        return render_template('publicrestaurants.html', restaurants = restaurants)
+    else:
+        return render_template("restaurants.html", restaurants = restaurants)
 
 
 @app.route("/restaurant/new/", methods = ['GET', 'POST'])
@@ -55,7 +58,8 @@ def newRestaurant():
         return redirect('/login')
     if request.method == 'POST':
         restaurant_name = request.form['restaurant_name']
-        newRestaurant = Restaurant(name = restaurant_name)
+        user_id = login_session['user_id']
+        newRestaurant = Restaurant(name = restaurant_name, user_id = user_id)
         add_to_db(newRestaurant)
         flash("New restaurant (%s) was created!" % restaurant_name)
         return redirect(url_for('showRestaurants'))
@@ -85,6 +89,8 @@ def editRestaurant(restaurant_id):
 def deleteRestaurant(restaurant_id):
     if 'username' not in login_session:
         return redirect('/login')
+    if restaurant.user_id != login_session['user_id']:
+        return "<script>function myFunction() {}"
     restaurant = session.query(Restaurant).filter_by(id = restaurant_id).one()
     if request.method == 'POST':
         if request.form['delete_restaurant']:
@@ -108,7 +114,17 @@ def showMenuJSON(restaurant_id):
 def showMenu(restaurant_id):
     restaurant = get_restaurant(restaurant_id)
     items = session.query(MenuItem).filter_by(restaurant_id = restaurant.id)
-    return render_template('menu.html', restaurant = restaurant, items = items)
+    creator = getUserInfo(restaurant.user_id)
+    if 'username' not in login_session or creator.id != login_session['user_id']:
+        return render_template('publicmenu.html',
+                                items = items,
+                                restaurant = restaurant,
+                                creator = creator)
+    else:
+        return render_template('menu.html',
+                                restaurant = restaurant,
+                                items = items,
+                                creator = creator)
 
 
 
@@ -126,7 +142,8 @@ def newMenuItem(restaurant_id):
             newItem = MenuItem( name = item_name,
                                 price = item_price,
                                 description = item_description,
-                                restaurant_id = restaurant_id)
+                                restaurant_id = restaurant_id,
+                                user_id = restaurant.user_id)
             add_to_db(newItem)
             flash('A new menu item was created for %s' % restaurant.name)
             return redirect(url_for('showMenu', restaurant_id = restaurant_id))
@@ -182,7 +199,7 @@ def deleteMenuItem(restaurant_id, item_id):
 
 
 
-@app.route('/login')
+@app.route('/login/')
 def showLogin():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits)
                     for x in xrange(32))
@@ -262,6 +279,14 @@ def gconnect():
     login_session['picture'] = data['picture']
     login_session['email'] = data['email']
 
+    #   Check if user exists, make new one if not
+    email = login_session['email']
+    if getUserId(email):
+        user_id = getUserId(email)
+    else:
+        user_id = createUser(login_session)
+    login_session['user_id'] = user_id
+
     output = ''
     output += '<h1>Welcome, '
     output += login_session['username']
@@ -307,6 +332,26 @@ def gdisconnect():
     	response.headers['Content-Type'] = 'application/json'
     	return response
 
+
+def createUser(login_session):
+    newUser = User(name = login_session['username'], email = login_session['email'],
+                    picture = login_session['picture'])
+    add_to_db(newUser)
+    user = session.query(User).filter_by(email = login_session['email']).one()
+    return user.id
+
+
+def getUserId(email):
+    try:
+        user = session.query(User).filter_by(email = email).one()
+        return user.id
+    except:
+        return None
+
+
+def getUserInfo(user_id):
+    user = session.query(User).filter_by(id=user_id).one()
+    return user
 
 
 if __name__ == '__main__':
