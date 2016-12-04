@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from db_setup import Base, Restaurant, MenuItem, User
+from db_setup import Base, User, Playlist, Song
 #   imports for authentication
 from flask import session as login_session
 import random, string
@@ -19,15 +19,15 @@ APPLICATION_NAME = 'Music Catalog Application'
 
 app = Flask(__name__)
 
-engine = create_engine('sqlite:///restaurantmenuwithusers.db')
+engine = create_engine('sqlite:///musiccatalog.db')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind = engine)
 session = DBSession()
 
 
-def get_restaurant(restaurant_id):
-    return session.query(Restaurant).filter_by(id = restaurant_id).one()
+def get_playlist(playlist_id):
+    return session.query(Playlist).filter_by(id = playlist_id).one()
 
 
 def add_to_db(obj):
@@ -36,35 +36,35 @@ def add_to_db(obj):
 
 
 
-@app.route("/restaurants/JSON/")
-def showRestaurantsJSON():
-    restaurants = session.query(Restaurant).all()
-    return jsonify(Restaurants = [restaurant.serialize for restaurant in restaurants])
+@app.route("/playlists/JSON/")
+def showPlaylistsJSON():
+    playlists = session.query(Playlist).all()
+    return jsonify(Playlists = [playlist.serialize for playlist in playlists])
 
 
 @app.route("/")
-@app.route("/restaurants/")
-def showRestaurants():
-    restaurants = session.query(Restaurant).all()
+@app.route("/playlists/")
+def showPlaylists():
+    playlists = session.query(Playlist).all()
     if 'username' not in login_session:
-        return render_template('publicrestaurants.html', restaurants = restaurants)
+        return render_template('publicplaylists.html', playlists = playlists)
     else:
-        return render_template("restaurants.html", restaurants = restaurants)
+        return render_template("playlists.html", playlists = playlists)
 
 
-@app.route("/restaurant/new/", methods = ['GET', 'POST'])
-def newRestaurant():
+@app.route("/playlists/new/", methods = ['GET', 'POST'])
+def newPlaylist():
     if 'username' not in login_session:
         return redirect('/login')
     if request.method == 'POST':
-        restaurant_name = request.form['restaurant_name']
+        restaurant_name = request.form['playlist_name']
         user_id = login_session['user_id']
-        newRestaurant = Restaurant(name = restaurant_name, user_id = user_id)
-        add_to_db(newRestaurant)
-        flash("New restaurant (%s) was created!" % restaurant_name)
-        return redirect(url_for('showRestaurants'))
+        newPlaylist = Restaurant(name = playlist_name, user_id = user_id)
+        add_to_db(newPlaylist)
+        flash("New playlist (%s) was created!" % restaurant_name)
+        return redirect(url_for('showPlaylists'))
     else:
-        return render_template("newrestaurant.html")
+        return render_template("newplaylist.html")
 
 
 @app.route("/restaurant/<int:restaurant_id>/edit/", methods = ['GET', 'POST'])
