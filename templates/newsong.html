@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>{{playlist.name}}</h1>
+<h2>Add a song</h2>
+<form method='post'>
+    <input type='text' size='30' name='song_name' placeholder="Song Name">
+    <input type='text' size='30' name='artist' placeholder="Artist">
+    <input type='text' size='30' name='genre' placeholder="Genre">
+    <input type='text' size='30' name='youtube' placeholder="Youtube Link">
+    <input type="text" size='30' name='rendition' placeholder="Rendition of">
+    <br>
+    <input type='submit' value='Add'>
+</form>
+
+{% endblock %}

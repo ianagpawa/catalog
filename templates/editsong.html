@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Edit song from {{playlist.id}}</h1>
+<form method='post'>
+    <input type='text' size='30' name='edit_title'
+        value="{{song.title}}">
+    <input type='text' size='30' name='edit_artist'
+        value="{{song.artist}}">
+    <input type='text' size='30' name='edit_genre'
+        value="{{song.genre}}">
+    <input type='text' size='30' name='edit_youtube'
+        value="{{song.youtube}}">
+    <input type='text' size='30' name='edit_rendition'
+        value="{{song.rendition}}">
+    <br>
+    <input type='submit' value='Edit'>
+</form>
+
+
+
+{% endblock %}

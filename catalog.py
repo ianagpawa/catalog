@@ -67,155 +67,184 @@ def newPlaylist():
         return render_template("newplaylist.html")
 
 
-@app.route("/restaurant/<int:restaurant_id>/edit/", methods = ['GET', 'POST'])
-def editRestaurant(restaurant_id):
+@app.route("/playlist/<int:playlist_id>/edit/", methods = ['GET', 'POST'])
+def editPlaylist(playlist_id):
     if 'username' not in login_session:
         return redirect('/login')
 
-    restaurant = get_restaurant(restaurant_id)
+    playlist = get_playlist(playlist_id)
 
-    if restaurant.user_id != login_session['user_id']:
-        return "<script>function myFunction() {alert('You are not authorized to edit this restaurant. Please create your own restaurant in order to edit.');}</script><body onload='myFunction()''>"
+    if playlist.user_id != login_session['user_id']:
+        return "<script>function myFunction() {alert('You are not authorized to edit this playlist. Please create your own playlist in order to edit.');}</script><body onload='myFunction()''>"
 
     if request.method == 'POST':
-        if request.form['edit_restaurant_name']:
-            editted_name = request.form['edit_restaurant_name']
-            restaurant.name = editted_name
-            add_to_db(restaurant)
-            flash('Restaurant name has been edited!')
-            return redirect(url_for('showRestaurants'))
+        if request.form['edit_playlist_name']:
+            editted_name = request.form['edit_playlist_name']
+            playlist.name = editted_name
+
+
+        editted_description = request.form['edit_playlist_description']
+        playlist.description = editted_description
+
+
+        add_to_db(playlist)
+        flash('Playlist name has been edited!')
+        return redirect(url_for('showPlaylists'))
     else:
-        return render_template("editrestaurant.html", restaurant = restaurant)
+        return render_template("editplaylist.html", playlist = playlist)
 
 
 
-@app.route("/restaurant/<int:restaurant_id>/delete/",
+@app.route("/playlist/<int:playlist_id>/delete/",
             methods = ['GET', 'POST'])
-def deleteRestaurant(restaurant_id):
+def deletePlaylist(playlist_id):
     if 'username' not in login_session:
         return redirect('/login')
 
-    restaurant = session.query(Restaurant).filter_by(id = restaurant_id).one()
+    playlist = session.query(Playlist).filter_by(id = playlist_id).one()
 
-    if restaurant.user_id != login_session['user_id']:
-        return "<script>function myFunction() {alert('You are not authorized to delete this restaurant. Please create your own restaurant in order to delete.');}</script><body onload='myFunction()''>"
+    if playlist.user_id != login_session['user_id']:
+        return "<script>function myFunction() {alert('You are not authorized to delete this playlist. Please create your own playlist in order to delete.');}</script><body onload='myFunction()''>"
 
     if request.method == 'POST':
-        if request.form['delete_restaurant']:
-            session.delete(restaurant)
+        if request.form['delete_playlist']:
+            session.delete(playlist)
             session.commit()
-            flash('Restaurant has been deleted!')
-            return redirect(url_for('showRestaurants'))
+            flash('Playlist has been deleted!')
+            return redirect(url_for('showPlaylists'))
     else:
-        return render_template('deleterestaurant.html', restaurant = restaurant)
+        return render_template('deleteplaylist.html', playlist = playlist)
 
 
 
-@app.route("/restaurant/<int:restaurant_id>/menu/JSON")
-def showMenuJSON(restaurant_id):
-    restaurant = get_restaurant(restaurant_id)
-    items = session.query(MenuItem).filter_by(restaurant_id = restaurant.id)
-    return jsonify(MenuItems=[item.serialize for item in items])
+def getSongs(playlist_id):
+    return session.query(Song).filter_by(playlist_id = playlist_id)
 
-@app.route("/restaurant/<int:restaurant_id>/")
-@app.route("/restaurant/<int:restaurant_id>/menu/")
-def showMenu(restaurant_id):
-    restaurant = get_restaurant(restaurant_id)
-    items = session.query(MenuItem).filter_by(restaurant_id = restaurant.id)
-    creator = getUserInfo(restaurant.user_id)
+
+
+@app.route("/playlist/<int:playlist_id>/songs/JSON")
+def showSongsJSON(playlist_id):
+    playlist = get_playlist(playlist_id)
+    songs = getSongs(playlist_id)
+    return jsonify(Songs=[song.serialize for song in songs])
+
+
+@app.route("/playlist/<int:playlist_id>/")
+@app.route("/playlist/<int:playlist_id>/songs/")
+def showSongs(playlist_id):
+    playlist = get_playlist(playlist_id)
+    songs = getSongs(playlist_id)
+    creator = getUserInfo(playlist.user_id)
     if 'username' not in login_session or creator.id != login_session['user_id']:
-        return render_template('publicmenu.html',
-                                items = items,
-                                restaurant = restaurant,
+        return render_template('publicsongs.html',
+                                songs = songs,
+                                playlist = playlist,
                                 creator = creator)
     else:
-        return render_template('menu.html',
-                                restaurant = restaurant,
-                                items = items,
+        return render_template('songs.html',
+                                playlist = playlist,
+                                songs = songs,
                                 creator = creator)
 
 
-@app.route('/restaurant/<int:restaurant_id>/menu/<int:item_id>/JSON/')
-def showMenuItemJSON(restaurant_id, item_id):
-    item = session.query(MenuItem).filter_by(id = item_id).one()
-    return jsonify(MenuItems = item.serialize)
+@app.route('/playlist/<int:playlist_id>/songs/<int:song_id>/JSON/')
+def showSingleJSON(playlist_id, song_id):
+    song = session.query(Song).filter_by(id = song_id).one()
+    return jsonify(Song = song.serialize)
 
 
-@app.route("/restaurant/<int:restaurant_id>/menu/new/",
+#############   add  show Single
+
+
+
+
+
+@app.route("/playlist/<int:playlist_id>/songs/new/",
             methods = ['GET', 'POST'])
-def newMenuItem(restaurant_id):
+def newSong(playlist_id):
     if 'username' not in login_session:
         return redirect('/login')
-    restaurant = get_restaurant(restaurant_id)
+    playlist = get_playlist(playlist_id)
     if request.method == "POST":
-        if request.form['item_name'] and request.form['item_price'] and request.form['item_description']:
-            item_name = request.form['item_name']
-            item_price = request.form['item_price']
-            item_description = request.form['item_description']
-            newItem = MenuItem( name = item_name,
-                                price = item_price,
-                                description = item_description,
-                                restaurant_id = restaurant_id,
+        if request.form['title'] and request.form['artist']:
+            title = request.form['title']
+            artist = request.form['artist']
+            genre = request.form['genre']
+            youtube = request.form['youtube']
+            rendition = request.form['rendition']
+            newSong = Song( title = title,
+                                artist = artist,
+                                genre = genre,
+                                youtube = youtube,
+                                rendition = rendition,
+                                playlist_id = playlist_id,
                                 user_id = restaurant.user_id)
-            add_to_db(newItem)
-            flash('A new menu item was created for %s' % restaurant.name)
-            return redirect(url_for('showMenu', restaurant_id = restaurant_id))
+            add_to_db(newSong)
+            flash('A new song was added to %s' % restaurant.name)
+            return redirect(url_for('showSongs', playlist_id = playlist_id))
     else:
-        return render_template('newmenuitem.html', restaurant = restaurant)
+        return render_template('newsong.html', playlist = playlist)
 
 
 
-@app.route("/restaurant/<int:restaurant_id>/menu/<int:item_id>/edit/",
+@app.route("/playlist/<int:playlist_id>/songs/<int:song_id>/edit/",
             methods = ['GET', 'POST'])
-def editMenuItem(restaurant_id, item_id):
+def editMenuItem(playlist_id, song_id):
     if 'username' not in login_session:
         return redirect('/login')
 
-    restaurant = get_restaurant(restaurant_id)
-    item = session.query(MenuItem).filter_by(id=item_id).one()
+    playlist = get_playlist(playlist_id)
+    song = session.query(Song).filter_by(id=song_id).one()
 
-    if login_session['user_id'] != restaurant.user_id:
-        return "<script>function myFunction() {alert('You are not authorized to edit menu items to this restaurant. Please create your own restaurant in order to edit items.');}</script><body onload='myFunction()''>"
+    if login_session['user_id'] != playlist.user_id:
+        return "<script>function myFunction() {alert('You are not authorized to edit songs for this playlist. Please create your own playlist in order to edit songs.');}</script><body onload='myFunction()''>"
 
     if request.method == "POST":
-        if request.form['edit_item_name']:
-            editted_item_name = request.form['edit_item_name']
-            item.name = editted_item_name
-        if request.form['edit_item_price']:
-            editted_item_price = request.form['edit_item_price']
-            item.price = editted_item_price
-        if request.form['edit_item_description']:
-            editted_item_description = request.form['edit_item_description']
-            item.description = editted_item_description
-        add_to_db(item)
-        flash("Menu item (%s) was edited!" % item.name)
-        return redirect(url_for('showMenu', restaurant_id = restaurant_id))
+        if request.form['edit_title']:
+            editted_title = request.form['edit_title']
+            song.title = editted_title
+        if request.form['edit_artist']:
+            editted_artist = request.form['edit_artist']
+            song.artist = editted_artist
+        if request.form['edit_genre']:
+            editted_genre = request.form['edit_genre']
+            song.genre = editted_genre
+        if request.form['edit_youtube']:
+            editted_youtube = request.form['edit_youtube']
+            song.youtube = editted_youtube
+        if request.form['edit_rendition']:
+            editted_rendition = request.form['edit_rendition']
+            song.rendition = editted_rendition
+        add_to_db(song)
+        flash("(%s) was edited!" % song.title)
+        return redirect(url_for('showSongs', playlist_id = playlist_id))
     else:
-        return render_template('editmenuitem.html', restaurant = restaurant,
-                            item = item)
+        return render_template('editsong.html', playlist = playlist,
+                            song = song)
 
 
 
-@app.route("/restaurant/<int:restaurant_id>/menu/<int:item_id>/delete/",
+@app.route("/playlist/<int:playlist_id>/songs/<int:song_id>/delete/",
             methods = ['GET', 'POST'])
-def deleteMenuItem(restaurant_id, item_id):
+def deleteSong(playlist_id, song_id):
     if 'username' not in login_session:
         return redirect('/login')
 
-    restaurant = get_restaurant(restaurant_id)
-    item = session.query(MenuItem).filter_by(id=item_id).one()
+    playlist = get_playlist(playlist_id)
+    song = session.query(Song).filter_by(id=song_id).one()
 
-    if login_session['user_id'] != restaurant.user_id:
-        return "<script>function myFunction() {alert('You are not authorized to delete menu items to this restaurant. Please create your own restaurant in order to delete items.');}</script><body onload='myFunction()''>"
+    if login_session['user_id'] != playlist.user_id:
+        return "<script>function myFunction() {alert('You are not authorized to delete songs for this playlist. Please create your own playlist in order to delete songs.');}</script><body onload='myFunction()''>"
 
     if request.method == 'POST':
-        if request.form['delete_menu_item']:
-            session.delete(item)
+        if request.form['delete_song']:
+            session.delete(song)
             session.commit()
-            flash('A menu item was deleted!')
-            return redirect(url_for('showMenu', restaurant_id = restaurant_id))
+            flash('A song was deleted!')
+            return redirect(url_for('showSongs', playlist_id = playlist_id))
     else:
-        return render_template('deletemenuitem.html', item = item)
+        return render_template('deletesong.html', song = song)
+
 
 
 
@@ -249,7 +278,7 @@ def showLogin():
     return render_template("login.html", STATE = state)
 
 
-@app.route('/gconnect', methods=['POST'])
+@app.route('/gconnect/', methods=['POST'])
 def gconnect():
     # Validate state token
     if request.args.get('state') != login_session['state']:
@@ -343,7 +372,7 @@ def gconnect():
     # DISCONNECT - Revoke a current user's token and reset their login_session
 
 
-@app.route('/gdisconnect')
+@app.route('/gdisconnect/')
 def gdisconnect():
     access_token = login_session['access_token']
     print 'In gdisconnect access token is %s', access_token
@@ -375,7 +404,7 @@ def gdisconnect():
     	return response
 
 
-@app.route('/fbconnect', methods=['POST'])
+@app.route('/fbconnect/', methods=['POST'])
 def fbconnect():
     if request.args.get('state') != login_session['state']:
         response = make_response(json.dumps('Invalid state parameter.'), 401)
@@ -442,7 +471,7 @@ def fbconnect():
 
 
 
-@app.route('/fbdisconnect')
+@app.route('/fbdisconnect/')
 def fbdisconnect():
     facebook_id = login_session['facebook_id']
     # The access token must me included to successfully logout
@@ -455,7 +484,7 @@ def fbdisconnect():
 
 
 # Disconnect based on provider
-@app.route('/disconnect')
+@app.route('/disconnect/')
 def disconnect():
     if 'provider' in login_session:
         if login_session['provider'] == 'google':

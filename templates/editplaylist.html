@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Edit Playlist</h1>
+<form method='post'>
+    <input type='text' size='30' name='edit_playlist_name' placeholder="{{playlist.name}}">
+    <textarea name="edit_playlist_description">{{playlist.description}}</textarea>
+    <input type='submit' value='Edit'>
+</form>
+
+
+{% endblock %}

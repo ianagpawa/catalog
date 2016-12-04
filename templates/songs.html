@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>{{playlist.name}}</h1>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li><strong>{{message}}</strong></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+{% endwith %}
+
+<div>
+    <a href="{{url_for('newSong', playlist_id = playlist.id)}}">
+        Add new song
+    </a>
+</div>
+
+
+{% for song in songs %}
+    <div>
+        <h4>{{song.name}}</h4>
+        <p>{{song.artist}}</p>
+        <p>{{song.youtube}}</p>
+        <p>{{song.genre}}</p>
+        <p>{{song.related}}
+        <div>
+            <a href="{{url_for('editSong', playlist_id = playlist.id, song_id = song.id)}}">
+                Edit
+            </a>
+            <a href="{{url_for('deleteSong', playlist_id = playlist.id, song_id = song.id)}}">
+                Delete
+            </a>
+        </div>
+    </div>
+    <br>
+
+{% endfor %}
+
+{% endblock %}
