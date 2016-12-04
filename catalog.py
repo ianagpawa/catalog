@@ -57,11 +57,14 @@ def newPlaylist():
     if 'username' not in login_session:
         return redirect('/login')
     if request.method == 'POST':
-        restaurant_name = request.form['playlist_name']
+        playlist_name = request.form['playlist_name']
+        playlist_description = request.form['playlist_description']
         user_id = login_session['user_id']
-        newPlaylist = Restaurant(name = playlist_name, user_id = user_id)
+        newPlaylist = Playlist(name = playlist_name,
+                                description = playlist_description,
+                                user_id = user_id)
         add_to_db(newPlaylist)
-        flash("New playlist (%s) was created!" % restaurant_name)
+        flash("New playlist (%s) was created!" % playlist_name)
         return redirect(url_for('showPlaylists'))
     else:
         return render_template("newplaylist.html")
@@ -178,9 +181,9 @@ def newSong(playlist_id):
                                 youtube = youtube,
                                 rendition = rendition,
                                 playlist_id = playlist_id,
-                                user_id = restaurant.user_id)
+                                user_id = playlist.user_id)
             add_to_db(newSong)
-            flash('A new song was added to %s' % restaurant.name)
+            flash('A new song was added to %s' % playlist.name)
             return redirect(url_for('showSongs', playlist_id = playlist_id))
     else:
         return render_template('newsong.html', playlist = playlist)
@@ -278,7 +281,7 @@ def showLogin():
     return render_template("login.html", STATE = state)
 
 
-@app.route('/gconnect/', methods=['POST'])
+@app.route('/gconnect', methods=['POST'])
 def gconnect():
     # Validate state token
     if request.args.get('state') != login_session['state']:
@@ -372,7 +375,7 @@ def gconnect():
     # DISCONNECT - Revoke a current user's token and reset their login_session
 
 
-@app.route('/gdisconnect/')
+@app.route('/gdisconnect')
 def gdisconnect():
     access_token = login_session['access_token']
     print 'In gdisconnect access token is %s', access_token
@@ -404,7 +407,7 @@ def gdisconnect():
     	return response
 
 
-@app.route('/fbconnect/', methods=['POST'])
+@app.route('/fbconnect', methods=['POST'])
 def fbconnect():
     if request.args.get('state') != login_session['state']:
         response = make_response(json.dumps('Invalid state parameter.'), 401)
@@ -471,7 +474,7 @@ def fbconnect():
 
 
 
-@app.route('/fbdisconnect/')
+@app.route('/fbdisconnect')
 def fbdisconnect():
     facebook_id = login_session['facebook_id']
     # The access token must me included to successfully logout
@@ -484,7 +487,7 @@ def fbdisconnect():
 
 
 # Disconnect based on provider
-@app.route('/disconnect/')
+@app.route('/disconnect')
 def disconnect():
     if 'provider' in login_session:
         if login_session['provider'] == 'google':
@@ -500,10 +503,10 @@ def disconnect():
         del login_session['user_id']
         del login_session['provider']
         flash("You have successfully been logged out.")
-        return redirect(url_for('showRestaurants'))
+        return redirect(url_for('showPlaylists'))
     else:
         flash("You were not logged in")
-        return redirect(url_for('showRestaurants'))
+        return redirect(url_for('showPlaylists'))
 
 
 

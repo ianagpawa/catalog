@@ -22,10 +22,10 @@
         </a>
     </div>
     <p>
-        <a href="{{url_for('editPlaylist', playlist_id = playlist_id)}}">
+        <a href="{{url_for('editPlaylist', playlist_id = playlist.id)}}">
             Edit Playlist Name
         </a>
-        <a href="{{url_for('deletePlaylist', playlist_id = playlist_id)}}">
+        <a href="{{url_for('deletePlaylist', playlist_id = playlist.id)}}">
             Delete
         </a>
     </p>

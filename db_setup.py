@@ -1,9 +1,10 @@
 import os
 import sys
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Column, ForeignKey, Integer, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
+from sqlalchemy.sql import func
 
 Base = declarative_base()
 
@@ -14,13 +15,16 @@ class User(Base):
     name = Column(String(80), nullable = False)
     email = Column(String(320), nullable = False)
     picture = Column(String(250))
+    time_created = Column(DateTime(timezone=True), server_default=func.now())
     @property
     def serialize(self):
         return {
             'id': self.id,
             'name': self.name,
             'email': self.email,
-            'picture': self.picture
+            'picture': self.picture,
+            'time_created': self.time_created,
+            'time_updated': self.time_updated
         }
 
 
@@ -29,6 +33,8 @@ class Playlist(Base):
     id = Column(Integer, primary_key = True)
     name = Column(String(80), nullable = False)
     description = Column(String(250))
+    time_created = Column(DateTime(timezone=True), server_default=func.now())
+    time_updated = Column(DateTime(timezone=True), onupdate=func.now())
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship(User)
     @property
@@ -38,7 +44,9 @@ class Playlist(Base):
             'name': self.name,
             'description': self.description,
             'user_id': self.user_id,
-            'user': self.user
+            'user': self.user,
+            'time_created': self.time_created,
+            'time_updated': self.time_updated
         }
 
 
@@ -55,6 +63,8 @@ class Song(Base):
     playlist = relationship(Playlist)
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship(User)
+    time_created = Column(DateTime(timezone=True), server_default=func.now())
+    time_updated = Column(DateTime(timezone=True), onupdate=func.now())
 
     @property
     def serialize(self):
@@ -68,7 +78,9 @@ class Song(Base):
             'playlist_id': self.playlist_id,
             'playlist': self.playlist,
             'user_id': self.user_id,
-            'user': self.user
+            'user': self.user,
+            'time_created': self.time_created,
+            'time_updated': self.time_updated
         }
 
 

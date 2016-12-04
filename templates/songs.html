@@ -22,11 +22,15 @@
 
 {% for song in songs %}
     <div>
-        <h4>{{song.name}}</h4>
-        <p>{{song.artist}}</p>
-        <p>{{song.youtube}}</p>
-        <p>{{song.genre}}</p>
-        <p>{{song.related}}
+        <h3>{{song.title}}</h3>
+        <p>By: {{song.artist}}</p>
+        <p>Gere: {{song.genre}}</p>
+        {% if song.youtube %}
+            <p>Youtube Link: {{song.youtube}}</p>
+        {% endif %}
+        {% if song.rendition %}
+            <p>Rendition of: {{song.rendition}}
+        {% endif %}
         <div>
             <a href="{{url_for('editSong', playlist_id = playlist.id, song_id = song.id)}}">
                 Edit

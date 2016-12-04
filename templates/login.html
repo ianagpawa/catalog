@@ -32,7 +32,7 @@ function signInCallback(authResult) {
         if (result) {
           $('#result').html('Login Successful!</br>'+ result + '</br>Redirecting...')
          setTimeout(function() {
-          window.location.href = "/restaurants";
+          window.location.href = "/playlists";
          }, 4000);
 
       } else if (authResult['error']) {
@@ -84,7 +84,7 @@ function sendTokenToServer() {
                 if (result) {
                     $('#result').html('Login Successful!</br>'+ result + '</br>Redirecting...')
                     setTimeout(function() {
-                        window.location.href = "/restaurants";
+                        window.location.href = "/playlists";
                     }, 4000);
 
                 } else {
