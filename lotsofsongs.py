@@ -52,7 +52,7 @@ song1 = Song(user_id=1,
                 genre="funk",
                 playlist=playlist1)
 
-session.add(song2)
+session.add(song1)
 session.commit()
 
 # Menu for playlist1
