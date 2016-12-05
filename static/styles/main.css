@@ -70,29 +70,36 @@ ul{
 }
 
 .input-song{
-    height: 5vh;
-    width: 20vw;
+    height: 3vh;
+    width: 23vw;
 }
 
 /*  new playlist*/
-#description-text{
+.description-text{
     width: 23vw;
     height: 15vh;
 }
 
-.create-button{
+.create-button,
+.CRUD-button{
     margin-left: 20vw;
     margin-top: 2vh;
 }
 
 /*  single  */
 
-youtube-iframe{
+.youtube-iframe{
     display: block;
-    width: 50%;
+    width: 50vw;
     height: 60vh;
     padding-top: 2vh;
     padding-bottom: 2vh;
     margin-left: auto;
     margin-right: auto;
+}
+
+
+/*  delete playlist     */
+.warning{
+    color: red;
 }

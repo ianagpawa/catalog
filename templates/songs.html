@@ -44,12 +44,15 @@
 				</a>
 				<p>By: {{song.artist}}</p>
 				<p>Gere: {{song.genre}}</p>
-				{% if song.youtube %}
-					<p>Youtube Link: {{song.youtube}}</p>
-				{% endif %}
 				{% if song.rendition %}
 					<p>Rendition of: {{song.rendition}}
 				{% endif %}
+				{% if song.youtube %}
+					<a target='_blank' href="https://www.youtube.com/watch?v={{song.youtube}}">
+						Youtube Link: https://www.youtube.com/watch?v={{song.youtube}}
+					</a>
+				{% endif %}
+
                 <div>
                     <a href="{{url_for('editSong',
                             playlist_id = playlist.id,

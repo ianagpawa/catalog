@@ -1,21 +1,27 @@
 {% extends "base.html" %}
 {% block content %}
-
-<h1>Edit song from {{playlist.id}}</h1>
-<form method='post'>
-    <input type='text' size='30' name='edit_title'
-        value="{{song.title}}">
-    <input type='text' size='30' name='edit_artist'
-        value="{{song.artist}}">
-    <input type='text' size='30' name='edit_genre'
-        value="{{song.genre}}">
-    <input type='text' size='30' name='edit_youtube'
-        value="{{song.youtube}}">
-    <input type='text' size='30' name='edit_rendition'
-        value="{{song.rendition}}">
-    <br>
-    <input type='submit' value='Edit'>
-</form>
+<div class='container-fluid text-center'>
+    <h1>Edit song from {{playlist.name}}</h1>
+    <form method='post'>
+        <input type='text' class='input-song' name='edit_title'
+            value="{{song.title}}">
+        <br>
+        <input type='text' class='input-song' name='edit_artist'
+            value="{{song.artist}}">
+        <br>
+        <input type='text' class='input-song' name='edit_genre'
+            value="{{song.genre}}">
+        <br>
+        <input type='text' class='input-song' name='edit_youtube'
+            value="https://www.youtube.com/watch?v={{song.youtube}}"
+            placeholder="Youtube Link">
+        <br>
+        <input type='text' class='input-song' name='edit_rendition'
+            value="{{song.rendition}}" placeholder='Rendition of:'>
+        <br>
+        <input class='CRUD-button' type='submit' value='Edit'>
+    </form>
+</div>
 
 
 
