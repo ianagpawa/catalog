@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class='container-fluid'>
+<div class='container-fluid songs-page'>
 	<div class="row banner menu">
-		<div class="col-md-11">
+		<div class="text-center">
 			<h1 class='playlist-title'>{{ playlist.name }}</h1>
 			<h3>
 				<figure class="creator">
@@ -27,8 +27,12 @@
 	{% endwith %}
 	</div>
 	<br>
+    <br>
 
-	<div class='songs'>
+	<div class='songs col-md-offset-1'>
+        <div class='text-center'>
+
+        </div>
 		{% if songs !=[] %}
 			{% for song in songs %}
 			<div>
@@ -43,6 +47,7 @@
 				{% if song.rendition %}
 					<p>Rendition of: {{song.rendition}}
 				{% endif %}
+
 			</div>
 			<hr>
 			<br>

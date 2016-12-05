@@ -32,24 +32,27 @@
 
     <body>
         <div class="container-fluid">
-            <div class='row top-menu top-part'>
-                <div class='col-md-2 text-left'>
-                    <a id='home' href="{{url_for('showPlaylists')}}">
-                        Corpus
-                    </a>
-                </div>
-                <div class='col-md-4 col-md-offset-5 text-right'>
-                    {% if 'username' not in session %}
-                    <a class='log' href="{{url_for('showLogin')}}">Log In</a>
-                    {% else %}
+            <div class='row top-part'>
+                <div class='col-md-10'>
+                    <div class='text-left col-md-1 logit'>
+                        <a id='home' href="{{url_for('showPlaylists')}}">
+                            Corpus
+                        </a>
+                    </div>
+                    <div class='text-right logit'>
+                        {% if 'username' not in session %}
+                        <a class='log' href="{{url_for('showLogin')}}">Log In</a>
+                        {% else %}
 
-                    <ul class="navbar-nav navbar-right">
-                          <li id='username'>{{session.username}}</li>
-                          <li id="logout"><a id='a-logout' href="{{url_for('disconnect')}}">Log Out</a></li>
-                    </ul>
+                        <ul class="navbar-nav navbar-right">
+                              <li id='username'>{{session.username}}</li>
+                              <li id="logout"><a id='a-logout' href="{{url_for('disconnect')}}">Log Out</a></li>
+                        </ul>
 
-                    {% endif %}
+                        {% endif %}
+                    </div>
                 </div>
+
             </div>
             {% block content %}
             {% endblock %}

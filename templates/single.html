@@ -1,9 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
-<div class='container-fluid'>
-    <h2>Title: {{song.title}}</h2>
+<div class='container-fluid text-center'>
+    <h2>{{song.title}}</h2>
     <h3>By: {{song.artist}}</h3>
-    <h6>Genre: {{song.genre}}</h6>
+    <h5>Genre: {{song.genre}}</h5>
+    {% if song.youtube %}
+    <div class="post-youtube">
+       <iframe
+            class='youtube-iframe'
+            src="https://www.youtube.com/embed/{{song.youtube}}"
+            frameborder="0" allowfullscreen>
+        </iframe>
+   </div>
+   {% endif %}
+
 
     <h5>Part of the {{song.playlist.name}} playlist by {{song.user.name}}</h5>
     <h6>Added on: {{song.time_created}}</h6>

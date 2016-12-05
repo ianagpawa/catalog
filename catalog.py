@@ -175,7 +175,11 @@ def newSong(playlist_id):
             title = request.form['title']
             artist = request.form['artist']
             genre = request.form['genre']
-            youtube = request.form['youtube']
+            youtube = None
+            if request.form['youtube']:
+                link = request.form['youtube']
+                vid_id = link.split('=')[1]
+                youtube = vid_id
             rendition = request.form['rendition']
             newSong = Song( title = title,
                                 artist = artist,

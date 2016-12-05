@@ -1,13 +1,11 @@
-.top-menu{
+/*  nav */
+.top-part{
     padding-top: 3vh;
     padding-bottom: 2vh;
     background-color: #000033;
     vertical-align: middle;
 }
 
-#username{
-    padding-right: 2vw;
-}
 
 #home{
     font-size: 30px;
@@ -15,9 +13,6 @@
     color: white;
 }
 
-#a-logout{
-    color: white;
-}
 
 .log,
 #logout,
@@ -26,25 +21,78 @@
     color: white;
 }
 
+.logit{
+    display: block;
+}
+
+#username{
+    padding-right: 2vw;
+}
+/*  messages    */
+
 ul{
     list-style-type: none;
     color: red;
 }
 
-.playlist-row{
-    height: 4vh;
+/*  login   */
+
+.login-page{
+    padding-top: 17vh;
 }
 
-.playlist-name,
+#facebook-button{
+    margin-top: 5vh;
+}
+
+#a-logout{
+    color: white;
+}
+
+/*  playlists   */
 .playlist-description{
-    display: inline-block;
-    vertical-align: middle;
+    display: inline;
 }
 
-.playlist-bottom{
+
+.play-button{
     padding-top: 1vh;
 }
 
 .delete{
     color: red;
+}
+
+/*  newsong */
+#add-song{
+    margin-top: 2vh;
+    margin-left: 15vw;
+}
+
+.input-song{
+    height: 5vh;
+    width: 20vw;
+}
+
+/*  new playlist*/
+#description-text{
+    width: 23vw;
+    height: 15vh;
+}
+
+.create-button{
+    margin-left: 20vw;
+    margin-top: 2vh;
+}
+
+/*  single  */
+
+youtube-iframe{
+    display: block;
+    width: 50%;
+    height: 60vh;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    margin-left: auto;
+    margin-right: auto;
 }

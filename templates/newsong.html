@@ -4,19 +4,19 @@
 <div class='container-fluid'>
     <div class='col-md-6 col-md-offset-3 text-center'>
         <h1>{{playlist.name}}</h1>
-        <h2>Add a song</h2>
+        <h3>Add a song</h3>
         <form method='post'>
-            <input type='text' size='30' name='title' placeholder="Song Title">
+            <input type='text' class='input-song' name='title' placeholder="Song Title (Required)">
             <br>
-            <input type='text' size='30' name='artist' placeholder="Artist">
+            <input type='text' class='input-song' name='artist' placeholder="Artist (Required)">
             <br>
-            <input type='text' size='30' name='genre' placeholder="Genre">
+            <input type='text' class='input-song' name='genre' placeholder="Genre">
             <br>
-            <input type='text' size='30' name='youtube' placeholder="Youtube Link">
+            <input type='text' class='input-song' name='youtube' placeholder="Youtube Link">
             <br>
-            <input type="text" size='30' name='rendition' placeholder="Rendition of">
+            <input type="text" class='input-song' name='rendition' placeholder="Rendition of">
             <br>
-            <input type='submit' value='Add'>
+            <input id='add-song' type='submit' value='Add'>
         </form>
     </div>
 </div>

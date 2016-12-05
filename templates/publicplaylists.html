@@ -1,40 +1,45 @@
 {% extends "base.html" %}
 {% block content %}
-
-<div class='col-md-offset-4 col-md-4 text-center'>
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-    <ul>
-        {% for message in messages %}
-        <li><strong>{{message}}</strong></li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-{% endwith %}
-</div>
-<br>
-
-
-<div class='text-center'>
-    <h1>Playlists</h1>
-</div>
+<div class='container-fluid playlists'>
+    <div class='col-md-offset-4 col-md-4 text-center'>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li><strong>{{message}}</strong></li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+    </div>
+    <br>
 
 
-{% for playlist in playlists %}
+    <div class='text-center'>
+        <h1>Playlists</h1>
+
+    </div>
+
+
+    {% for playlist in playlists %}
     <div class='container'>
         <div class='top-playlist'>
-            <h3>
+            <h2>
                 <a href="{{url_for('showSongs', playlist_id = playlist.id)}}">
                     {{playlist.name}}
                 </a>
-            </h3>
+            </h2>
 
-            <h5>Description:</h5>
-            <p>{{playlist.description}}</p>
+            <div class='playlist-description'>
+                <h3 class='playlist-description'>Description: </h3>
+                <p class='playlist-description'>{{playlist.description}}</p>
+            </div>
 
         </div>
         <hr>
     </div>
+
+</div>
 
 {% endfor %}
 
