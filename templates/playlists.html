@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
+<div class='col-md-offset-4 col-md-4 text-center'>
 {% with messages = get_flashed_messages() %}
     {% if messages %}
     <ul>
@@ -10,25 +11,44 @@
     </ul>
     {% endif %}
 {% endwith %}
+</div>
+<br>
 
-<div>
-    <a href = "{{url_for('newPlaylist')}}">Create new Playlist</a>
+
+<div class='text-center'>
+    <h1>Playlists</h1>
+    <a href = "{{url_for('newPlaylist')}}">Create New Playlist</a>
 </div>
 
+
 {% for playlist in playlists %}
-    <div>
-        <a href="{{url_for('showSongs', playlist_id = playlist.id)}}">
-            {{playlist.name}}
-        </a>
+    <div class='container'>
+        <div class='top-playlist'>
+            <h3>
+                <a href="{{url_for('showSongs', playlist_id = playlist.id)}}">
+                    {{playlist.name}}
+                </a>
+            </h3>
+
+            <h4>Description:</h4>
+            <p>{{playlist.description}}</p>
+
+            <div class='row'>
+                <div class='col-md-2'>
+                    <a href="{{url_for('editPlaylist', playlist_id = playlist.id)}}">
+                        Edit Playlist
+                    </a>
+                </div>
+                <div class='col-md-1'>
+                    <a class='delete' href="{{url_for('deletePlaylist', playlist_id = playlist.id)}}">
+                        Delete
+                    </a>
+                </div>
+            </div>
+        </div>
+        <hr>
     </div>
-    <p>
-        <a href="{{url_for('editPlaylist', playlist_id = playlist.id)}}">
-            Edit Playlist Name
-        </a>
-        <a href="{{url_for('deletePlaylist', playlist_id = playlist.id)}}">
-            Delete
-        </a>
-    </p>
+
 {% endfor %}
 
 {% endblock %}

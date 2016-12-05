@@ -156,8 +156,10 @@ def showSingleJSON(playlist_id, song_id):
     return jsonify(Song = song.serialize)
 
 
-#############   add  show Single
-
+@app.route('/playlist/<int:playlist_id>/songs/<int:song_id>/')
+def showSingle(playlist_id, song_id):
+    song = session.query(Song).filter_by(id = song_id).one()
+    return render_template('single.html', song = song)
 
 
 
@@ -370,7 +372,7 @@ def gconnect():
     output += '<img src="'
     output += login_session['picture']
     output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
-    flash("you are now logged in as %s" % login_session['username'])
+    flash("You are now logged in as %s" % login_session['username'])
     print "done!"
     return output
 

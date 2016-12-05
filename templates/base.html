@@ -5,7 +5,7 @@
         <meta name="viewport" content='width=device-width, initial-scale=1'>
         <meta name="author" content="Ian Agpawa">
         <meta name="description" content="Catalog">
-        <title>Restaurant Catalog</title>
+        <title>Music Catalog</title>
 
 
         <link rel="stylesheet"
@@ -17,9 +17,8 @@
            rel="stylesheet"
            integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
            crossorigin="anonymous">
-       <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond"
-            rel="stylesheet">
-       <link type='text/css' rel="stylesheet" href="/static/style.css">
+
+       <link type='text/css' rel="stylesheet" href="/static/styles/main.css">
 
        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js">
        </script>
@@ -32,23 +31,26 @@
     </head>
 
     <body>
-        <div class='row top-menu'>
-            <div class='col-md-6'>
-                <a href="{{url_for('showPlaylists')}}">
-                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-                    Show All Playlists
-                </a>
-            </div>
-            <div class='col-md-6 text-right'>
-                {% if 'username' not in session %}
-                <a href="{{url_for('showLogin')}}">Click Here to Log In</a>
-                {% else %}
-                <a href="{{url_for('disconnect')}}">Disconnect</a>
-                {% endif %}
-            </div>
-        </div>
+        <div class="container-fluid">
+            <div class='row top-menu top-part'>
+                <div class='col-md-2 text-left'>
+                    <a id='home' href="{{url_for('showPlaylists')}}">
+                        Corpus
+                    </a>
+                </div>
+                <div class='col-md-4 col-md-offset-5 text-right'>
+                    {% if 'username' not in session %}
+                    <a class='log' href="{{url_for('showLogin')}}">Log In</a>
+                    {% else %}
 
-        <div class="col-md-8 col-md-offset-2">
+                    <ul class="navbar-nav navbar-right">
+                          <li id='username'>{{session.username}}</li>
+                          <li id="logout"><a id='a-logout' href="{{url_for('disconnect')}}">Log Out</a></li>
+                    </ul>
+
+                    {% endif %}
+                </div>
+            </div>
             {% block content %}
             {% endblock %}
         </div>

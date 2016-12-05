@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<div class='container-fluid'>
+    <h2>Title: {{song.title}}</h2>
+    <h3>By: {{song.artist}}</h3>
+    <h6>Genre: {{song.genre}}</h6>
+
+    <h5>Part of the {{song.playlist.name}} playlist by {{song.user.name}}</h5>
+    <h6>Added on: {{song.time_created}}</h6>
+
+</div>
+
+{% endblock %}

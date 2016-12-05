@@ -1,0 +1,50 @@
+.top-menu{
+    padding-top: 3vh;
+    padding-bottom: 2vh;
+    background-color: #000033;
+    vertical-align: middle;
+}
+
+#username{
+    padding-right: 2vw;
+}
+
+#home{
+    font-size: 30px;
+    padding-left: 7vw;
+    color: white;
+}
+
+#a-logout{
+    color: white;
+}
+
+.log,
+#logout,
+#username{
+    font-size: 20px;
+    color: white;
+}
+
+ul{
+    list-style-type: none;
+    color: red;
+}
+
+.playlist-row{
+    height: 4vh;
+}
+
+.playlist-name,
+.playlist-description{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.playlist-bottom{
+    padding-top: 1vh;
+}
+
+.delete{
+    color: red;
+}
