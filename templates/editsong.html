@@ -19,6 +19,9 @@
         <input type='text' class='input-song' name='edit_rendition'
             value="{{song.rendition}}" placeholder='Rendition of:'>
         <br>
+        <a href="{{url_for('showSongs', playlist_id = playlist.id)}}">
+            Cancel
+        </a>
         <input class='CRUD-button' type='submit' value='Edit'>
     </form>
 </div>

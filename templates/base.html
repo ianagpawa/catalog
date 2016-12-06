@@ -38,13 +38,13 @@
                         Aural History
                     </a>
                 </div>
-                <div class='col-md-offset-4 col-md-3 text-right logit'>
+                <div class='col-md-offset-3 col-md-3 text-right logit'>
                     {% if 'username' not in session %}
-                    <a class='log' href="{{url_for('showLogin')}}">Log In</a>
+                    <a class='log' id='login' href="{{url_for('showLogin')}}">Log In</a>
                     {% else %}
                     <ul class="navbar-nav navbar-right">
                           <li id='username'>{{session.username}}</li>
-                          <li id="logout"><a id='a-logout' href="{{url_for('disconnect')}}">Log Out</a></li>
+                          <li id="logout"><a id='logout-a' href="{{url_for('disconnect')}}">Log Out</a></li>
                     </ul>
 
                     {% endif %}

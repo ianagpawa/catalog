@@ -8,6 +8,9 @@
         <br>
         <textarea class='description-text' name="edit_playlist_description">{{playlist.description}}</textarea>
         <br>
+        <a href="{{url_for('showSongs', playlist_id = playlist.id)}}">
+            Cancel
+        </a>
         <input class='CRUD-button' type='submit' value='Edit'>
     </form>
 </div>

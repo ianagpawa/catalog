@@ -13,8 +13,16 @@
     color: white;
 }
 
+#home:hover,
+#login:hover,
+#logout-a:hover{
+    color: #CC7000;
+    text-decoration: none;
+}
+
 
 .log,
+#logout-a,
 #logout,
 #username{
     font-size: 20px;
@@ -105,4 +113,19 @@ ul{
 /*  delete playlist     */
 .warning{
     color: red;
+}
+
+/*  songs   */
+.songs{
+    display:block;
+    height: 29vh;
+}
+.youtube-iframe-playlist{
+    display: inline;
+    width: 22vw;
+    height: 26vh;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    margin-left: auto;
+    margin-right: auto;
 }

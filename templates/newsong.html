@@ -21,8 +21,12 @@
             <input type="text" class='input-song' name='rendition'
                 placeholder="Rendition of">
             <br>
-            <input id='add-song CRUD-button' type='submit' value='Add'>
+            <a href="{{url_for('showSongs', playlist_id = playlist.id)}}">
+                Cancel
+            </a>
+            <input id='add-song' class='CRUD-button' type='submit' value='Add'>
         </form>
+
     </div>
 </div>
 {% endblock %}
