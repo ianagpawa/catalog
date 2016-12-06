@@ -5,7 +5,7 @@
         <meta name="viewport" content='width=device-width, initial-scale=1'>
         <meta name="author" content="Ian Agpawa">
         <meta name="description" content="Catalog">
-        <title>Music Catalog</title>
+        <title>Aural History</title>
 
 
         <link rel="stylesheet"
@@ -33,24 +33,21 @@
     <body>
         <div class="container-fluid">
             <div class='row top-part'>
-                <div class='col-md-10'>
-                    <div class='text-left col-md-1 logit'>
-                        <a id='home' href="{{url_for('showPlaylists')}}">
-                            Corpus
-                        </a>
-                    </div>
-                    <div class='text-right logit'>
-                        {% if 'username' not in session %}
-                        <a class='log' href="{{url_for('showLogin')}}">Log In</a>
-                        {% else %}
+                <div class='col-md-4 logit'>
+                    <a id='home' href="{{url_for('showPlaylists')}}">
+                        Aural History
+                    </a>
+                </div>
+                <div class='col-md-4 col-md-offset-3 logit'>
+                    {% if 'username' not in session %}
+                    <a class='log' href="{{url_for('showLogin')}}">Log In</a>
+                    {% else %}
+                    <ul class="navbar-nav navbar-right">
+                          <li id='username'>{{session.username}}</li>
+                          <li id="logout"><a id='a-logout' href="{{url_for('disconnect')}}">Log Out</a></li>
+                    </ul>
 
-                        <ul class="navbar-nav navbar-right">
-                              <li id='username'>{{session.username}}</li>
-                              <li id="logout"><a id='a-logout' href="{{url_for('disconnect')}}">Log Out</a></li>
-                        </ul>
-
-                        {% endif %}
-                    </div>
+                    {% endif %}
                 </div>
 
             </div>

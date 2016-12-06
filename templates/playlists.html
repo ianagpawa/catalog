@@ -28,6 +28,7 @@
                 <a href="{{url_for('showSongs', playlist_id = playlist.id)}}">
                     {{playlist.name}}
                 </a>
+                <h4>By {{playlist.user.name}}</h4>
             </h2>
 
             <div class='playlist-description'>

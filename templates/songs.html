@@ -33,9 +33,7 @@
     <br>
 
 	<div class='songs col-md-offset-1'>
-        <div class='text-center'>
 
-        </div>
 		{% if songs !=[] %}
 			{% for song in songs %}
 			<div>
@@ -49,7 +47,7 @@
 				{% endif %}
 				{% if song.youtube %}
 					<a target='_blank' href="https://www.youtube.com/watch?v={{song.youtube}}">
-						Youtube Link: https://www.youtube.com/watch?v={{song.youtube}}
+						youtube.com/watch?v={{song.youtube}}
 					</a>
 				{% endif %}
 
