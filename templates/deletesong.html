@@ -1,15 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
 <div class='container-fluid text-center'>
-    <h1>Delete Menu Item</h1>
+    <h1>Delete Song</h1>
     <h3>
         Are you sure you want to delete
             <span class='warning'>{{song.title}}</span>?
     </h3>
     <h4 class='warning'>This cannot be undone</h4>
-    <form method='post'>
-        <input class='warning' type='submit' name='delete_song' value='Delete'>
-    </form>
+    <div class='row'>
+        <div class='col-md-offset-5 col-md-1'>
+            <a href="{{url_for('showSingle', playlist_id = song.playlist_id, song_id = song.id)}}">Cancel</a>
+        </div>
+        <div class='col-md-1'>
+            <form method='post'>
+                <input class='warning inline' type='submit' name='delete_song' value='Delete'>
+            </form>
+        </div>
+
+    </div>
 </div>
 
 

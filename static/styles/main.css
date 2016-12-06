@@ -98,6 +98,9 @@ ul{
     margin-right: auto;
 }
 
+.inline{
+    display:inline;
+}
 
 /*  delete playlist     */
 .warning{
