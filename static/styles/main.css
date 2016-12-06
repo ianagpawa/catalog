@@ -1,4 +1,8 @@
 /*  nav */
+body{
+    background-color: #E9F4FD;
+    overflow: auto;
+}
 .top-part{
     padding-top: 3vh;
     padding-bottom: 2vh;
@@ -119,13 +123,27 @@ ul{
 .songs{
     display:block;
     height: 29vh;
+
 }
 .youtube-iframe-playlist{
     display: inline;
-    width: 22vw;
+    width: 30vw;
     height: 26vh;
     padding-top: 2vh;
     padding-bottom: 2vh;
     margin-left: auto;
     margin-right: auto;
+}
+
+/*  footer  */
+.foot{
+    padding-bottom: 1vh;
+    padding-top: 1vh;
+    font-size: 20px;
+    color: white;
+    background-color: #000033;
+    height: 10vh;
+    margin-top: 50vh;
+    clear: both;
+
 }
