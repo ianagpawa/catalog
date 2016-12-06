@@ -38,13 +38,14 @@
                         Aural History
                     </a>
                 </div>
-                <div class='col-md-offset-3 col-md-3 text-right logit'>
+                <div class='col-md-offset-2 col-md-4 text-right logit'>
                     {% if 'username' not in session %}
                     <a class='log' id='login' href="{{url_for('showLogin')}}">Log In</a>
                     {% else %}
                     <ul class="navbar-nav navbar-right">
-                          <li id='username'>{{session.username}}</li>
-                          <li id="logout"><a id='logout-a' href="{{url_for('disconnect')}}">Log Out</a></li>
+                        <li><img id='user-image' src="{{session.picture}}" height="40" width="40"></li>
+                        <li id='username'>{{session.username}}</li>
+                        <li id="logout"><a id='logout-a' href="{{url_for('disconnect')}}">Log Out</a></li>
                     </ul>
 
                     {% endif %}
@@ -54,7 +55,8 @@
             {% block content %}
             {% endblock %}
         </div>
-        <div class="row foot text-center">
+        <!--
+        <div class="row foot container-fluid text-center">
             <div class="col-md-3">
                 <a href='https://ian-agpawa.appspot.com' target="_blank">
                     <p> &copy; 2016 Ian Agpawa</p>
@@ -88,12 +90,7 @@
                     <i class="fa fa-linkedin-square fa-f"></i>
                 </a>
             </div>
-            <div class="col-md-1">
-                <a target="_blank"
-                    href="http://www.freepik.com/free-vector/wrinkled-paper-texture_851248.htm">
-                    <i class="fa fa-picture-o" aria-hidden="true"></i>
-                </a>
-            </div>
         </div>
+        -->
     </body>
 </html>

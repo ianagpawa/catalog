@@ -1,8 +1,10 @@
-/*  nav */
+
 body{
     background-color: #E9F4FD;
     overflow: auto;
 }
+
+/*  nav */
 .top-part{
     padding-top: 3vh;
     padding-bottom: 2vh;
@@ -17,6 +19,9 @@ body{
     color: white;
 }
 
+#user-image{
+    margin-right: 1vw;
+}
 #home:hover,
 #login:hover,
 #logout-a:hover{
@@ -50,7 +55,7 @@ ul{
 /*  login   */
 
 .login-page{
-    padding-top: 17vh;
+    padding-top: 10vh;
 }
 
 #facebook-button{
@@ -135,15 +140,16 @@ ul{
     margin-right: auto;
 }
 
-/*  footer  */
+/*  footer
 .foot{
     padding-bottom: 1vh;
-    padding-top: 1vh;
+    padding-top: 2vh;
     font-size: 20px;
     color: white;
     background-color: #000033;
-    height: 10vh;
+    height: 5vh;
     margin-top: 50vh;
     clear: both;
 
 }
+*/
