@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<div class='container-fluid text-center error'>
+    <h3 class='warning text-center'>{{error}}</h3>
+    <h4 id='error-return'>
+        <a  href='{{url_for("showPlaylists")}}'>
+            Click here to return to homepage
+        </a>
+    </h4>
+</div>
+
+
+{% endblock %}

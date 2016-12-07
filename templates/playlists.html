@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div class='container-fluid playlists'>
+
     <div class='col-md-offset-4 col-md-4 text-center'>
     {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -13,8 +14,6 @@
     {% endwith %}
     </div>
     <br>
-
-
     <div class='text-center'>
         <h1>Playlists</h1>
         <a href = "{{url_for('newPlaylist')}}">Create New Playlist</a>

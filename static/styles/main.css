@@ -141,6 +141,13 @@ ul{
     margin-right: auto;
 }
 
+.error{
+    padding-top: 15vh;
+}
+
+#error-return{
+    margin-top: 10vh;
+}
 /*  footer
 .foot{
     padding-bottom: 1vh;

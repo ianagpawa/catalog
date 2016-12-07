@@ -42,6 +42,7 @@ def showPlaylistsJSON():
     return jsonify(Playlists = [playlist.serialize for playlist in playlists])
 
 
+
 @app.route("/")
 @app.route("/playlists/")
 def showPlaylists():
@@ -58,14 +59,18 @@ def newPlaylist():
         return redirect('/login')
     if request.method == 'POST':
         playlist_name = request.form['playlist_name']
-        playlist_description = request.form['playlist_description']
-        user_id = login_session['user_id']
-        newPlaylist = Playlist(name = playlist_name,
-                                description = playlist_description,
-                                user_id = user_id)
-        add_to_db(newPlaylist)
-        flash("New playlist (%s) was created!" % playlist_name)
-        return redirect(url_for('showPlaylists'))
+        if playlist_name:
+            playlist_description = request.form['playlist_description']
+            user_id = login_session['user_id']
+            newPlaylist = Playlist(name = playlist_name,
+                                    description = playlist_description,
+                                    user_id = user_id)
+            add_to_db(newPlaylist)
+            flash("New playlist (%s) was created!" % playlist_name)
+            return redirect(url_for('showPlaylists'))
+        else:
+            flash("A playlist name is required!")
+            return render_template("newplaylist.html")
     else:
         return render_template("newplaylist.html")
 
@@ -78,14 +83,18 @@ def editPlaylist(playlist_id):
     playlist = get_playlist(playlist_id)
 
     if playlist.user_id != login_session['user_id']:
-        return "<script>function myFunction() {alert('You are not authorized to edit this playlist. Please create your own playlist in order to edit.');}</script><body onload='myFunction()''>"
+        error = '''
+        You are not authorized to edit this playlist.
+        Please create your own playlist in order to edit.
+        '''
+        return render_template("error.html", error = error)
 
     if request.method == 'POST':
         if request.form['edit_playlist_name']:
             editted_name = request.form['edit_playlist_name']
             playlist.name = editted_name
-
-
+        else:
+            flash("Playlist name is needed!")
         editted_description = request.form['edit_playlist_description']
         playlist.description = editted_description
 
@@ -107,7 +116,11 @@ def deletePlaylist(playlist_id):
     playlist = session.query(Playlist).filter_by(id = playlist_id).one()
 
     if playlist.user_id != login_session['user_id']:
-        return "<script>function myFunction() {alert('You are not authorized to delete this playlist. Please create your own playlist in order to delete.');}</script><body onload='myFunction()''>"
+        error = '''
+        You are not authorized to delete this playlist.
+        Please create your own playlist in order to delete.
+        '''
+        return render_template('error.html', error = error)
 
     if request.method == 'POST':
         if request.form['delete_playlist']:
@@ -178,7 +191,11 @@ def newSong(playlist_id):
             youtube = None
             if request.form['youtube']:
                 link = request.form['youtube']
-                vid_id = link.split('=')[1]
+                if '//youtu.be' in link:
+                    checkQ = link.split("/")[3]
+                else:
+                    checkQ = link.split('=')[1]
+                vid_id = checkQ.split("&")[0]
                 youtube = vid_id
             rendition = request.form['rendition']
             newSong = Song( title = title,
@@ -191,6 +208,8 @@ def newSong(playlist_id):
             add_to_db(newSong)
             flash('A new song was added to %s' % playlist.name)
             return redirect(url_for('showSongs', playlist_id = playlist_id))
+        else:
+            flash("Song title and Artist is required!")
     else:
         return render_template('newsong.html', playlist = playlist)
 
@@ -206,7 +225,11 @@ def editSong(playlist_id, song_id):
     song = session.query(Song).filter_by(id=song_id).one()
 
     if login_session['user_id'] != playlist.user_id:
-        return "<script>function myFunction() {alert('You are not authorized to edit songs for this playlist. Please create your own playlist in order to edit songs.');}</script><body onload='myFunction()''>"
+        error = '''
+            You are not authorized to edit songs for this playlist.
+            Please create your own playlist in order to edit songs.
+        '''
+        return render_template('error.html', error = error)
 
     if request.method == "POST":
         if request.form['edit_title']:
@@ -219,7 +242,13 @@ def editSong(playlist_id, song_id):
             editted_genre = request.form['edit_genre']
             song.genre = editted_genre
         if request.form['edit_youtube']:
-            editted_youtube = request.form['edit_youtube']
+            link = request.form['edit_youtube']
+            if '//youtu.be' in link:
+                checkQ = link.split("/")[3]
+            else:
+                checkQ = link.split('=')[1]
+            vid_id = checkQ.split("&")[0]
+            editted_youtube = vid_id
             song.youtube = editted_youtube
         if request.form['edit_rendition']:
             editted_rendition = request.form['edit_rendition']
@@ -243,7 +272,11 @@ def deleteSong(playlist_id, song_id):
     song = session.query(Song).filter_by(id=song_id).one()
 
     if login_session['user_id'] != playlist.user_id:
-        return "<script>function myFunction() {alert('You are not authorized to delete songs for this playlist. Please create your own playlist in order to delete songs.');}</script><body onload='myFunction()''>"
+        error = '''
+            You are not authorized to delete songs for this playlist.
+            Please create your own playlist in order to delete songs.
+        '''
+        return render_template("error.html", error = error)
 
     if request.method == 'POST':
         if request.form['delete_song']:

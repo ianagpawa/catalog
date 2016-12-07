@@ -1,6 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
 <div class='container-fluid text-center'>
+    <div class='col-md-offset-4 col-md-4 text-center'>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li><strong>{{message}}</strong></li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+    </div>
+    <br>
     <h1>Edit song from {{playlist.name}}</h1>
     <form method='post'>
         <input type='text' class='input-song' name='edit_title'
@@ -12,9 +24,14 @@
         <input type='text' class='input-song' name='edit_genre'
             value="{{song.genre}}">
         <br>
+        {% if song.youtube %}
         <input type='text' class='input-song' name='edit_youtube'
             value="https://www.youtube.com/watch?v={{song.youtube}}"
             placeholder="Youtube Link">
+        {% else %}
+        <input type='text' class='input-song' name='edit_youtube'
+            placeholder="Youtube Link">
+        {% endif %}
         <br>
         <input type='text' class='input-song' name='edit_rendition'
             value="{{song.rendition}}" placeholder='Rendition of:'>

@@ -1,9 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
 <div class='container-fluid text-center'>
+    <div class='col-md-offset-4 col-md-4 text-center'>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li><strong>{{message}}</strong></li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+    </div>
+    <br>
     <h1>Edit Playlist</h1>
     <form method='post'>
-        <input type='text' size='30' name='edit_playlist_name' placeholder="{{playlist.name}}">
+        <input type='text' size='30' name='edit_playlist_name' value="{{playlist.name}}">
         <br>
         <br>
         <textarea class='description-text' name="edit_playlist_description">{{playlist.description}}</textarea>
