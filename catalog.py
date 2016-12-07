@@ -153,7 +153,13 @@ def editPlaylist(playlist_id):
             methods = ['GET', 'POST'])
 def deletePlaylist(playlist_id):
     '''
+    deletePlaylist: Method for deleting playlists.
 
+    Args:
+        playlist_id (int): Playlist ID number.
+
+    Returns:
+        If user not login, redirects to login page.  If user is not creator of the playlist, redirects to error page.  After deletion redirects to home page.
 
     '''
     if 'username' not in login_session:
@@ -180,12 +186,30 @@ def deletePlaylist(playlist_id):
 
 
 def getSongs(playlist_id):
+    '''
+    getSongs:   Method for retrieving songs in a playlist.
+
+    Args:
+        playlist_id (int):  Playlist ID number.
+
+    Returns:
+        Array of songs.
+    '''
     return session.query(Song).filter_by(playlist_id = playlist_id)
 
 
 
 @app.route("/playlist/<int:playlist_id>/songs/JSON")
 def showSongsJSON(playlist_id):
+    '''
+    showSongsJSON:  Method for JSON of songs in a playlist.
+
+    Args:
+        playlist_id (int):  Playlist ID number
+
+    Returns:
+        JSON of songs metadata in a playlist.
+    '''
     playlist = get_playlist(playlist_id)
     songs = getSongs(playlist_id)
     return jsonify(Songs=[song.serialize for song in songs])
@@ -194,6 +218,16 @@ def showSongsJSON(playlist_id):
 @app.route("/playlist/<int:playlist_id>/")
 @app.route("/playlist/<int:playlist_id>/songs/")
 def showSongs(playlist_id):
+    '''
+    showSongs:  Method for page dispalying list of songs in a playlist.
+
+    Args:
+        playlist_id (int):  Playlist ID number.
+
+    Returns:
+        If user logged in, renders songs.html with CRUD buttons.  Otherwise, renders page without CRUD buttons.
+
+    '''
     playlist = get_playlist(playlist_id)
     songs = getSongs(playlist_id)
     creator = getUserInfo(playlist.user_id)
@@ -211,12 +245,32 @@ def showSongs(playlist_id):
 
 @app.route('/playlist/<int:playlist_id>/songs/<int:song_id>/JSON/')
 def showSingleJSON(playlist_id, song_id):
+    '''
+    showSingleJSON: Method for JSON of a song.
+
+    Args:
+        playlist_id (int):  Playlist ID number.
+        song_id (int):  Song ID number.
+
+    Returns:
+        JSON of song object.
+    '''
     song = session.query(Song).filter_by(id = song_id).one()
     return jsonify(Song = song.serialize)
 
 
 @app.route('/playlist/<int:playlist_id>/songs/<int:song_id>/')
 def showSingle(playlist_id, song_id):
+    '''
+    showSingle: Method for single song page.
+
+    Args:
+        playlist_id (int):  Playlist ID number.
+        song_id (int):  Song ID number.
+
+    Returns:
+        Page for a single song.
+    '''
     song = session.query(Song).filter_by(id = song_id).one()
     return render_template('single.html', song = song)
 
@@ -226,6 +280,15 @@ def showSingle(playlist_id, song_id):
 @app.route("/playlist/<int:playlist_id>/songs/new/",
             methods = ['GET', 'POST'])
 def newSong(playlist_id):
+        '''
+        newSong: Method adding a song to a playlist.
+
+        Args:
+            playlist_id (int):  Playlist ID number.
+
+        Returns:
+            If not logged in, redirects to login page.  Displays errors when song title or arist is not included.  Redirects to playlist page after adding the song.
+        '''
     if 'username' not in login_session:
         return redirect('/login')
     playlist = get_playlist(playlist_id)
@@ -265,6 +328,16 @@ def newSong(playlist_id):
 @app.route("/playlist/<int:playlist_id>/songs/<int:song_id>/edit/",
             methods = ['GET', 'POST'])
 def editSong(playlist_id, song_id):
+        '''
+        editSong: Method for uptdating song info.
+
+        Args:
+            playlist_id (int):  Playlist ID number.
+            song_id (int):  Song ID number.
+
+        Returns:
+            If not logged in, redirects to login page.  If user is not the creator of the song, redirects to error page.  Errors are flashed if song title or artist fields are not filled.  Redirects to playlist page after editting.
+        '''
     if 'username' not in login_session:
         return redirect('/login')
 
@@ -317,6 +390,16 @@ def editSong(playlist_id, song_id):
 @app.route("/playlist/<int:playlist_id>/songs/<int:song_id>/delete/",
             methods = ['GET', 'POST'])
 def deleteSong(playlist_id, song_id):
+        '''
+        deleteSong: Method deleting a song from a playlist.
+
+        Args:
+            playlist_id (int):  Playlist ID number.
+            song_id (int):  Song ID number.
+
+        Returns:
+            If not logged in, redirects to login.  If user is not creator of playlist, redirects to error page.  Redirects to playlist after deletion.
+        '''
     if 'username' not in login_session:
         return redirect('/login')
 
@@ -343,6 +426,15 @@ def deleteSong(playlist_id, song_id):
 
 
 def createUser(login_session):
+    '''
+    createUser: Method for adding user to database.
+
+    Args:
+        login_session (obj):    User metadata retrieved from Google or Facebook profiles.
+
+    Returns:
+        User ID number.
+    '''
     newUser = User(name=login_session['username'], email=login_session[
                    'email'], picture=login_session['picture'])
     session.add(newUser)
@@ -352,11 +444,29 @@ def createUser(login_session):
 
 
 def getUserInfo(user_id):
+    '''
+    getUserInfo: Method for retrieving user by their ID number
+
+    Args:
+        user_id (int):   User ID number
+
+    Returns:
+        User object.
+    '''
     user = session.query(User).filter_by(id=user_id).one()
     return user
 
 
 def getUserID(email):
+    '''
+    getUserID:  Method for retrieving user by their email address.
+
+    Args:
+        email (str):    User email address.
+
+    Returns:
+        User object with corresponding email address.  Otherwise, None.
+    '''
     try:
         user = session.query(User).filter_by(email=email).one()
         return user.id
@@ -367,6 +477,12 @@ def getUserID(email):
 # Create anti-forgery state token
 @app.route('/login')
 def showLogin():
+        '''
+        showLogin: Method for logging into site using Google or Facebook authentication.
+
+        Returns:
+            Renders login page.
+        '''
     state = ''.join(random.choice(string.ascii_uppercase + string.digits)
                     for x in xrange(32))
     login_session['state'] = state
