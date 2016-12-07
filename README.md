@@ -26,6 +26,7 @@ catalog/
     |    ├── editplaylist.html
     |    ├── editsong.html
     |    ├── error.html
+    |    ├── loggedin.html
     |    ├── login.html
     |    ├── newplaylist.html
     |    ├── newsong.html    
@@ -53,6 +54,6 @@ catalog/
 **Ian Agpawa**
 
 
-[Github](https://github.com/TheArtilect)
+[Github](https://github.com/ianagpawa)
 
  agpawaji@gmail.com

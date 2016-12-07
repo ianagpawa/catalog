@@ -159,7 +159,9 @@ def deletePlaylist(playlist_id):
         playlist_id (int): Playlist ID number.
 
     Returns:
-        If user not login, redirects to login page.  If user is not creator of the playlist, redirects to error page.  After deletion redirects to home page.
+        If user not login, redirects to login page.  If user is not creator of
+        the playlist, redirects to error page.  After deletion redirects to
+        home page.
 
     '''
     if 'username' not in login_session:
@@ -225,7 +227,8 @@ def showSongs(playlist_id):
         playlist_id (int):  Playlist ID number.
 
     Returns:
-        If user logged in, renders songs.html with CRUD buttons.  Otherwise, renders page without CRUD buttons.
+        If user logged in, renders songs.html with CRUD buttons.  Otherwise,
+        renders page without CRUD buttons.
 
     '''
     playlist = get_playlist(playlist_id)
@@ -287,7 +290,9 @@ def newSong(playlist_id):
         playlist_id (int):  Playlist ID number.
 
     Returns:
-        If not logged in, redirects to login page.  Displays errors when song title or arist is not included.  Redirects to playlist page after adding the song.
+        If not logged in, redirects to login page.  Displays errors when song
+        title or arist is not included.  Redirects to playlist page after
+        adding the song.
     '''
     if 'username' not in login_session:
         return redirect('/login')
@@ -336,7 +341,10 @@ def editSong(playlist_id, song_id):
         song_id (int):  Song ID number.
 
     Returns:
-        If not logged in, redirects to login page.  If user is not the creator of the song, redirects to error page.  Errors are flashed if song title or artist fields are not filled.  Redirects to playlist page after editting.
+        If not logged in, redirects to login page.  If user is not the creator
+        of the song, redirects to error page.  Errors are flashed if song
+        title or artist fields are not filled.  Redirects to playlist page
+        after editting.
     '''
     if 'username' not in login_session:
         return redirect('/login')
@@ -398,7 +406,9 @@ def deleteSong(playlist_id, song_id):
         song_id (int):  Song ID number.
 
     Returns:
-        If not logged in, redirects to login.  If user is not creator of playlist, redirects to error page.  Redirects to playlist after deletion.
+        If not logged in, redirects to login.  If user is not creator
+        of playlist, redirects to error page.  Redirects to playlist
+        after deletion.
     '''
     if 'username' not in login_session:
         return redirect('/login')
@@ -430,7 +440,8 @@ def createUser(login_session):
     createUser: Method for adding user to database.
 
     Args:
-        login_session (obj):    User metadata retrieved from Google or Facebook profiles.
+        login_session (obj):    User metadata retrieved from Google or
+                                Facebook profiles.
 
     Returns:
         User ID number.
@@ -478,7 +489,8 @@ def getUserID(email):
 @app.route('/login')
 def showLogin():
     '''
-    showLogin: Method for logging into site using Google or Facebook authentication.
+    showLogin: Method for logging into site using Google or
+                Facebook authentication.
 
     Returns:
         Renders login page.
@@ -717,8 +729,9 @@ def disconnect():
         del login_session['picture']
         del login_session['user_id']
         del login_session['provider']
+        del login_session['access_token']
+        del login_session['state']
         flash("You have successfully been logged out.")
-        print login_session
         return redirect(url_for('showPlaylists'))
     else:
         flash("You were not logged in")

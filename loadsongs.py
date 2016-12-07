@@ -31,11 +31,6 @@ User2 = User(name="Jacque Chen", email="JC@test.com",
 session.add(User2)
 session.commit()
 
-User3 = User(name="Jacque Chen", email="JC@test.com",
-             picture='https://pbs.twimg.com/profile_images/2671170543/18debd694829ed78203a5a36dd364160_400x400.png')
-session.add(User3)
-session.commit()
-
 
 # Songsfor playlist1
 playlist1 = Playlist(user_id=1, name="Test", description='First test playlist')
@@ -93,5 +88,33 @@ song4 = Song(user_id=2,
 session.add(song4)
 session.commit()
 
+# Songsfor playlist1
+playlist3 = Playlist(user_id=1, name="Second Test", description='Second test playlist')
+
+session.add(playlist3)
+session.commit()
+
+
+
+song5 = Song(user_id=1,
+                title="Second test title",
+                artist='Second test artist',
+                genre="Nothing",
+                playlist=playlist3)
+
+session.add(song5)
+session.commit()
+
+
+song6 = Song(user_id=1,
+                title="Third Test",
+                artist='Third Test Artist',
+                genre="Funk",
+        		youtube="jC2ZY2loo74",
+        		rendition='Tighten Up',
+                playlist=playlist3)
+
+session.add(song6)
+session.commit()
 
 print "added playlist songs!"
