@@ -3,6 +3,8 @@ import sys
 from sqlalchemy import Column, ForeignKey, Integer, String, DateTime
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
+from bson import json_util
+import json
 
 from Base import Base
 
@@ -20,6 +22,6 @@ class User(Base):
             'name': self.name,
             'email': self.email,
             'picture': self.picture,
-            'time_created': self.time_created,
-            'time_updated': self.time_updated
+            'time_created': json.dumps(self.time_created, default=json_util.default),
+            'time_updated': json.dumps(self.time_updated, default=json_util.default)
         }

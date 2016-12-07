@@ -3,6 +3,8 @@ import sys
 from sqlalchemy import Column, ForeignKey, Integer, String, DateTime
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
+from bson import json_util
+import json
 
 from Base import Base
 from User import User
@@ -23,7 +25,6 @@ class Playlist(Base):
             'name': self.name,
             'description': self.description,
             'user_id': self.user_id,
-            'user': self.user,
-            'time_created': self.time_created,
-            'time_updated': self.time_updated
+            'time_created': json.dumps(self.time_created, default=json_util.default),
+            'time_updated': json.dumps(self.time_updated, default=json_util.default)
         }

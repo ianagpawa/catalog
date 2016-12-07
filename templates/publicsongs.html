@@ -54,20 +54,6 @@
 					   {% if song.rendition %}
 						   <p>Rendition of: {{song.rendition}}</p>
 					   {% endif %}
-
-					   <div>
-						   <a href="{{url_for('editSong',
-								   playlist_id = playlist.id,
-								   song_id = song.id)}}">
-							   Edit
-						   </a>
-						   |
-						   <a class='delete' href="{{url_for('deleteSong',
-									   playlist_id = playlist.id,
-									   song_id = song.id)}}">
-							   Delete
-						   </a>
-					   </div>
 				   </div>
 				   {% else %}
 				   <div class='col-md-offset-2 col-md-4'>
@@ -89,19 +75,6 @@
 							<p>Rendition of: {{song.rendition}}</p>
 						{% endif %}
 
-		                <div>
-		                    <a href="{{url_for('editSong',
-		                            playlist_id = playlist.id,
-		                            song_id = song.id)}}">
-		                        Edit
-		                    </a>
-							|
-		                    <a class='delete' href="{{url_for('deleteSong',
-		                                playlist_id = playlist.id,
-		                                song_id = song.id)}}">
-		                        Delete
-		                    </a>
-		                </div>
 					</div>
 					{% endif %}
 				</div>

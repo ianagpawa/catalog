@@ -95,6 +95,7 @@ def editPlaylist(playlist_id):
             playlist.name = editted_name
         else:
             flash("Playlist name is needed!")
+            return render_template("editplaylist.html", playlist = playlist)
         editted_description = request.form['edit_playlist_description']
         playlist.description = editted_description
 
@@ -210,6 +211,7 @@ def newSong(playlist_id):
             return redirect(url_for('showSongs', playlist_id = playlist_id))
         else:
             flash("Song title and Artist is required!")
+            return render_template('newsong.html', playlist = playlist)
     else:
         return render_template('newsong.html', playlist = playlist)
 
@@ -232,30 +234,35 @@ def editSong(playlist_id, song_id):
         return render_template('error.html', error = error)
 
     if request.method == "POST":
-        if request.form['edit_title']:
-            editted_title = request.form['edit_title']
-            song.title = editted_title
-        if request.form['edit_artist']:
-            editted_artist = request.form['edit_artist']
-            song.artist = editted_artist
-        if request.form['edit_genre']:
-            editted_genre = request.form['edit_genre']
-            song.genre = editted_genre
-        if request.form['edit_youtube']:
-            link = request.form['edit_youtube']
-            if '//youtu.be' in link:
-                checkQ = link.split("/")[3]
-            else:
-                checkQ = link.split('=')[1]
-            vid_id = checkQ.split("&")[0]
-            editted_youtube = vid_id
-            song.youtube = editted_youtube
-        if request.form['edit_rendition']:
-            editted_rendition = request.form['edit_rendition']
-            song.rendition = editted_rendition
-        add_to_db(song)
-        flash("(%s) was edited!" % song.title)
-        return redirect(url_for('showSongs', playlist_id = playlist_id))
+        if not ((request.form['edit_title']) and (request.form['edit_artist'])):
+            flash('Both title and artist is required!')
+            return render_template('editsong.html', playlist = playlist,
+                                song = song)
+        else:
+            if request.form['edit_title']:
+                editted_title = request.form['edit_title']
+                song.title = editted_title
+            if request.form['edit_artist']:
+                editted_artist = request.form['edit_artist']
+                song.artist = editted_artist
+            if request.form['edit_genre']:
+                editted_genre = request.form['edit_genre']
+                song.genre = editted_genre
+            if request.form['edit_youtube']:
+                link = request.form['edit_youtube']
+                if '//youtu.be' in link:
+                    checkQ = link.split("/")[3]
+                else:
+                    checkQ = link.split('=')[1]
+                vid_id = checkQ.split("&")[0]
+                editted_youtube = vid_id
+                song.youtube = editted_youtube
+            if request.form['edit_rendition']:
+                editted_rendition = request.form['edit_rendition']
+                song.rendition = editted_rendition
+            add_to_db(song)
+            flash("(%s) was edited!" % song.title)
+            return redirect(url_for('showSongs', playlist_id = playlist_id))
     else:
         return render_template('editsong.html', playlist = playlist,
                             song = song)
