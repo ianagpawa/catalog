@@ -37,7 +37,7 @@
 				{% for song in songs %}
 				<div class='songs'>
 					{% if song.youtube %}
-					<div class='col-md-offset-2 col-md-4'>
+					<div class='col-md-offset-2 col-md-5'>
 						<div class="post-youtube-playlist">
 						   <iframe
 								class='youtube-iframe-playlist'
@@ -46,7 +46,7 @@
 							</iframe>
 					   </div>
 				   </div>
-				   <div class='col-md-offset-1 col-md-5 text-left'>
+				   <div class='col-md-offset-1 col-md-4 text-left'>
 					   <a href="{{url_for('showSingle', playlist_id = song.playlist_id, song_id = song.id)}}">
 						   <h3>{{song.title}}</h3>
 					   </a>

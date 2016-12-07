@@ -105,7 +105,8 @@ ul{
 
 /*  single  */
 
-.youtube-iframe{
+.youtube-iframe,
+.placeholder-img{
     display: block;
     width: 50vw;
     height: 60vh;
@@ -133,7 +134,7 @@ ul{
 .youtube-iframe-playlist{
     display: inline;
     width: 30vw;
-    height: 26vh;
+    height: 28vh;
     padding-top: 2vh;
     padding-bottom: 2vh;
     margin-left: auto;
