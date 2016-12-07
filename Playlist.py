@@ -10,6 +10,18 @@ from Base import Base
 from User import User
 
 class Playlist(Base):
+    '''
+    This class is for playlist items.
+    Attribute:
+        id (int): Playlist id, primary key.
+        name (str): Name of playlist.
+        description (str): Description of playlist.
+        time_created (datetime): Unix timestamp of when playlist was created.
+        time_updated (datetime): Unix timestamp of when playlist was updated.
+        user_id (int): Id of creator of playlist, foreign key from User id
+        user (obj): User object of creator of playlist.
+
+    '''
     __tablename__ = 'playlist'
     id = Column(Integer, primary_key = True)
     name = Column(String(80), nullable = False)

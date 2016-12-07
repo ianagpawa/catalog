@@ -7,3 +7,6 @@ from sqlalchemy import create_engine
 from sqlalchemy.sql import func
 
 Base = declarative_base()
+"""
+This is the base class for database models (Playlist, User and Song)
+"""

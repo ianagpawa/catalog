@@ -11,6 +11,22 @@ from User import User
 from Playlist import Playlist
 
 class Song(Base):
+    '''
+    This class is for playlist songs.
+    Attribute:
+        id (int): Song id, primary key.
+        title (str): Title of song.
+        artist (str): Artist of song.
+        genre (str): Musical genre of song.
+        youtube (str): Youtube video id.
+        rendition (str):  If the song is a cover or a rendition of an older song.
+        playlist_id (int): Id of the playlist to which song belongs, foreign key from playlist.
+        playlist (obj): Object of of the playlist to which song belongs.
+        user_id (int): User id of creator of playlist, foreign key from user.
+        user (obj): User object of creator of playlist.
+        time_created (datetime): Unix timestamp of when playlist was created.
+        time_updated (datetime): Unix timestamp of when playlist was updated.
+    '''
     __tablename__ = 'song'
     id = Column(Integer, primary_key = True)
     title = Column(String(80), nullable = False)

@@ -9,6 +9,15 @@ import json
 from Base import Base
 
 class User(Base):
+    '''
+    This class is for users of the catalog, inherits from Base.
+    Attribute:
+        id (int): User id, primary key.
+        name (str): Name of user.
+        email (str): Email of user.
+        pciture (str): Link for user profile picture.
+        time_created (datetime): Unix timestamp of when playlist was created.
+    '''
     __tablename__ = 'user'
     id = Column(Integer, primary_key = True)
     name = Column(String(80), nullable = False)

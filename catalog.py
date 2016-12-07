@@ -27,10 +27,22 @@ session = DBSession()
 
 
 def get_playlist(playlist_id):
+    '''
+    get_playlist: Method for getting playlist for catalog.
+    Args:
+        playlist_id (int): Playlist ID number.
+    Returns:
+        Object of the playlist
+    '''
     return session.query(Playlist).filter_by(id = playlist_id).one()
 
 
 def add_to_db(obj):
+    '''
+    add_to_db: Method for adding objects to database.
+    Args:
+        obj (obj): Database object (user, song, or playlist)
+    '''
     session.add(obj)
     session.commit()
 
@@ -38,6 +50,9 @@ def add_to_db(obj):
 
 @app.route("/playlists/JSON/")
 def showPlaylistsJSON():
+    '''
+    showPlaylistsJSON: Method for JSON output of playlists route
+    '''
     playlists = session.query(Playlist).all()
     return jsonify(Playlists = [playlist.serialize for playlist in playlists])
 
@@ -46,6 +61,13 @@ def showPlaylistsJSON():
 @app.route("/")
 @app.route("/playlists/")
 def showPlaylists():
+    '''
+    showPlaylists:  Method for home ('/') or playlists route.
+
+    Returns:
+        Playlists page for home or playlists route.  If a user is not signed in,
+        a playlists page with no 'edit' or 'delete' buttons will be returned.
+    '''
     playlists = session.query(Playlist).all()
     if 'username' not in login_session:
         return render_template('publicplaylists.html', playlists = playlists)
@@ -55,6 +77,15 @@ def showPlaylists():
 
 @app.route("/playlists/new/", methods = ['GET', 'POST'])
 def newPlaylist():
+    '''
+    newPlaylist:    Method for new playlists page.
+
+    Returns:
+        Renders page for adding new playlists.  To add new playlist, a playlist
+        name is required.  If user is not logged in,redirects to login page.
+        Once added, redirects to home.
+
+    '''
     if 'username' not in login_session:
         return redirect('/login')
     if request.method == 'POST':
@@ -77,6 +108,16 @@ def newPlaylist():
 
 @app.route("/playlist/<int:playlist_id>/edit/", methods = ['GET', 'POST'])
 def editPlaylist(playlist_id):
+    '''
+    editPlaylist:   Method for editing playlists.
+    Args:
+        playlist_id (int): Playlist id number.
+    Returns:
+        If not logged in, redirects to login page.  If user is not creator of
+        playlist, redirected to an error page.  Playlist name and description
+        can be editted, and must include at least playlist name to proceed. Once
+        editted, redirects to home page.
+    '''
     if 'username' not in login_session:
         return redirect('/login')
 
@@ -111,6 +152,10 @@ def editPlaylist(playlist_id):
 @app.route("/playlist/<int:playlist_id>/delete/",
             methods = ['GET', 'POST'])
 def deletePlaylist(playlist_id):
+    '''
+
+
+    '''
     if 'username' not in login_session:
         return redirect('/login')
 
