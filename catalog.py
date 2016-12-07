@@ -280,15 +280,15 @@ def showSingle(playlist_id, song_id):
 @app.route("/playlist/<int:playlist_id>/songs/new/",
             methods = ['GET', 'POST'])
 def newSong(playlist_id):
-        '''
-        newSong: Method adding a song to a playlist.
+    '''
+    newSong: Method adding a song to a playlist.
 
-        Args:
-            playlist_id (int):  Playlist ID number.
+    Args:
+        playlist_id (int):  Playlist ID number.
 
-        Returns:
-            If not logged in, redirects to login page.  Displays errors when song title or arist is not included.  Redirects to playlist page after adding the song.
-        '''
+    Returns:
+        If not logged in, redirects to login page.  Displays errors when song title or arist is not included.  Redirects to playlist page after adding the song.
+    '''
     if 'username' not in login_session:
         return redirect('/login')
     playlist = get_playlist(playlist_id)
@@ -328,16 +328,16 @@ def newSong(playlist_id):
 @app.route("/playlist/<int:playlist_id>/songs/<int:song_id>/edit/",
             methods = ['GET', 'POST'])
 def editSong(playlist_id, song_id):
-        '''
-        editSong: Method for uptdating song info.
+    '''
+    editSong: Method for uptdating song info.
 
-        Args:
-            playlist_id (int):  Playlist ID number.
-            song_id (int):  Song ID number.
+    Args:
+        playlist_id (int):  Playlist ID number.
+        song_id (int):  Song ID number.
 
-        Returns:
-            If not logged in, redirects to login page.  If user is not the creator of the song, redirects to error page.  Errors are flashed if song title or artist fields are not filled.  Redirects to playlist page after editting.
-        '''
+    Returns:
+        If not logged in, redirects to login page.  If user is not the creator of the song, redirects to error page.  Errors are flashed if song title or artist fields are not filled.  Redirects to playlist page after editting.
+    '''
     if 'username' not in login_session:
         return redirect('/login')
 
@@ -390,16 +390,16 @@ def editSong(playlist_id, song_id):
 @app.route("/playlist/<int:playlist_id>/songs/<int:song_id>/delete/",
             methods = ['GET', 'POST'])
 def deleteSong(playlist_id, song_id):
-        '''
-        deleteSong: Method deleting a song from a playlist.
+    '''
+    deleteSong: Method deleting a song from a playlist.
 
-        Args:
-            playlist_id (int):  Playlist ID number.
-            song_id (int):  Song ID number.
+    Args:
+        playlist_id (int):  Playlist ID number.
+        song_id (int):  Song ID number.
 
-        Returns:
-            If not logged in, redirects to login.  If user is not creator of playlist, redirects to error page.  Redirects to playlist after deletion.
-        '''
+    Returns:
+        If not logged in, redirects to login.  If user is not creator of playlist, redirects to error page.  Redirects to playlist after deletion.
+    '''
     if 'username' not in login_session:
         return redirect('/login')
 
@@ -477,12 +477,12 @@ def getUserID(email):
 # Create anti-forgery state token
 @app.route('/login')
 def showLogin():
-        '''
-        showLogin: Method for logging into site using Google or Facebook authentication.
+    '''
+    showLogin: Method for logging into site using Google or Facebook authentication.
 
-        Returns:
-            Renders login page.
-        '''
+    Returns:
+        Renders login page.
+    '''
     state = ''.join(random.choice(string.ascii_uppercase + string.digits)
                     for x in xrange(32))
     login_session['state'] = state
@@ -492,6 +492,12 @@ def showLogin():
 
 @app.route('/gconnect', methods=['POST'])
 def gconnect():
+    '''
+    gconnect: Method for logging into site using Google authentication.
+
+    Returns:
+        Renders logged in page, then redirects to home page.
+    '''
     # Validate state token
     if request.args.get('state') != login_session['state']:
         response = make_response(json.dumps('Invalid state parameter.'), 401)
@@ -570,20 +576,19 @@ def gconnect():
         user_id = createUser(login_session)
     login_session['user_id'] = user_id
 
-    output = ''
-    output += '<h1>Welcome, '
-    output += login_session['username']
-    output += '!</h1>'
-    output += '<img src="'
-    output += login_session['picture']
-    output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
-    flash("You are now logged in as %s" % login_session['username'])
     print "done!"
-    return output
+    print login_session
+    return render_template("loggedin.html", login_session = login_session)
 
     # DISCONNECT - Revoke a current user's token and reset their login_session
 @app.route('/gdisconnect')
 def gdisconnect():
+    '''
+    gdisconnect: Method for logging out of site, revokes user's Google tokens.
+
+    Returns:
+        Redirects to home page.
+    '''
     # Only disconnect a connected user.
     credentials = login_session.get('credentials')
     if credentials is None:
@@ -607,6 +612,12 @@ def gdisconnect():
 
 @app.route('/fbconnect', methods=['POST'])
 def fbconnect():
+    '''
+    fbconnect:  Method for logging into site via Facebook authentication.
+
+    Returns:
+        Renders login page, then redirects to home page.
+    '''
     if request.args.get('state') != login_session['state']:
         response = make_response(json.dumps('Invalid state parameter.'), 401)
         response.headers['Content-Type'] = 'application/json'
@@ -658,21 +669,20 @@ def fbconnect():
         user_id = createUser(login_session)
     login_session['user_id'] = user_id
 
-    output = ''
-    output += '<h1>Welcome, '
-    output += login_session['username']
-
-    output += '!</h1>'
-    output += '<img src="'
-    output += login_session['picture']
-    output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
 
     flash("Now logged in as %s" % login_session['username'])
-    return output
+    return render_template("loggedin.html", login_session = login_session)
 
 
 @app.route('/fbdisconnect')
 def fbdisconnect():
+    '''
+    fbdisconnect:   Method for logging out of site by revoking user's
+                    Facebook tokens.
+
+    Returns:
+        Redirects to home page after notifcation.
+    '''
     facebook_id = login_session['facebook_id']
     # The access token must me included to successfully logout
     access_token = login_session['access_token']
@@ -686,6 +696,12 @@ def fbdisconnect():
 # Disconnect based on provider
 @app.route('/disconnect')
 def disconnect():
+    '''
+    disconnect: Method for logging out of site
+
+    Returns:
+        Redirects to home page.
+    '''
     if 'provider' in login_session:
         if login_session['provider'] == 'google':
             gdisconnect()
@@ -702,6 +718,7 @@ def disconnect():
         del login_session['user_id']
         del login_session['provider']
         flash("You have successfully been logged out.")
+        print login_session
         return redirect(url_for('showPlaylists'))
     else:
         flash("You were not logged in")
