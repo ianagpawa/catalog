@@ -31,6 +31,5 @@ class User(Base):
             'name': self.name,
             'email': self.email,
             'picture': self.picture,
-            'time_created': json.dumps(self.time_created, default=json_util.default),
-            'time_updated': json.dumps(self.time_updated, default=json_util.default)
+            'time_created': self.time_created.strftime("%B %d, %Y")
         }

@@ -9,7 +9,10 @@
     <h4 class='warning'>This cannot be undone</h4>
     <div class='row'>
         <div class='col-md-offset-4 col-md-1'>
-            <a href="{{url_for('showSingle', playlist_id = song.playlist_id, song_id = song.id)}}">Cancel</a>
+            <a href="{{url_for('showSingle',
+                playlist_id = song.playlist_id, song_id = song.id)}}">
+                Cancel
+            </a>
         </div>
         <div class='col-md-1 col-md-offset-2'>
             <form method='post'>

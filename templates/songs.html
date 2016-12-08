@@ -47,7 +47,9 @@
 					   </div>
 				   </div>
 				   <div class='col-md-offset-1 col-md-4 text-left'>
-					   <a href="{{url_for('showSingle', playlist_id = song.playlist_id, song_id = song.id)}}">
+					   <a href="{{url_for('showSingle',
+				   			playlist_id = song.playlist_id,
+							song_id = song.id)}}">
 						   <h3>{{song.title}}</h3>
 					   </a>
 					   <p>By: {{song.artist}}</p>
@@ -81,7 +83,9 @@
 					  </div>
 				  </div>
 					<div class='col-md-offset-1 col-md-5 text-left'>
-						<a href="{{url_for('showSingle', playlist_id = song.playlist_id, song_id = song.id)}}">
+						<a href="{{url_for('showSingle',
+							playlist_id = song.playlist_id,
+							song_id = song.id)}}">
 							<h3>{{song.title}}</h3>
 						</a>
 						<p>By: {{song.artist}}</p>

@@ -4,6 +4,13 @@ body{
     overflow: auto;
 }
 
+a {
+    color: #000066;
+}
+
+a:hover{
+    color: #CC7000;
+}
 
 /*  nav */
 .top-part{

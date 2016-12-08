@@ -1,6 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
 <div class='col-md-offset-4 col-md-4 text-center login-page'>
+    <div class='flash text-center'>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li><strong>{{message}}</strong></li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+    </div>
+    <br>
     <div class='text-center'>
         <h3>Log in with either Google or Facebook</h3>
     </div>

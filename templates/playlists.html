@@ -38,12 +38,14 @@
             <div class='row'>
                 <div class='col-md-4 play-button' >
                     <a
-                        href="{{url_for('editPlaylist', playlist_id = playlist.id)}}">
+                        href="{{url_for('editPlaylist',
+                            playlist_id = playlist.id)}}">
                         Edit Playlist
                     </a>
                     |
                     <a class='delete'
-                        href="{{url_for('deletePlaylist', playlist_id = playlist.id)}}">
+                        href="{{url_for('deletePlaylist',
+                            playlist_id = playlist.id)}}">
                         Delete
                     </a>
                 </div>
