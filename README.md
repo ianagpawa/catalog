@@ -1,5 +1,5 @@
 # Aural History
-### By Ian Agpawa
+
 ##### This repo is for my item catalog project from the Udacity Full Stack Nanodegree course.    
 
 
