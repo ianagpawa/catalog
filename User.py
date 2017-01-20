@@ -3,7 +3,6 @@ import sys
 from sqlalchemy import Column, ForeignKey, Integer, String, DateTime
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
-from bson import json_util
 import json
 
 from Base import Base
