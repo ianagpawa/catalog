@@ -25,9 +25,9 @@ Within the project folder, you will find the following files:
 ```
 catalog/
     ├── static/
-    |    ├── css/
-    |    |    └── styles/
-    |    |          └── main.css
+    |    └── css/
+    |         └── styles/
+    |               └── main.css
     ├── templates/
     |    ├── base.html
     |    ├── deleteplaylist.html
