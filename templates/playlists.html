@@ -19,7 +19,15 @@
         <a href = "{{url_for('newPlaylist')}}">Create New Playlist</a>
     </div>
 
-
+    {% for playlist in playlists %}
+    <div class='container playlist-list'>
+        <div class='col-md-4'>HERE</div>
+        <div class='col-md-4'>HERE</div>
+        <div class='col-md-4'>HERE</div>
+        <div class='col-md-4'>HERE</div>
+        <div class='col-md-4'>HERE</div>
+    </div>
+<!--
     {% for playlist in playlists %}
     <div class='container'>
         <div class='top-playlist'>
@@ -52,7 +60,7 @@
             </div>
         </div>
         <hr>
-    </div>
+    </div> -->
 
 </div>
 

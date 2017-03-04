@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 <div class='container-fluid playlists'>
-    <div class='col-md-offset-4 col-md-4 text-center'>
+
+    <div class='col-md-offset-4 col-md-4 flash text-center'>
     {% with messages = get_flashed_messages() %}
         {% if messages %}
         <ul>
@@ -13,14 +14,12 @@
     {% endwith %}
     </div>
     <br>
-
-
     <div class='text-center'>
         <h1>Playlists</h1>
-
+        <a href = "{{url_for('newPlaylist')}}">Create New Playlist</a>
     </div>
 
-<div id='test'><p>HERE</p></div>
+
     {% for playlist in playlists %}
     <div class='container'>
         <div class='top-playlist'>
@@ -36,6 +35,21 @@
                 <p class='playlist-description'>{{playlist.description}}</p>
             </div>
 
+            <div class='row'>
+                <div class='col-md-4 play-button' >
+                    <a
+                        href="{{url_for('editPlaylist',
+                            playlist_id = playlist.id)}}">
+                        Edit Playlist
+                    </a>
+                    |
+                    <a class='delete'
+                        href="{{url_for('deletePlaylist',
+                            playlist_id = playlist.id)}}">
+                        Delete
+                    </a>
+                </div>
+            </div>
         </div>
         <hr>
     </div>
