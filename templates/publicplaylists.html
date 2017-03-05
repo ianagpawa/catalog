@@ -20,7 +20,8 @@
 
     </div>
 
-<div id='test'><p>HERE</p></div>
+<div id='test'><p id='h'></p></div>
+
     {% for playlist in playlists %}
     <div class='container'>
         <div class='top-playlist'>
@@ -43,5 +44,8 @@
 </div>
 
 {% endfor %}
+<script type='text/javascript'>
 
+    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
 {% endblock %}
