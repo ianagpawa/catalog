@@ -20,10 +20,10 @@
 
     </div>
 
-<div id='test'><p id='h'></p></div>
+    <div id="playlist-tiles"></div>
 
     {% for playlist in playlists %}
-    <div class='container'>
+    <div class='container col-md-4'>
         <div class='top-playlist'>
             <h2>
                 <a href="{{url_for('showSongs', playlist_id = playlist.id)}}">
@@ -40,12 +40,13 @@
         </div>
         <hr>
     </div>
-
+    {% endfor %}
 </div>
 
-{% endfor %}
+
 <script type='text/javascript'>
 
     $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 </script>
+<script type=text/javascript src="{{ url_for('static', filename='js/test.js') }}"></script>
 {% endblock %}

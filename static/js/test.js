@@ -1,6 +1,10 @@
 function startPage(){
+
     $.getJSON($SCRIPT_ROOT + '/playlists/JSON', function(data) {
-        console.log(data);
+        playlists = data["Playlists"];
+        for (playlist in playlists){
+            console.log(playlists[playlist])
+        }
       });
 };
 
