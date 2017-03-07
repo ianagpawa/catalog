@@ -4,18 +4,14 @@ body{
     overflow: auto;
 }
 
-a {
-    color: #DCDCDC;
-}
+
 
 a:hover{
-    color: white;
+    color: #DCDCDC;
     text-decoration: none;
 }
 
-.black{
-    color: black;
-}
+
 
 .linkage:hover{
     color: #CC7000;
@@ -84,16 +80,29 @@ ul{
 }
 
 /*  playlists   */
+
+.create-playlist{
+    margin: 20px;
+}
+
+.create-playlist-btn{
+    background-color: #111135;
+    color: white;
+}
+
 .playlist-tile{
     background-color: #111135;
-    color: #DCDCDC;
-    height: 30vh;
+    height: 33vh;
     margin: 2px;
     padding-left,
     padding-right: 2vw;
     margin: 0;
     margin-bottom: 7vh;
     border: 2px solid #88887B;
+}
+
+.playlist-tile-text{
+    color: #DCDCDC;
 }
 
 .playlist-tile:hover{

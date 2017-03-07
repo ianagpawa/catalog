@@ -22,7 +22,7 @@
     <br>
     <br>
 
-    <div id="playlist-tiles"></div>
+    
 
     {% for playlist in playlists %}
     <a class="playlist-title" href="{{url_for('showSongs', playlist_id = playlist.id)}}">
@@ -58,9 +58,4 @@
 </div>
 
 
-<script type='text/javascript'>
-
-    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-</script>
-<script type=text/javascript src="{{ url_for('static', filename='js/test.js') }}"></script>
 {% endblock %}

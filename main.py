@@ -594,7 +594,7 @@ def gconnect():
     login_session['user_id'] = user_id
 
     print "done!"
-    print login_session
+    # print login_session
     return render_template("loggedin.html", login_session=login_session)
 
 # DISCONNECT - Revoke a current user's token and reset their login_session
