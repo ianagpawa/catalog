@@ -33,7 +33,7 @@
         </script>
 
         <script src="//apis.google.com/js/platform.js?onload=start"></script>
-        
+
 
 
 
@@ -44,13 +44,13 @@
         <div class="container-fluid">
             <div class='row top-part'>
                 <div class='col-md-4 logit'>
-                    <a id='home' href="{{url_for('showPlaylists')}}">
+                    <a id='home' class='linkage' href="{{url_for('showPlaylists')}}">
                         Aural History
                     </a>
                 </div>
                 <div class='col-md-offset-2 col-md-4 text-right logit'>
                     {% if 'username' not in session %}
-                    <a class='log' id='login' href="{{url_for('showLogin')}}">Log In</a>
+                    <a class='log linkage' id='login' href="{{url_for('showLogin')}}">Log In</a>
                     {% else %}
                     <ul class="navbar-nav navbar-right">
                         <li><img id='user-image' src="{{session.picture}}"

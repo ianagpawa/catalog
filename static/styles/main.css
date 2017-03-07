@@ -1,6 +1,6 @@
 
 body{
-    background-color: #E9F4FD;
+    background-color: #D5DDE5;
     overflow: auto;
 }
 
@@ -9,6 +9,11 @@ a {
 }
 
 a:hover{
+    color: white;
+    text-decoration: none;
+}
+
+.linkage:hover{
     color: #CC7000;
 }
 
@@ -16,7 +21,7 @@ a:hover{
 .top-part{
     padding-top: 3vh;
     padding-bottom: 2vh;
-    background-color: #000033;
+    background-color: #111135;
     vertical-align: middle;
 }
 
@@ -76,20 +81,24 @@ ul{
 
 /*  playlists   */
 .playlist-tile{
-    background-color: black;
-    color: white;
-    height: 20vw;
+    background-color: #111135;
+    color: #DCDCDC;
+    height: 30vh;
     margin: 2px;
     padding-left,
     padding-right: 2vw;
-    margin-left: 6vw;
+    margin: 0;
     margin-bottom: 7vh;
-    border: 3px solid orange;
+    border: 2px solid #88887B;
 }
 
-.playlist-title{
-    color: white;
+.playlist-tile:hover{
+    opacity: .8;
+    color: #7A4300;
 }
+
+
+
 .playlist-description{
     display: inline;
 }

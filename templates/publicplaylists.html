@@ -25,8 +25,9 @@
     <div id="playlist-tiles"></div>
 
     {% for playlist in playlists %}
+    <a class="playlist-title" href="{{url_for('showSongs', playlist_id = playlist.id)}}">
     <div class='container col-md-3 playlist-tile'>
-        <a class="playlist-title" href="{{url_for('showSongs', playlist_id = playlist.id)}}">
+
         <div class='top-playlist'>
             <h2 class='text-center'>
 
@@ -42,15 +43,16 @@
                 <p class='playlist-description'>{{playlist.description}}</p>
                 <br>
                 {% if playlist.time_updated %}
-                <h5 class='playlist-time'> Last Modified: {{playlist.time_updated}}</h5>
+                <h5 class='playlist-time text-left'>Last Modified: {{playlist.time_updated}}</h5>
                 {% else %}
-                <h5 class='playlist-time'>Created On: {{ playlist.time_created }}</h5>
+                <h5 class='playlist-time text-left'>Created On: {{ playlist.time_created }}</h5>
                 {% endif %}
             </div>
         </div>
         <br>
-        </a>
+
     </div>
+    </a>
 
     {% endfor %}
 </div>
