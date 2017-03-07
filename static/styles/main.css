@@ -5,12 +5,16 @@ body{
 }
 
 a {
-    color: #000066;
+    color: #DCDCDC;
 }
 
 a:hover{
     color: white;
     text-decoration: none;
+}
+
+.black{
+    color: black;
 }
 
 .linkage:hover{
@@ -112,6 +116,9 @@ ul{
     padding-top: 1vh;
 }
 
+.edit {
+    color: orange;
+}
 .delete{
     color: red;
 }
