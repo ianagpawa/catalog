@@ -75,10 +75,29 @@ ul{
 }
 
 /*  playlists   */
+.playlist-tile{
+    background-color: black;
+    color: white;
+    height: 20vw;
+    margin: 2px;
+    padding-left,
+    padding-right: 2vw;
+    margin-left: 6vw;
+    margin-bottom: 7vh;
+    border: 3px solid orange;
+}
+
+.playlist-title{
+    color: white;
+}
 .playlist-description{
     display: inline;
 }
 
+.playlist-time{
+    position: absolute;
+    bottom: 0;
+}
 
 .play-button{
     padding-top: 1vh;
