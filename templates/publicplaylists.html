@@ -22,23 +22,23 @@
     <br>
     <br>
 
-    
+
 
     {% for playlist in playlists %}
     <a class="playlist-title" href="{{url_for('showSongs', playlist_id = playlist.id)}}">
     <div class='container col-md-3 playlist-tile'>
 
         <div class='top-playlist'>
-            <h2 class='text-center'>
+            <h2 class='text-center playlist-tile-text'>
 
                     {{playlist.name}}
 
             </h2>
-            <h4 class='text-center'>By {{playlist.user.name}}</h4>
+            <h4 class='text-center playlist-tile-text'>By {{playlist.user.name}}</h4>
             <hr>
 
 
-            <div class=''>
+            <div class='playlist-tile-text'>
                 <h4 class='playlist-description'>Description: </h4>
                 <p class='playlist-description'>{{playlist.description}}</p>
                 <br>

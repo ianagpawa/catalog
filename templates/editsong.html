@@ -13,7 +13,11 @@
     {% endwith %}
     </div>
     <br>
-    <h1>Edit song from {{playlist.name}}</h1>
+    <div class="text-center">
+        <br>
+        <h1>Edit song from {{playlist.name}}</h1>
+    </div>
+    <br>
     <form method='post'>
         <input type='text' class='input-song' name='edit_title'
             value="{{song.title}}">

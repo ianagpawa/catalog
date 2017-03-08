@@ -5,9 +5,12 @@ body{
 }
 
 
+a{
+    color: black;
+}
 
 a:hover{
-    color: #DCDCDC;
+    color: #7A4300;
     text-decoration: none;
 }
 
@@ -88,6 +91,8 @@ ul{
 .create-playlist-btn{
     background-color: #111135;
     color: white;
+    border-radius: 25px;
+    border: 2px solid #88887B;
 }
 
 .playlist-tile{
@@ -105,7 +110,7 @@ ul{
     color: #DCDCDC;
 }
 
-.playlist-tile:hover{
+.playlist-tile:hover .playlist-tile-text{
     opacity: .8;
     color: #7A4300;
 }
@@ -193,8 +198,16 @@ ul{
     margin-right: auto;
 }
 
+.song-title{
+    color: black;
+}
+
 .error{
     padding-top: 15vh;
+}
+
+.flash{
+    margin-top: 5vh;
 }
 
 #error-return{
