@@ -34,30 +34,36 @@
 	</div>
 	<br>
     <br>
-	<div class='container-fluid'>
-		<div class='row'>
-			{% if songs !=[] %}
-				{% for song in songs %}
-				<div class='songs'>
-					{% if song.youtube %}
-					<div class='col-md-offset-2 col-md-5'>
-						<div class="post-youtube-playlist">
-						   <iframe
-								class='youtube-iframe-playlist'
-								src="https://www.youtube.com/embed/{{song.youtube}}"
-								frameborder="0" allowfullscreen>
-							</iframe>
-					   </div>
+
+
+	<div>
+	{% if songs !=[] %}
+	{% for song in songs %}
+
+		{% if song.youtube %}
+		<div class='container'>
+			<div class='row songs'>
+				<div class='col-md-4'>
+					<div class="post-youtube-playlist">
+					   <iframe
+							class='youtube-iframe-playlist'
+							src="https://www.youtube.com/embed/{{song.youtube}}"
+							frameborder="0" allowfullscreen>
+						</iframe>
 				   </div>
-				   <div class='col-md-offset-1 col-md-4 text-left'>
-					   <a href="{{url_for('showSingle',
-				   			playlist_id = song.playlist_id,
-							song_id = song.id)}}">
-						   <h3>{{song.title}}</h3>
-					   </a>
+			   </div>
+
+			   <a href="{{url_for('showSingle',
+					playlist_id = song.playlist_id,
+					song_id = song.id)}}">
+				   <div class='col-md-4 col-md-offset-3 text-left'>
+
+					  <h3>{{song.title}}</h3>
+
 					   <p>By: {{song.artist}}</p>
+
 					   {% if song.genre %}
-					   <p>Genre: {{song.genre}}</p>
+					   <p>Gere: {{song.genre}}</p>
 					   {% endif %}
 					   {% if song.rendition %}
 						   <p>Rendition of: {{song.rendition}}</p>
@@ -77,49 +83,70 @@
 						   </a>
 					   </div>
 				   </div>
-				   {% else %}
-				   <div class='col-md-offset-2 col-md-4'>
-					   <div class="post-youtube-playlist">
-						  <img
-							   class='youtube-iframe-playlist'
-							   src="http://lorempixel.com/400/200/nightlife">
-					  </div>
-				  </div>
-					<div class='col-md-offset-1 col-md-5 text-left'>
-						<a href="{{url_for('showSingle',
+
+
+			   </a>
+			</div>
+		</div>
+		<br>
+		<hr class="hr-black">
+		<br>
+
+	   {% else %}
+	   <div class='container'>
+			<div class='row songs'>
+				<div class='col-md-4'>
+					<div class="post-youtube-playlist">
+					  <img
+						   class='youtube-iframe-playlist'
+						   src="http://lorempixel.com/400/200/nightlife">
+					</div>
+				</div>
+
+				<a href="{{url_for('showSingle',
 							playlist_id = song.playlist_id,
 							song_id = song.id)}}">
+					<div class='col-md-4 col-md-offset-3 text-left'>
+
 							<h3>{{song.title}}</h3>
-						</a>
+
+
 						<p>By: {{song.artist}}</p>
 						{% if song.genre %}
-						<p>Gere: {{song.genre}}</p>
+							<p>Gere: {{song.genre}}</p>
 						{% endif %}
+
 						{% if song.rendition %}
 							<p>Rendition of: {{song.rendition}}</p>
 						{% endif %}
 
-		                <div>
-		                    <a href="{{url_for('editSong',
-		                            playlist_id = playlist.id,
-		                            song_id = song.id)}}">
-		                        Edit
-		                    </a>
+						<div>
+							<a href="{{url_for('editSong',
+									playlist_id = playlist.id,
+									song_id = song.id)}}">
+								Edit
+							</a>
 							|
-		                    <a class='delete' href="{{url_for('deleteSong',
-		                                playlist_id = playlist.id,
-		                                song_id = song.id)}}">
-		                        Delete
-		                    </a>
-		                </div>
+							<a class='delete' href="{{url_for('deleteSong',
+										playlist_id = playlist.id,
+										song_id = song.id)}}">
+								Delete
+							</a>
+						</div>
 					</div>
-					{% endif %}
-				</div>
-				<hr class="hr-black">
-				<br>
-				{% endfor %}
-			{% endif %}
+
+
+				</a>
+			</div>
 		</div>
+		<br>
+		<hr class="hr-black">
+		<br>
+	{% endif %}
+
+
+	{% endfor %}
+	{% endif %}
 	</div>
 
 </div>

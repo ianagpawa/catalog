@@ -184,8 +184,8 @@ ul{
 
 /*  songs   */
 .songs{
-    display:block;
-    height: 29vh;
+    /*height: 29vh;*/
+    display: inline;
 
 }
 .youtube-iframe-playlist{
