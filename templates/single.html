@@ -3,7 +3,10 @@
 <div class='container-fluid text-center'>
     <h2>{{song.title}}</h2>
     <h3>By: {{song.artist}}</h3>
+    {% if song.genre %}
     <h5>Genre: {{song.genre}}</h5>
+    {% endif %}
+    
     {% if song.youtube %}
     <div class="post-youtube">
        <iframe

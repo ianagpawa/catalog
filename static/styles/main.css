@@ -202,6 +202,10 @@ ul{
     color: black;
 }
 
+.hr-black{
+    border-top: 1px solid #000;
+}
+
 .error{
     padding-top: 15vh;
 }
