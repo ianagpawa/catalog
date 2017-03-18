@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, \
                     make_response, jsonify
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, desc
 from sqlalchemy.orm import sessionmaker
 from db_setup import Base, User, Playlist, Song
 #   imports for authentication
@@ -209,7 +209,7 @@ def getSongs(playlist_id):
     Returns:
         Array of songs.
     '''
-    return session.query(Song).filter_by(playlist_id=playlist_id)
+    return session.query(Song).filter_by(playlist_id=playlist_id).order_by(desc(Song.id))
 
 
 @app.route("/playlist/<int:playlist_id>/songs/JSON")
