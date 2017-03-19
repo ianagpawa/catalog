@@ -29,8 +29,8 @@
 	{% endwith %}
 	</div>
 
-	<div class='col-md-4 col-md-offset-4'>
-		<iframe class='thing'
+	<div class='col-md-12 post-youtube'>
+		<iframe class="iframe-youtube"
 		src="https://www.youtube.com/embed/VIDEO_ID?playlist={{songList}}"
 			frameborder="0" allowfullscreen>
 		</iframe>
@@ -39,7 +39,7 @@
 
     <br>
 
-	<div>
+	<!-- <div>
 	{% if songs !=[] %}
 	{% for song in songs %}
 
@@ -66,7 +66,7 @@
 					   <p>By: {{song.artist}}</p>
 
 					   {% if song.genre %}
-					   <p>Gere: {{song.genre}}</p>
+					   <p>Genre: {{song.genre}}</p>
 					   {% endif %}
 					   {% if song.rendition %}
 						   <p>Rendition of: {{song.rendition}}</p>
@@ -101,7 +101,7 @@
 
 						<p>By: {{song.artist}}</p>
 						{% if song.genre %}
-							<p>Gere: {{song.genre}}</p>
+							<p>Genre: {{song.genre}}</p>
 						{% endif %}
 
 						{% if song.rendition %}
@@ -119,7 +119,7 @@
 
 	{% endfor %}
 	{% endif %}
-	</div>
+	</div> -->
 
 </div>
 
