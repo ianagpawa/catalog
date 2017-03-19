@@ -211,7 +211,6 @@ def getSongs(playlist_id):
     '''
     return session.query(Song).filter_by(playlist_id=playlist_id).order_by(desc(Song.id))
 
-
 @app.route("/playlist/<int:playlist_id>/songs/JSON")
 def showSongsJSON(playlist_id):
     '''
@@ -244,17 +243,28 @@ def showSongs(playlist_id):
     '''
     playlist = get_playlist(playlist_id)
     songs = getSongs(playlist_id)
+
+    songList = ""
+    for song in songs:
+        url = song.youtube
+        if song != songs[-1]:
+            songList += url + ","
+        else:
+            songList += url
+
     creator = getUserInfo(playlist.user_id)
     if (('username' not in login_session) or
        (creator.id != login_session['user_id'])):
         return render_template('publicsongs.html',
                                songs=songs,
+                               songList=songList,
                                playlist=playlist,
                                creator=creator)
     else:
         return render_template('songs.html',
                                playlist=playlist,
                                songs=songs,
+                               songList=songList,
                                creator=creator)
 
 
