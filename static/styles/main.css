@@ -184,11 +184,33 @@ ul{
 }
 
 /*  songs   */
+
+.post-youtube{
+    background-color: black;
+}
+
+.iframe-youtube{
+    display: block;
+    width: 50vw;
+    height: 50vh;
+    /*width: 60vw;
+    height: 72vh;*/
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    /*margin-left: auto;
+    margin-right: auto;*/
+}
+
+.song-list{
+    color: orange;
+}
+
 .songs{
     /*height: 29vh;*/
     display: inline;
 
 }
+
 .youtube-iframe-playlist{
     display: inline;
     width: 30vw;
@@ -199,19 +221,7 @@ ul{
     margin-right: auto;
 }
 
-.post-youtube{
-    background-color: black;
-}
 
-.iframe-youtube{
-    display: block;
-    width: 60vw;
-    height: 72vh;
-    padding-top: 2vh;
-    padding-bottom: 2vh;
-    /*margin-left: auto;
-    margin-right: auto;*/
-}
 
 .song-title{
     color: black;
