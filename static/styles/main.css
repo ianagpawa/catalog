@@ -189,12 +189,10 @@ ul{
     background-color: black;
 }
 
-.iframe-youtube{
+iframe{
     display: block;
-    width: 50vw;
-    height: 50vh;
-    /*width: 60vw;
-    height: 72vh;*/
+    width: 60vw;
+    height: 72vh;
     padding-top: 2vh;
     padding-bottom: 2vh;
     /*margin-left: auto;
