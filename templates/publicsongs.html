@@ -10,6 +10,12 @@
 					<figcaption>By: {{ creator.name }}</figcaption>
 				</figure>
 			</h3>
+			<p>
+				Click on the <i class="fa fa-bars" aria-hidden="true"></i> icon on the Youtube Player to navigate the playlist.
+			</p>
+			<p>
+				Click on a song on the right to go to it's entry.
+			</p>
 		</div>
 	</div>
 
@@ -33,15 +39,17 @@
 
 	<div class='col-md-12 post-youtube'>
 		<div id="player" class="col-md-6 youtube-div">
-			<!-- <iframe id='youtube-iframe' class="iframe-youtube"
+			<iframe id='youtube-iframe' class="iframe-youtube"
 			src="https://www.youtube.com/embed/?autoplay=1&iv_load_policy=3&controls=2&playlist={{ songList }}"
 				frameborder="0" allowfullscreen>
-			</iframe> -->
+			</iframe>
 		</div>
 
 
 
-		<div class='col-md-4 col-md-offset-2 text-left'>
+		<div class='col-md-4 col-md-offset-2 text-left playlist-scroll'>
+			<h3 class='text-center h3-pl'>The {{playlist.name}} Playlist</h3>
+
 			<ol>
 			{% for song in songs %}
 				<a class='song-list' href="{{url_for('showSingle',
@@ -50,149 +58,15 @@
 					<li>{{song.title}} By {{song.artist}}</li>
 				</a>
 			{% endfor %}
-		</ol>
+			</ol>
+
 		</div>
 	</div>
 	<br>
 
     <br>
 
-	<!-- <div>
-	{% if songs !=[] %}
-	{% for song in songs %}
-
-		{% if song.youtube %}
-		<div class='container'>
-			<div class='row songs'>
-				<div class='col-md-4'>
-					<div class="post-youtube-playlist">
-					   <iframe
-							class='youtube-iframe-playlist'
-							src="https://www.youtube.com/embed/{{song.youtube}}"
-							frameborder="0" allowfullscreen>
-						</iframe>
-				   </div>
-			   </div>
-
-			   <a href="{{url_for('showSingle',
-					playlist_id = song.playlist_id,
-					song_id = song.id)}}">
-				   <div class='col-md-4 col-md-offset-3 text-left'>
-
-					  <h3>{{song.title}}</h3>
-
-					   <p>By: {{song.artist}}</p>
-
-					   {% if song.genre %}
-					   <p>Genre: {{song.genre}}</p>
-					   {% endif %}
-					   {% if song.rendition %}
-						   <p>Rendition of: {{song.rendition}}</p>
-					   {% endif %}
-
-				   </div>
-			   </a>
-	   		</div>
-		</div>
-		<br>
-		<hr class="hr-black">
-		<br>
-
-	   {% else %}
-	   <div class='container'>
-		   	<div class='row songs'>
-			   	<div class='col-md-4'>
-				   	<div class="post-youtube-playlist">
-					  <img
-						   class='youtube-iframe-playlist'
-						   src="http://lorempixel.com/400/200/nightlife">
-			  		</div>
-			  	</div>
-
-				<a href="{{url_for('showSingle',
-							playlist_id = song.playlist_id,
-							song_id = song.id)}}">
-					<div class='col-md-4 col-md-offset-3 text-left'>
-
-							<h3>{{song.title}}</h3>
-
-
-						<p>By: {{song.artist}}</p>
-						{% if song.genre %}
-							<p>Genre: {{song.genre}}</p>
-						{% endif %}
-
-						{% if song.rendition %}
-							<p>Rendition of: {{song.rendition}}</p>
-						{% endif %}
-					</div>
-				</a>
-			</div>
-		</div>
-		<br>
-		<hr class="hr-black">
-		<br>
-	{% endif %}
-
-
-	{% endfor %}
-	{% endif %}
-	</div> -->
 
 </div>
 
-<script>
-	var tag = document.createElement('script');
-
-	var thing = "{{songList}}"
-	var test = thing.split(",");
-
-
-	tag.src = "https://www.youtube.com/iframe_api";
-	var firstScriptTag = document.getElementsByTagName('script')[0];
-	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-	// 3. This function creates an <iframe> (and YouTube player)
-	//    after the API code downloads.
-	var player;
-	function onYouTubeIframeAPIReady() {
-	  player = new YT.Player('player', {
-		  playerVars: {
-			  controls: 2,
-			  iv_load_policy: 3,
-			  rel: 0,
-			  playsinline: 1
-		  },
-		  loadPlaylist:{
-			  listType: 'playlist',
-			  list: test,
-			  index: parseInt(0),
-			  suggestedQuality: 'large'
-		  },
-		  events: {
-			  'onReady': onPlayerReady
-		  }
-	  })
-
-
-	}
-
-	//   4. The API will call this function when the video player is ready.
-	function onPlayerReady(event) {
-	  event.target.loadPlaylist(test)
-	}
-
-	// 5. The API calls this function when the player's state changes.
-	//    The function indicates that when playing a video (state=1),
-	//    the player should play for six seconds and then stop.
-	//   var done = false;
-	//   function onPlayerStateChange(event) {
-	//     if (event.data == YT.PlayerState.PLAYING && !done) {
-	//       setTimeout(stopVideo, 6000);
-	//       done = true;
-	//     }
-	//   }
-	function stopVideo() {
-	  player.stopVideo();
-	}
-</script>
 {% endblock %}

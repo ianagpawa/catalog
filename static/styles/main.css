@@ -189,18 +189,26 @@ ul{
     background-color: black;
 }
 
-iframe{
+.iframe-youtube{
     display: block;
     width: 60vw;
-    height: 72vh;
+    height: 70vh;
     padding-top: 2vh;
     padding-bottom: 2vh;
     /*margin-left: auto;
     margin-right: auto;*/
 }
 
+.h3-pl{
+    color: white;
+}
+
 .song-list{
     color: orange;
+}
+
+.playlist-scroll{
+    overflow-y: auto;
 }
 
 .songs{
