@@ -199,6 +199,24 @@ ul{
     margin-right: auto;*/
 }
 
+.iframe-youtube-log{
+    display: block;
+    width: 60vw;
+    height: 65vh;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    /*margin-left: auto;
+    margin-right: auto;*/
+}
+
+#song-edit-log{
+    color: white;
+}
+
+#song-edit-log:hover{
+    color: green;
+}
+
 .h3-pl{
     color: white;
 }
@@ -226,6 +244,7 @@ ul{
     margin-left: auto;
     margin-right: auto;
 }
+
 
 
 

@@ -14,8 +14,15 @@
 				<button type="button" class="btn btn-default create-playlist-btn">
 					Add new song
                 </button>
-
             </a>
+			<br>
+			<br>
+			<p>
+				Click on the <i class="fa fa-bars" aria-hidden="true"></i> icon on the Youtube Player to navigate the playlist.
+			</p>
+			<p>
+				Click on a song on the right to go to it's entry.
+			</p>
 		</div>
 	</div>
 
@@ -32,122 +39,53 @@
 	    {% endif %}
 	{% endwith %}
 	</div>
-	<br>
-    <br>
 
 
-	<div>
-	{% if songs !=[] %}
-	{% for song in songs %}
+	<div class='col-md-12 post-youtube'>
+		<div id="player" class="col-md-6 youtube-div">
+			<iframe id='youtube-iframe' class="iframe-youtube-log"
+			src="https://www.youtube.com/embed/?autoplay=1&iv_load_policy=3&controls=2&playlist={{ songList }}"
+				frameborder="0" allowfullscreen>
+			</iframe>
+		</div>
 
-		{% if song.youtube %}
-		<div class='container'>
-			<div class='row songs'>
-				<div class='col-md-4'>
-					<div class="post-youtube-playlist">
-					   <iframe
-							class='youtube-iframe-playlist'
-							src="https://www.youtube.com/embed/{{song.youtube}}"
-							frameborder="0" allowfullscreen>
-						</iframe>
-				   </div>
-			   </div>
 
-			   <a href="{{url_for('showSingle',
-					playlist_id = song.playlist_id,
-					song_id = song.id)}}">
-				   <div class='col-md-4 col-md-offset-3 text-left'>
 
-					  <h3>{{song.title}}</h3>
+		<div class='col-md-4 col-md-offset-2 text-left playlist-scroll'>
+			<h3 class='text-center h3-pl'>The {{playlist.name}} Playlist</h3>
 
-					   <p>By: {{song.artist}}</p>
+			<ol>
+			{% for song in songs %}
+				<a class='song-list' href="{{url_for('showSingle',
+ 					playlist_id = song.playlist_id,
+ 					song_id = song.id)}}">
+					<li>
+						{{song.title}} By {{song.artist}}   |
 
-					   {% if song.genre %}
-					   <p>Genre: {{song.genre}}</p>
-					   {% endif %}
-					   {% if song.rendition %}
-						   <p>Rendition of: {{song.rendition}}</p>
-					   {% endif %}
-
-					   <div>
-						   <a href="{{url_for('editSong',
+					   <a id='song-edit-log' href="{{url_for('editSong',
+							   playlist_id = playlist.id,
+							   song_id = song.id)}}">
+						   Edit
+					   </a>
+					   |
+					   <a class='delete' href="{{url_for('deleteSong',
 								   playlist_id = playlist.id,
 								   song_id = song.id)}}">
-							   Edit
-						   </a>
-						   |
-						   <a class='delete' href="{{url_for('deleteSong',
-									   playlist_id = playlist.id,
-									   song_id = song.id)}}">
-							   Delete
-						   </a>
-					   </div>
-				   </div>
+						   Delete
+					   </a>
 
-
-			   </a>
-			</div>
-		</div>
-		<br>
-		<hr class="hr-black">
-		<br>
-
-	   {% else %}
-	   <div class='container'>
-			<div class='row songs'>
-				<div class='col-md-4'>
-					<div class="post-youtube-playlist">
-					  <img
-						   class='youtube-iframe-playlist'
-						   src="http://lorempixel.com/400/200/nightlife">
-					</div>
-				</div>
-
-				<a href="{{url_for('showSingle',
-							playlist_id = song.playlist_id,
-							song_id = song.id)}}">
-					<div class='col-md-4 col-md-offset-3 text-left'>
-
-							<h3>{{song.title}}</h3>
-
-
-						<p>By: {{song.artist}}</p>
-						{% if song.genre %}
-							<p>Gere: {{song.genre}}</p>
-						{% endif %}
-
-						{% if song.rendition %}
-							<p>Rendition of: {{song.rendition}}</p>
-						{% endif %}
-
-						<div>
-							<a href="{{url_for('editSong',
-									playlist_id = playlist.id,
-									song_id = song.id)}}">
-								Edit
-							</a>
-							|
-							<a class='delete' href="{{url_for('deleteSong',
-										playlist_id = playlist.id,
-										song_id = song.id)}}">
-								Delete
-							</a>
-						</div>
-					</div>
+					</li>
 
 
 				</a>
-			</div>
+			{% endfor %}
+			</ol>
+
 		</div>
-		<br>
-		<hr class="hr-black">
-		<br>
-	{% endif %}
-
-
-	{% endfor %}
-	{% endif %}
 	</div>
+	<br>
+
+
 
 </div>
 

@@ -50,15 +50,16 @@
 		<div class='col-md-4 col-md-offset-2 text-left playlist-scroll'>
 			<h3 class='text-center h3-pl'>The {{playlist.name}} Playlist</h3>
 
-			<ol>
-			{% for song in songs %}
-				<a class='song-list' href="{{url_for('showSingle',
- 					playlist_id = song.playlist_id,
- 					song_id = song.id)}}">
-					<li>{{song.title}} By {{song.artist}}</li>
-				</a>
-			{% endfor %}
-			</ol>
+				<ol>
+				{% for song in songs %}
+					<a class='song-list' href="{{url_for('showSingle',
+	 					playlist_id = song.playlist_id,
+	 					song_id = song.id)}}">
+						<li>{{song.title}} By {{song.artist}}</li>
+					</a>
+				{% endfor %}
+
+				</ol>
 
 		</div>
 	</div>
