@@ -2,48 +2,47 @@
 {% block content %}
 
 <div class='container-fluid songs-page'>
-	<div class="row banner menu">
+	<div class="banner menu">
 		<div class="text-center">
-			<h1 class='playlist-title'>{{ playlist.name }}</h1>
-			<h3>
-				<figure class="creator">
-					<figcaption>By: {{ creator.name }}</figcaption>
-				</figure>
-			</h3>
-            <a href="{{url_for('newSong', playlist_id = playlist.id)}}">
-				<button type="button" class="btn btn-default create-playlist-btn">
-					Add new song
-                </button>
-            </a>
 			<br>
+			<div class='col-md-offset-4 col-md-4 text-center'>
+			{% with messages = get_flashed_messages() %}
+				{% if messages %}
+				<ul>
+					{% for message in messages %}
+					<li><strong>{{message}}</strong></li>
+					{% endfor %}
+				</ul>
+				{% endif %}
+			{% endwith %}
+			</div>
 			<br>
-			<p>
-				Click on the <i class="fa fa-bars" aria-hidden="true"></i> icon on the Youtube Player to navigate the playlist.
-			</p>
-			<p>
-				Click on a song on the right to go to it's entry.
-			</p>
+			<div class='col-md-12 text-center'>
+	            <a href="{{url_for('newSong', playlist_id = playlist.id)}}">
+					<button type="button" class="btn btn-default create-playlist-btn">
+						Add new song
+	                </button>
+	            </a>
+				<br>
+				<br>
+				<p>
+					Click on the <i class="fa fa-bars" aria-hidden="true"></i> icon on the Youtube Player to navigate the playlist.
+				</p>
+				<p>
+					Click on a song on the right to go to it's entry.
+				</p>
+			</div>
 		</div>
 	</div>
 
 
 
-	<div class='col-md-offset-4 col-md-4 text-center'>
-	{% with messages = get_flashed_messages() %}
-	    {% if messages %}
-	    <ul>
-	        {% for message in messages %}
-	        <li><strong>{{message}}</strong></li>
-	        {% endfor %}
-	    </ul>
-	    {% endif %}
-	{% endwith %}
-	</div>
+
 
 
 	<div class='col-md-12 post-youtube'>
 		<div id="player" class="col-md-6 youtube-div">
-			<iframe id='youtube-iframe' class="iframe-youtube-log"
+			<iframe id='youtube-iframe' class="iframe-youtube"
 			src="https://www.youtube.com/embed/?autoplay=1&iv_load_policy=3&controls=2&playlist={{ songList }}"
 				frameborder="0" allowfullscreen>
 			</iframe>
@@ -51,18 +50,20 @@
 
 
 
-		<div class='col-md-4 col-md-offset-2 text-left playlist-scroll'>
-			<h3 class='text-center h3-pl'>The {{playlist.name}} Playlist</h3>
-
+		<div class='col-md-4 col-md-offset-2 text-left'>
+			<h3 class='text-center white-letter'>The {{playlist.name}} Playlist</h3>
+			<h4 class='text-center white-letter'>By: {{ creator.name }}</h4>
+			<h5 class='text-center white-letter'>{{ playlist.description }}</h5>
+			<div class='playlist-scroll'>
 			<ol>
 			{% for song in songs %}
 				<a class='song-list' href="{{url_for('showSingle',
  					playlist_id = song.playlist_id,
  					song_id = song.id)}}">
-					<li>
+					<li class='white-letter'>
 						{{song.title}} By {{song.artist}}   |
 
-					   <a id='song-edit-log' href="{{url_for('editSong',
+					   <a class='white-letter white-letter-hover' href="{{url_for('editSong',
 							   playlist_id = playlist.id,
 							   song_id = song.id)}}">
 						   Edit
@@ -80,6 +81,7 @@
 				</a>
 			{% endfor %}
 			</ol>
+			</div>
 
 		</div>
 	</div>

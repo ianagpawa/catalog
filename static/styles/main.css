@@ -192,34 +192,25 @@ ul{
 .iframe-youtube{
     display: block;
     width: 60vw;
-    height: 70vh;
+    height: 73vh;
     padding-top: 2vh;
     padding-bottom: 2vh;
-    /*margin-left: auto;
-    margin-right: auto;*/
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.iframe-youtube-log{
-    display: block;
-    width: 60vw;
-    height: 65vh;
-    padding-top: 2vh;
-    padding-bottom: 2vh;
-    /*margin-left: auto;
-    margin-right: auto;*/
+.public-yp{
+    height: 77vh;
 }
 
-#song-edit-log{
+.white-letter{
     color: white;
 }
 
-#song-edit-log:hover{
+.white-letter-hover:hover{
     color: green;
 }
 
-.h3-pl{
-    color: white;
-}
 
 .song-list{
     color: orange;
