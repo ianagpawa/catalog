@@ -165,14 +165,25 @@ ul{
 .youtube-iframe,
 .placeholder-img{
     display: block;
-    width: 50vw;
-    height: 60vh;
+    width: 60vw;
+    height: 85vh;
     padding-top: 2vh;
     padding-bottom: 2vh;
     margin-left: auto;
     margin-right: auto;
 }
 
+
+
+.youtube-single{
+    margin-bottom: -10vh;
+
+}
+
+.single-info{
+    margin-top: 25vh;
+    margin-bottom: 25vh;
+}
 
 .inline{
     display:inline;

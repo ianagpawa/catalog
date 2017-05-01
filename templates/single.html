@@ -1,32 +1,36 @@
 {% extends "base.html" %}
 {% block content %}
-<div class='container-fluid text-center'>
-    <h2>{{song.title}}</h2>
-    <h3>By: {{song.artist}}</h3>
-    {% if song.genre %}
-    <h5>Genre: {{song.genre}}</h5>
-    {% endif %}
-    
+
+<div class="col-md-12 post-youtube youtube-single">
     {% if song.youtube %}
-    <div class="post-youtube">
+    <div cid="player" class="col-md-6 youtube-div">
        <iframe
             class='youtube-iframe'
             src="https://www.youtube.com/embed/{{song.youtube}}"
             frameborder="0" allowfullscreen>
         </iframe>
-   </div>
+    </div>
    {% else %}
-   <div class="post-youtube">
+    <div id="player" class="col-md-6 youtube-div">
        <img class='placeholder-img'
             src="http://lorempixel.com/800/500/nightlife">
-  </div>
+    </div>
    {% endif %}
 
 
-    <h5>Part of the {{song.playlist.name}} playlist by {{song.user.name}}</h5>
-    <h6>Added on: {{song.time_created}}</h6>
-
-
+    <div class='col-md-4 col-md-offset-2 text-left single-info'>
+        <h2 class='white-letter'>{{song.title}} By {{song.artist}}</h2>
+        {% if song.rendition %}
+        <h4 class='white-letter'>Rendition Of {{song.rendition}}</h4>
+        {% endif %}
+        {% if song.genre %}
+        <h4 class='white-letter'>Genre: {{song.genre}}</h4>
+        {% endif %}
+        <br>
+        <h5 class='white-letter'>Belongs in the {{song.playlist.name}} playlist</h4>
+        <h5 class='white-letter'>Added by {{song.user.name}}</h4>
+        <br>
+        <h5 class='white-letter'>Created on: {{song.time_created}}</h5>
+    </div>
 </div>
-
 {% endblock %}
