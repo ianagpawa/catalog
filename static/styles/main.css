@@ -166,7 +166,7 @@ ul{
 .placeholder-img{
     display: block;
     width: 60vw;
-    height: 85vh;
+    height: 79vh;
     padding-top: 2vh;
     padding-bottom: 2vh;
     margin-left: auto;
@@ -176,13 +176,11 @@ ul{
 
 
 .youtube-single{
-    margin-bottom: -10vh;
-
+    margin-top: 8vh;
 }
 
 .single-info{
-    margin-top: 25vh;
-    margin-bottom: 25vh;
+    margin-top: 18vh;
 }
 
 .inline{

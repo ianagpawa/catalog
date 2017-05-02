@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
+
 <div class="col-md-12 post-youtube youtube-single">
     {% if song.youtube %}
     <div cid="player" class="col-md-6 youtube-div">
@@ -19,7 +20,8 @@
 
 
     <div class='col-md-4 col-md-offset-2 text-left single-info'>
-        <h2 class='white-letter'>{{song.title}} By {{song.artist}}</h2>
+        <h2 class='white-letter'>"{{song.title}}"</h2>
+        <h2 class='white-letter'>{{song.artist}}</h2>
         {% if song.rendition %}
         <h4 class='white-letter'>Rendition Of {{song.rendition}}</h4>
         {% endif %}
