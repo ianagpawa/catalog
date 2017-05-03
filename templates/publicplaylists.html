@@ -1,15 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class='col-md-4 post-youtube'>
-    <div id="player" class="col-md-4 youtube-div">
-        <iframe
-             class='youtube-iframe-front'
-             src="https://www.youtube.com/embed/{{latest_song.youtube}}"
-             frameborder="0" allowfullscreen>
-         </iframe>
-    </div>
-</div>
+
 
 <div class='container-fluid playlists'>
     <div class='col-md-offset-4 col-md-4 text-center'>
@@ -25,7 +17,25 @@
     </div>
     <br>
     <br>
+    <div class='col-md-12 post-youtube'>
+        <div class="col-md-6">
+            <h2 class='text-center'>Latest Song</h2>
+            <div id="info" class="col-md-6">
 
+                <h3>"{{latest_song.title}}"</h3>
+                <h3>By {{latest_song.artist}}</h3>
+                <h4>In {{latest_song.playlist.name}} playlist</h4>
+            </div>
+            <div id="player" class="col-md-6 youtube-div">
+                <iframe
+                     class='youtube-iframe-front'
+                     src="https://www.youtube.com/embed/{{latest_song.youtube}}"
+                     frameborder="0" allowfullscreen>
+                 </iframe>
+            </div>
+        </div>
+
+    </div>
 
 
     <br>
