@@ -1,5 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
+
+<div class='col-md-4 post-youtube'>
+    <div id="player" class="col-md-4 youtube-div">
+        <iframe
+             class='youtube-iframe-front'
+             src="https://www.youtube.com/embed/{{latest_song.youtube}}"
+             frameborder="0" allowfullscreen>
+         </iframe>
+    </div>
+</div>
+
 <div class='container-fluid playlists'>
     <div class='col-md-offset-4 col-md-4 text-center'>
     {% with messages = get_flashed_messages() %}
@@ -13,8 +24,12 @@
     {% endwith %}
     </div>
     <br>
+    <br>
 
 
+
+    <br>
+    <br>
     <div class='text-center'>
         <h1>Playlists</h1>
 

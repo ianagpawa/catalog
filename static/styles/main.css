@@ -160,6 +160,16 @@ ul{
     margin-top: 2vh;
 }
 
+.youtube-iframe-front{
+    display: block;
+    width: 25vw;
+    height: 30vh;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /*  single  */
 
 .youtube-iframe,

@@ -86,11 +86,12 @@ def showPlaylists():
         in a playlists page with no 'edit' or 'delete' buttons will be
         returned.
     '''
+    latest_song = session.query(Song).order_by(Song.id.desc()).first()
     playlists = session.query(Playlist).all()
     if 'username' not in login_session:
-        return render_template('publicplaylists.html', playlists=playlists)
+        return render_template('publicplaylists.html', playlists=playlists, latest_song=latest_song)
     else:
-        return render_template("playlists.html", playlists=playlists)
+        return render_template("playlists.html", playlists=playlists, latest_song=latest_song)
 
 
 @app.route("/playlists/new/", methods=['GET', 'POST'])
