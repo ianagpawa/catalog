@@ -16,8 +16,8 @@
     {% endwith %}
     </div>
     <br>
-    <div class='col-md-12'>
-        <div class="col-md-6 col-md-offset-3 latest white-letter">
+    <div class='col-md-12 top-row'>
+        <div class="col-md-4 latest white-letter">
             <h2 class='text-center'>Latest Song</h2>
 
             <div id="player" class="youtube-div">
@@ -26,17 +26,36 @@
                      src="https://www.youtube.com/embed/{{latest_song.youtube}}"
                      frameborder="0" allowfullscreen>
                  </iframe>
-                 <h3 class='text-center latest-info'>"{{latest_song.title}}" By
+                 <h4 class='text-center latest-info'>"{{latest_song.title}}" By
                      {{latest_song.artist}} In the {{latest_song.playlist.name}}
-                     playlist</h3>
+                     playlist</h4>
             </div>
         </div>
+
+
+        <div class='col-md-4 text-center'>
+            <h1 class="playlist-h1">Playlists</h1>
+        </div>
+
+        <div class="col-md-4 latest white-letter">
+            <h2 class='text-center'>Latest Song</h2>
+
+            <div id="player" class="youtube-div">
+                <iframe
+                     class='youtube-iframe-front'
+                     src="https://www.youtube.com/embed/{{latest_song.youtube}}"
+                     frameborder="0" allowfullscreen>
+                 </iframe>
+                 <h4 class='text-center latest-info'>"{{latest_song.title}}" By
+                     {{latest_song.artist}} In the {{latest_song.playlist.name}}
+                     playlist</h4>
+            </div>
+
+        </div>
+
     </div>
 
-    <div class='col-md-12 text-center playlist-h1'>
-        <h1>Playlists</h1>
 
-    </div>
     <br>
     <br>
 
