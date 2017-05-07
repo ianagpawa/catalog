@@ -85,7 +85,7 @@ ul{
 /*  playlists   */
 
 .top-row{
-    margin-top: 7vh;
+
     margin-bottom: 5vh;
 }
 
@@ -101,12 +101,15 @@ ul{
     margin-bottom: 3vh;
 }
 
-.playlist-h1{
-    margin-top: 17vh;
+.playlist-h1,
+.playlist-h1-logged{
+    margin-top: 15vh;
     margin-bottom: 15vh;
 }
 
-
+.playlist-h1-logged{
+    margin-bottom: 2vh;
+}
 
 .youtube-iframe-front{
     display: block;

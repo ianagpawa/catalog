@@ -14,16 +14,53 @@
     {% endwith %}
     </div>
 
-    <div class='col-md-12 text-center'>
-        <br>
-        <h1>Playlists</h1>
-        <div class='create-playlist'>
-            <a href = "{{url_for('newPlaylist')}}">
-                <button type="button" class="btn btn-default create-playlist-btn">Create New Playlist
-                </button>
-            </a>
+
+    <div class='col-md-12 top-row'>
+        <div class="col-md-4 latest white-letter">
+            <h2 class='text-center'>Latest Song</h2>
+
+            <div id="player" class="youtube-div">
+                <iframe
+                     class='youtube-iframe-front'
+                     src="https://www.youtube.com/embed/{{latest_song.youtube}}"
+                     frameborder="0" allowfullscreen>
+                 </iframe>
+                 <h4 class='text-center latest-info'>"{{latest_song.title}}" By
+                     {{latest_song.artist}} In the {{latest_song.playlist.name}}
+                     playlist</h4>
+            </div>
         </div>
+
+
+        <div class='col-md-4 text-center'>
+            <h1 class="playlist-h1-logged">Playlists</h1>
+            <div class='create-playlist'>
+                <a href = "{{url_for('newPlaylist')}}">
+                    <button type="button" class="btn btn-default create-playlist-btn">Create New Playlist
+                    </button>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-4 latest white-letter">
+            <h2 class='text-center'>Latest Song</h2>
+
+            <div id="player" class="youtube-div">
+                <iframe
+                     class='youtube-iframe-front'
+                     src="https://www.youtube.com/embed/{{latest_song.youtube}}"
+                     frameborder="0" allowfullscreen>
+                 </iframe>
+                 <h4 class='text-center latest-info'>"{{latest_song.title}}" By
+                     {{latest_song.artist}} In the {{latest_song.playlist.name}}
+                     playlist</h4>
+            </div>
+
+        </div>
+
     </div>
+
+
     <br>
     {% for playlist in playlists %}
     <a class="playlist-title" href="{{url_for('showSongs', playlist_id = playlist.id)}}">
