@@ -117,35 +117,35 @@ def newSongFeatured():
     if login_session['email'] != 'agpawaji@gmail.com':
         return redirect(url_for('showPlaylists'))
 
-    playlist = get_playlist(playlist_id)
+
     if request.method == "POST":
         if request.form['title'] and request.form['artist']:
-            title = request.form['title']
-            artist = request.form['artist']
-            genre = request.form['genre']
+            title = request.form['featured-title']
+            artist = request.form['featured-artist']
+            genre = request.form['featured-genre']
             youtube = None
-            if request.form['youtube']:
-                link = request.form['youtube']
+            if request.form['featured-youtube']:
+                link = request.form['featured-youtube']
                 if '//youtu.be' in link:
                     checkQ = link.split("/")[3]
                 else:
                     checkQ = link.split('=')[1]
                 vid_id = checkQ.split("&")[0]
                 youtube = vid_id
-            rendition = request.form['rendition']
-            newSong = Featured(title=title,
+            rendition = request.form['featured-rendition']
+            newFeatured = Featured(title=title,
                            artist=artist,
                            genre=genre,
                            youtube=youtube,
                            rendition=rendition)
-            add_to_db(newSong)
-            flash('A new song was added to %s' % playlist.name)
-            return redirect(url_for('showSongs', playlist_id=playlist_id))
+            add_to_db(newFeatured)
+            flash('A new song was added to the Featured playlist')
+            return redirect(url_for('showPlaylists'))
         else:
             flash("Song title and Artist is required!")
-            return render_template('newsong.html', playlist=playlist)
+            return render_template('newfeatured.html')
     else:
-        return render_template('newsong.html', playlist=playlist)
+        return render_template('newfeatured.html')
 
 
 @app.route("/playlists/new/", methods=['GET', 'POST'])

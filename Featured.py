@@ -29,8 +29,6 @@ class Featured(Base):
     genre = Column(String(80))
     youtube = Column(String(250))
     rendition = Column(String(80))
-    user_id = Column(Integer, ForeignKey('user.id'))
-    user = relationship(User)
     time_created = Column(DateTime(timezone=True), server_default=func.now())
     time_updated = Column(DateTime(timezone=True), onupdate=func.now())
 
@@ -43,6 +41,5 @@ class Featured(Base):
             'genre': self.genre,
             'youtube': "https://www.youtube.com/watch?v=%s" % self.youtube,
             'rendition': self.rendition,
-            'user_id': self.user_id,
             'time_created': self.time_created.strftime("%B %d, %Y")
         }
