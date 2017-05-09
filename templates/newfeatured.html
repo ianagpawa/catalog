@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class='container-fluid'>
+    <div class='col-md-6 col-md-offset-3 flash text-center'>
+        <div class='col-md-offset-4 col-md-4 text-center'>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li><strong>{{message}}</strong></li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        {% endwith %}
+        </div>
+        <br>
+        <br>
+        <h1>Featured Song</h1>
+        <h3>Add a song</h3>
+        <form method='post'>
+            <input type='text' class='input-song-featured' name='title'
+                placeholder="Song Title (Required)">
+            <br>
+            <input type='text' class='input-song-featured' name='artist'
+                placeholder="Artist (Required)">
+            <br>
+            <input type='text' class='input-song-featured' name='genre'
+                placeholder="Genre">
+            <br>
+            <input type='text' class='input-song-featured' name='youtube'
+                placeholder="Youtube Link">
+            <br>
+            <input type="text" class='input-song-featured' name='rendition'
+                placeholder="Rendition of">
+            <br>
+            <a href="{{url_for('showPlaylists')}}">
+                Cancel
+            </a>
+            <input id='add-featured' class='CRUD-button' type='submit' value='Add'>
+        </form>
+
+    </div>
+</div>
+{% endblock %}
