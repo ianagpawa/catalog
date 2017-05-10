@@ -5,6 +5,7 @@ from sqlalchemy import create_engine
 from User import User
 from Playlist import Playlist
 from Song import Song
+from Featured import Featured
 
 from Base import Base
 

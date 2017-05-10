@@ -18,17 +18,16 @@
     <br>
     <div class='col-md-12 top-row'>
         <div class="col-md-4 latest white-letter">
-            <h2 class='text-center'>Latest Song</h2>
+            <h2 class='text-center'>Featured Song</h2>
 
             <div id="player" class="youtube-div">
                 <iframe
                      class='youtube-iframe-front'
-                     src="https://www.youtube.com/embed/{{latest_song.youtube}}"
+                     src="https://www.youtube.com/embed/{{featured.youtube}}"
                      frameborder="0" allowfullscreen>
                  </iframe>
-                 <h4 class='text-center latest-info'>"{{latest_song.title}}" By
-                     {{latest_song.artist}} In the {{latest_song.playlist.name}}
-                     playlist</h4>
+                 <h4 class='text-center latest-info'>"{{featured.title}}" By
+                     {{featured.artist}}</h4>
             </div>
         </div>
 

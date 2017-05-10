@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash, \
                     make_response, jsonify
 from sqlalchemy import create_engine, desc
 from sqlalchemy.orm import sessionmaker
-from db_setup import Base, User, Playlist, Song
+from db_setup import Base, User, Playlist, Song, Featured
 #   imports for authentication
 from flask import session as login_session
 import random
@@ -88,10 +88,13 @@ def showPlaylists():
     '''
     latest_song = session.query(Song).order_by(Song.id.desc()).first()
     playlists = session.query(Playlist).all()
+    featured = session.query(Featured).order_by(Featured.id.desc()).first()
     if 'username' not in login_session:
-        return render_template('publicplaylists.html', playlists=playlists, latest_song=latest_song)
+        return render_template('publicplaylists.html', playlists=playlists,
+                                latest_song=latest_song, featured=featured)
     else:
-        return render_template("playlists.html", playlists=playlists, latest_song=latest_song)
+        return render_template("playlists.html", playlists=playlists,
+                                latest_song=latest_song, featured=featured)
 
 
 
@@ -102,15 +105,12 @@ def showPlaylists():
            methods=['GET', 'POST'])
 def newSongFeatured():
     '''
-    newSong: Method adding a song to a playlist.
-
-    Args:
-        playlist_id (int):  Playlist ID number.
+    newSong: Method adding a new featured song.
 
     Returns:
-        If not logged in, redirects to login page.  Displays errors when song
-        title or arist is not included.  Redirects to playlist page after
-        adding the song.
+        If not logged in, redirects to login page.  Only Creator can add to
+        this playlist.  Displays errors when song title or arist is not
+        included.  Redirects to home page after adding the song.
     '''
     if 'username' not in login_session:
         return redirect('/login')
