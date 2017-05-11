@@ -17,40 +17,64 @@
     </div>
     <br>
     <div class='col-md-12 top-row'>
-        <div class="col-md-4 latest white-letter">
-            <h2 class='text-center'>Featured Song</h2>
 
-            <div id="player" class="youtube-div">
-                <iframe
-                     class='youtube-iframe-front'
-                     src="https://www.youtube.com/embed/{{featured.youtube}}"
-                     frameborder="0" allowfullscreen>
-                 </iframe>
-                 <h4 class='text-center latest-info'>"{{featured.title}}" By
-                     {{featured.artist}}</h4>
+        <a class="playlist-title" href=>
+        <div class='container col-md-4 playlist-tile'>
+            <div class='top-playlist'>
+                <h2 class='text-center playlist-tile-text'>
+                        Featured Song
+                </h2>
+                <hr>
+                <div class='playlist-tile-text'>
+                    <h4 class='playlist-description'>{{featured.title}}</h4>
+                    <p class='playlist-description'>by {{featured.artist}}</p>
+                    <br>
+                    <div id="player" class="youtube-div">
+                        <iframe
+                             class='youtube-iframe-front'
+                             src="https://www.youtube.com/embed/{{featured.youtube}}"
+                             frameborder="0" allowfullscreen>
+                         </iframe>
+
+                    </div>
+                    <h5 class='playlist-time text-left'>Last Modified: {{featured.time_created}}</h5>
+                </div>
             </div>
+            <br>
         </div>
+        </a>
 
 
         <div class='col-md-4 text-center'>
             <h1 class="playlist-h1">Playlists</h1>
         </div>
 
-        <div class="col-md-4 latest white-letter">
-            <h2 class='text-center'>Latest Song</h2>
+        <a class="playlist-title" href=>
+        <div class='container col-md-4 playlist-tile'>
+            <div class='top-playlist'>
+                <h2 class='text-center playlist-tile-text'>
+                        Latest Song
+                </h2>
+                <hr>
 
-            <div id="player" class="youtube-div">
-                <iframe
-                     class='youtube-iframe-front'
-                     src="https://www.youtube.com/embed/{{latest_song.youtube}}"
-                     frameborder="0" allowfullscreen>
-                 </iframe>
-                 <h4 class='text-center latest-info'>"{{latest_song.title}}" By
-                     {{latest_song.artist}} In the {{latest_song.playlist.name}}
-                     playlist</h4>
+                <div class='playlist-tile-text'>
+                    <h4 class='playlist-description'>{{latest_song.title}}</h4>
+                    <p class='playlist-description'>by {{latest_song.artist}}</p>
+                    <br>
+                    <div id="player" class="youtube-div">
+                        <iframe
+                             class='youtube-iframe-front'
+                             src="https://www.youtube.com/embed/{{latest_song.youtube}}"
+                             frameborder="0" allowfullscreen>
+                         </iframe>
+                    </div>
+                    <h5 class='playlist-time text-left'>Last Modified: {{featured.time_created}}</h5>
+                </div>
             </div>
-
+            <br>
         </div>
+        </a>
+
 
     </div>
 
