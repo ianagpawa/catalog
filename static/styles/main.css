@@ -84,11 +84,6 @@ ul{
 
 /*  playlists   */
 
-.top-row{
-
-    margin-bottom: 5vh;
-}
-
 
 .latest{
     background-color: black;
@@ -113,8 +108,8 @@ ul{
 
 .youtube-iframe-front{
     display: block;
-    width: 26vw;
-    height: 20vh;
+    width: 28vw;
+    height: 26vh;
     padding-top: 2vh;
     padding-bottom: 2vh;
     margin-left: auto;
@@ -132,7 +127,9 @@ ul{
     border: 2px solid #88887B;
 }
 
-.playlist-tile{
+
+
+.playlist-tile, .playlist-tile-special{
     background-color: #111135;
     height: 33vh;
     margin: 2px;
@@ -142,6 +139,11 @@ ul{
     margin-bottom: 7vh;
     border: 2px solid #88887B;
 }
+
+.playlist-tile-special{
+    height: 40vh;
+}
+
 .playlist-tile-text{
     color: #DCDCDC;
 }
