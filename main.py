@@ -119,7 +119,7 @@ def newSongFeatured():
 
 
     if request.method == "POST":
-        if request.form['title'] and request.form['artist']:
+        if request.form['featured-title'] and request.form['featured-artist']:
             title = request.form['featured-title']
             artist = request.form['featured-artist']
             genre = request.form['featured-genre']
