@@ -359,6 +359,20 @@ def showSingle(playlist_id, song_id):
     return render_template('single.html', song=song)
 
 
+@app.route('/featured/<int:featured_song_id>/')
+def showFeaturedSingle(featured_song_id):
+    '''
+    showSingle: Method for single Featured song page.
+
+    Args:
+        featured_song_id (int):  Featured song ID number.
+
+    Returns:
+        Page for a single song.
+    '''
+    featured = session.query(Featured).filter_by(id=featured_song_id).one()
+    return render_template('featuredsingle.html', featured=featured)
+
 @app.route("/playlist/<int:playlist_id>/songs/new/",
            methods=['GET', 'POST'])
 def newSong(playlist_id):

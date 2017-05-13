@@ -141,15 +141,15 @@ ul{
 }
 
 .playlist-tile-special{
-    height: 40vh;
+    height: 43vh;
 }
 
 .playlist-tile-text{
     color: #DCDCDC;
 }
 
+.playlist-tile-special:hover .playlist-tile-text,
 .playlist-tile:hover .playlist-tile-text{
-    opacity: .8;
     color: #7A4300;
 }
 

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div class="col-md-12 post-youtube youtube-single">
+    {% if featured.youtube %}
+    <div id="player" class="col-md-6 youtube-div">
+       <iframe
+            class='youtube-iframe'
+            src="https://www.youtube.com/embed/{{featured.youtube}}"
+            frameborder="0" allowfullscreen>
+        </iframe>
+    </div>
+   {% else %}
+    <div id="player" class="col-md-6 youtube-div">
+       <img class='placeholder-img'
+            src="http://lorempixel.com/800/500/nightlife">
+    </div>
+   {% endif %}
+
+
+    <div class='col-md-4 col-md-offset-2 text-left single-info'>
+        <h2 class='white-letter'>"{{featured.title}}"</h2>
+        <h2 class='white-letter'>{{featured.artist}}</h2>
+        {% if featured.rendition %}
+        <h4 class='white-letter'>Rendition Of {{featured.rendition}}</h4>
+        {% endif %}
+        {% if featured.genre %}
+        <h4 class='white-letter'>Genre: {{featured.genre}}</h4>
+        {% endif %}
+        <br>
+        <h5 class='white-letter'>Created on: {{featured.time_created}}</h5>
+    </div>
+</div>
+{% endblock %}
