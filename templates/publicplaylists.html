@@ -55,10 +55,12 @@
 
         <div class='container col-md-4 playlist-tile-special'>
             <div class='top-playlist text-center'>
-                <a class="playlist-title" href=>
-                <h2 class='text-center playlist-tile-text'>
-                        Latest Song
-                </h2>
+                <a class='song-list' href="{{url_for('showSingle',
+                    playlist_id = latest_song.playlist_id,
+                    song_id = latest_song.id)}}">
+                    <h2 class='text-center playlist-tile-text'>
+                            Latest Song
+                    </h2>
                 </a>
                 <hr>
 
@@ -73,7 +75,7 @@
                              frameborder="0" allowfullscreen>
                          </iframe>
                     </div>
-                    <h5 class='playlist-time text-left'>Last Modified: {{featured.time_created}}</h5>
+                    <h5 class='playlist-time text-left'>Last Modified: {{latest_song.time_created}}</h5>
                 </div>
             </div>
             <br>
