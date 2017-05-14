@@ -16,14 +16,13 @@
     {% endwith %}
     </div>
     <br>
+    <br>
     <div class='col-md-12 top-row'>
-
-
         <div class='container col-md-4 playlist-tile-special'>
             <div class='top-playlist text-center'>
                 <a class="playlist-title" href="{{url_for('showFeaturedSingle',
                     featured_song_id = featured.id)}}">
-                    <h2 class='text-center playlist-tile-text'>
+                    <h2 class='text-center playlist-tile-text special-h2'>
                             Featured Song
                     </h2>
                 </a>
@@ -48,8 +47,18 @@
 
 
 
-        <div class='col-md-4 text-center'>
-            <h1 class="playlist-h1">Playlists</h1>
+        <div class='col-md-4 text-center playlist-tile-special white-letter'>
+            <h1 class="playlist-h1">Welcome</h1>
+
+            <div class='container-fluid'>
+                <div class='col-md-8 col-md-offset-2 '>
+                <p>
+                    Thanks for visitng my music catalog!  Feel free to add your
+                     own playlists, or just browse the playlists below to
+                     listen to the music I like.
+                </p>
+                </div>
+            </div>
         </div>
 
 
@@ -58,7 +67,7 @@
                 <a class='song-list' href="{{url_for('showSingle',
                     playlist_id = latest_song.playlist_id,
                     song_id = latest_song.id)}}">
-                    <h2 class='text-center playlist-tile-text'>
+                    <h2 class='text-center playlist-tile-text special-h2'>
                             Latest Song
                     </h2>
                 </a>
