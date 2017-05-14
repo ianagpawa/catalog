@@ -227,6 +227,16 @@ ul{
     display:inline;
 }
 
+/* featured single*/
+.featured-single-h1{
+    font-weight: 600;
+    font-variant: small-caps;
+}
+
+.featured-single{
+    margin-top: 1vh;
+}
+
 /*  delete playlist     */
 .warning{
     color: red;

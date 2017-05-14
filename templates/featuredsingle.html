@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
+<h1 class="text-center featured-single-h1">
+    Featured Song
+</h1>
 
-<div class="col-md-12 post-youtube youtube-single">
+<div class="col-md-12 post-youtube youtube-single featured-single">
+
     {% if featured.youtube %}
     <div id="player" class="col-md-6 youtube-div">
        <iframe
