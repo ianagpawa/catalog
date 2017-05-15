@@ -19,10 +19,10 @@ DBSession = sessionmaker(bind=engine)
 # session.rollback()
 session = DBSession()
 
-Featured1 = Featured(title="test",
-                        artist="testing",
-                        genre='yes',
-                        youtube="uaW8llXAtCg")
+Featured1 = Featured(title="Over The Hills and Far Away",
+                        artist="Led Zeppelin",
+                        genre='Rock',
+                        youtube="Ee33FsDANk0")
 session.add(Featured1)
 
 

@@ -17,8 +17,6 @@ class Featured(Base):
         genre (str): Musical genre of song.
         youtube (str): Youtube video id.
         rendition (str):  If the song is a cover or a rendition of an older song.
-        user_id (int): User id of creator of playlist, foreign key from user.
-        user (obj): User object of creator of playlist.
         time_created (datetime): Unix timestamp of when playlist was created.
         time_updated (datetime): Unix timestamp of when playlist was updated.
     '''
