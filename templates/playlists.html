@@ -92,56 +92,56 @@
             </div>
         </div>
 
-    </div>
+        {% for playlist in playlists %}
+        <a class="playlist-title" href="{{url_for('showSongs', playlist_id = playlist.id)}}">
+        <div class='container col-md-3 playlist-tile'>
 
-    {% for playlist in playlists %}
-    <a class="playlist-title" href="{{url_for('showSongs', playlist_id = playlist.id)}}">
-    <div class='container col-md-3 playlist-tile'>
+            <div class='top-playlist '>
+                <h2 class='text-center playlist-tile-text'>
 
-        <div class='top-playlist '>
-            <h2 class='text-center playlist-tile-text'>
+                        {{playlist.name}}
 
-                    {{playlist.name}}
-
-            </h2>
-            <h4 class='text-center playlist-tile-text'>By {{playlist.user.name}}</h4>
-            <hr>
+                </h2>
+                <h4 class='text-center playlist-tile-text'>By {{playlist.user.name}}</h4>
+                <hr>
 
 
-            <div class='playlist-tile-text'>
-                <h4 class='playlist-description'>Description: </h4>
-                <p class='playlist-description'>{{playlist.description}}</p>
-                <br>
-                {% if playlist.time_updated %}
-                <h5 class='playlist-time text-left'>Last Modified: {{playlist.time_updated}}</h5>
-                {% else %}
-                <h5 class='playlist-time text-left'>Created On: {{ playlist.time_created }}</h5>
-                {% endif %}
-            </div>
-
-            <div class='row'>
-                <div class='col-md-8 play-button' >
-                    <a class='playlist-description edit'
-                        href="{{url_for('editPlaylist',
-                            playlist_id = playlist.id)}}">
-                        Edit Playlist
-                    </a>
-                    |
-                    <a class='delete playlist-description'
-                        href="{{url_for('deletePlaylist',
-                            playlist_id = playlist.id)}}">
-                        Delete
-                    </a>
+                <div class='playlist-tile-text'>
+                    <h4 class='playlist-description'>Description: </h4>
+                    <p class='playlist-description'>{{playlist.description}}</p>
+                    <br>
+                    {% if playlist.time_updated %}
+                    <h5 class='playlist-time text-left'>Last Modified: {{playlist.time_updated}}</h5>
+                    {% else %}
+                    <h5 class='playlist-time text-left'>Created On: {{ playlist.time_created }}</h5>
+                    {% endif %}
                 </div>
+
+                <div class='row'>
+                    <div class='col-md-8 play-button' >
+                        <a class='playlist-description edit'
+                            href="{{url_for('editPlaylist',
+                                playlist_id = playlist.id)}}">
+                            Edit Playlist
+                        </a>
+                        |
+                        <a class='delete playlist-description'
+                            href="{{url_for('deletePlaylist',
+                                playlist_id = playlist.id)}}">
+                            Delete
+                        </a>
+                    </div>
+                </div>
+
             </div>
+            <br>
 
         </div>
-        <br>
+        </a>
+
+        {% endfor %}
 
     </div>
-    </a>
-
-    {% endfor %}
 
 </div>
 
