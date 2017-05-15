@@ -59,7 +59,8 @@
 
             <div class='create-playlist'>
                 <a href = "{{url_for('newPlaylist')}}">
-                    <button type="button" class="btn btn-default create-playlist-btn">Create New Playlist
+                    <button type="button" class="btn btn-default create-playlist-btn">
+                        Create New Playlist
                     </button>
                 </a>
             </div>
@@ -67,9 +68,8 @@
 
         <div class='container col-md-4 playlist-tile-special'>
             <div class='top-playlist text-center'>
-                <a class='song-list' href="{{url_for('showSingle',
-                    playlist_id = latest_song.playlist_id,
-                    song_id = latest_song.id)}}">
+                <a class='song-list' href="{{url_for('showSongs',
+                        playlist_id = latest_song.playlist_id)}}">
                     <h2 class='text-center playlist-tile-text special-h2'>
                             Latest Song
                     </h2>
