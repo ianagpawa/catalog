@@ -18,7 +18,7 @@
     <br>
     <br>
     <div class='col-md-12 top-row'>
-        <div class='container col-md-4 playlist-tile-special'>
+        <div class='col-md-4 playlist-tile-special'>
             <div class='top-playlist text-center'>
                 <a class='song-list' href="{{url_for('showSongs',
                         playlist_id = latest_song.playlist_id)}}">
@@ -61,7 +61,7 @@
             </div>
         </div>
 
-        <div class='container col-md-4 playlist-tile-special'>
+        <div class='col-md-4 playlist-tile-special'>
             <div class='top-playlist text-center'>
                 <a class="playlist-title" href="{{url_for('showFeaturedSingle',
                     featured_song_id = featured.id)}}">
@@ -91,7 +91,7 @@
 
 
         {% for playlist in playlists %}
-        <div class='container col-md-3 playlist-tile'>
+        <div class='col-md-3 playlist-tile'>
             <a class="playlist-title" href="{{url_for('showSongs', playlist_id = playlist.id)}}">
 
             <div class='top-playlist'>
