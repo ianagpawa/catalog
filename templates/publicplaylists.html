@@ -91,8 +91,9 @@
 
 
         {% for playlist in playlists %}
+        <a class="playlist-title" href="{{url_for('showSongs', playlist_id = playlist.id)}}">
         <div class='col-md-3 playlist-tile'>
-            <a class="playlist-title" href="{{url_for('showSongs', playlist_id = playlist.id)}}">
+
 
             <div class='top-playlist'>
                 <h2 class='text-center playlist-tile-text'>
@@ -116,9 +117,9 @@
                 </div>
             </div>
             <br>
-            </a>
-        </div>
 
+        </div>
+        </a>
 
         {% endfor %}
 
