@@ -7,7 +7,7 @@
 -Clone the repo: `git clone https://github.com/ianagpawa/catalog.git`
 
 #### Setting up the database
-Before viewing the app, while the terminal is in the project folder, use command `python db_setup.py` to create the database, `musiccatalog.db`.  Executing `python loadsongs.py` will populate the database with dummy data.
+Before viewing the app, while the terminal is in the project folder, use command `python db_setup.py` to create the database, `musiccatalog.db`.  Executing commands `python loadsongs.py` and `python loadfeatured.py` will populate the database with dummy data.
 
 #### Viewing the app locally
 In order to run the app locally, `vagrant` must be installed on your system, and your project folder must include the `Vagrantfile` and `pf_config.sh` files.
@@ -35,8 +35,10 @@ catalog/
     |    ├── editplaylist.html
     |    ├── editsong.html
     |    ├── error.html
+    |    ├── featuredsingle.html
     |    ├── loggedin.html
     |    ├── login.html
+    |    ├── newfeatured.html
     |    ├── newplaylist.html
     |    ├── newsong.html    
     |    ├── playlists.html
@@ -44,11 +46,15 @@ catalog/
     |    ├── publicsongs.html
     |    ├── single.html    
     |    └── songs.html
+    ├── app.yaml
     ├── Base.py
-    ├── catalog.py
     ├── client_secrets.json
     ├── db_setup.py
+    ├── deletesongs.py    
     ├── fb_client_secrets.json
+    ├── Featured.py   
+    ├── loadfeatured.py  
+    ├── main.py    
     ├── loadsongs.py
     ├── pg_config.sh
     ├── Playlist.py
@@ -61,8 +67,5 @@ catalog/
 ## Creator
 
 **Ian Agpawa**
-
-
-[Github](https://github.com/ianagpawa)
 
  agpawaji@gmail.com

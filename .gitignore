@@ -1,3 +1,7 @@
 .vagrant
-
+ref
 musiccatalog.db
+*.pyc
+
+*.json
+templates/OLD
