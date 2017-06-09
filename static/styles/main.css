@@ -127,7 +127,9 @@ ul{
 
 
 
-.playlist-tile, .playlist-tile-special{
+.playlist-tile,
+.playlist-tile-special,
+.welcome-tile{
     background-color: #111135;
     height: 33vh;
     margin: 2px;
@@ -160,6 +162,13 @@ ul{
 .playlist-description{
     display: inline;
 }
+
+.welcome-tile{
+    background-color: #D5DDE5;
+    color: black;
+    border: 0px black solid;
+}
+
 
 .playlist-time{
     position: absolute;
