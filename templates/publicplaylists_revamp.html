@@ -92,7 +92,9 @@
 
         {% for playlist in playlists %}
 
-        <div class=''
+        <div class='col-md-10 col-md-offset-1 text-center'>
+            <h1>{{get_latest_song(playlist.id).title }}</h1>
+        </div>
         {% endfor %}
 
     </div>

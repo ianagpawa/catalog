@@ -48,6 +48,11 @@ def add_to_db(obj):
     session.add(obj)
     session.commit()
 
+@app.context_processor
+def my_utility_process():
+    def get_latest_song(playlist_id):
+        return session.query(Song).filter_by(playlist_id=playlist_id).order_by(desc(Song.id))[0]
+    return dict(get_latest_song=get_latest_song)
 
 def login_required(func):
     '''
@@ -90,7 +95,7 @@ def showPlaylists():
     playlists = session.query(Playlist).all()
     featured = session.query(Featured).order_by(Featured.id.desc()).first()
     if 'username' not in login_session:
-        return render_template('publicplaylists.html', playlists=playlists,
+        return render_template('publicplaylists_revamp.html', playlists=playlists,
                                 latest_song=latest_song, featured=featured)
     else:
         return render_template("playlists.html", playlists=playlists,
