@@ -92,8 +92,19 @@
 
         {% for playlist in playlists %}
 
-        <div class='col-md-10 col-md-offset-1 text-center'>
-            <h1>{{get_latest_song(playlist.id).title }}</h1>
+        <div class='col-md-10 col-md-offset-1'>
+            <div class='col-md-3'>
+                <iframe
+                     class=''
+                     src="https://www.youtube.com/embed/{{get_latest_song(playlist.id).youtube}}"
+                     frameborder="0" allowfullscreen>
+                 </iframe>
+            </div>
+            <div class='col-md-9'>
+                <h1>{{playlist.name}}</h1>
+                <h3>{{playlist.description}}</h3>
+                <h4>Latest Song: {{get_latest_song(playlist.id).title}} By {{ get_latest_song(playlist.id).artist }}</h4>
+            </div>
         </div>
         {% endfor %}
 
