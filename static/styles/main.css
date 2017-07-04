@@ -127,7 +127,7 @@ ul{
 
 
 
-.playlist-tile,
+/*.playlist-tile,*/
 .playlist-tile-special,
 .welcome-tile{
     background-color: #111135;
@@ -152,8 +152,10 @@ ul{
     font-variant: small-caps;
 }
 
-.playlist-tile-special:hover .playlist-tile-text,
-.playlist-tile:hover .playlist-tile-text{
+
+/*,
+.playlist-tile:hover .playlist-tile-text*/
+.playlist-tile-special:hover .playlist-tile-text {
     color: #7A4300;
 
 }
