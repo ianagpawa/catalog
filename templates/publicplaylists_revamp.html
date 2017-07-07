@@ -20,13 +20,13 @@
     <div class='col-md-12 top-row'>
         <div class='col-md-4 playlist-tile-special'>
             <div class='top-playlist text-center'>
-                <a class='song-list' href="{{url_for('showSongs',
+                <a class='' href="{{url_for('showSongs',
                         playlist_id = latest_song.playlist_id)}}">
                     <h2 class='text-center playlist-tile-text special-h2'>
                             Latest Song
                     </h2>
                 </a>
-                <hr>
+                <hr class='hr-black'>
 
                 <div class='playlist-tile-text'>
                     <h4 class='playlist-description'>{{latest_song.title}}</h4>
@@ -69,7 +69,7 @@
                             Featured Song
                     </h2>
                 </a>
-                <hr>
+                <hr class='hr-black'>
                 <div class='playlist-tile-text'>
                     <h4 class='playlist-description'>{{featured.title}}</h4>
                     <p class='playlist-description'>by {{featured.artist}}</p>
@@ -89,24 +89,34 @@
         </div>
 
 
-
+        <div class='container-fluid playlists-list'>
+            <h1 class='playlists-title text-center'>Playlists</h1>
         {% for playlist in playlists %}
 
-        <div class='col-md-10 col-md-offset-1 playlist-front'>
-            <div class='col-md-3'>
+        <div class='col-md-8 col-md-offset-2 playlist'>
+            <div class='col-md-4'>
                 <iframe
-                     class=''
+                     class='iframe-front'
                      src="https://www.youtube.com/embed/{{get_latest_song(playlist.id).youtube}}"
                      frameborder="0" allowfullscreen>
                  </iframe>
             </div>
-            <div class='col-md-9 playlist-info'>
-                <h1>{{playlist.name}}</h1>
-                <h3>{{playlist.description}}</h3>
+            <div class='col-md-8 playlist-info'>
+                <a href="{{ url_for('showSongs', playlist_id = playlist.id) }}">
+                <h2>{{playlist.name}}</h2>
+                <p>{{playlist.description}}</p>
                 <h4>Latest Song: {{get_latest_song(playlist.id).title}} By {{ get_latest_song(playlist.id).artist }}</h4>
+                </a>
             </div>
+
+
         </div>
+        <div class='col-md-10 col-md-offset-1'>
+        <hr class='hr-playlist'>
+        </div>
+
         {% endfor %}
+        </div>
 
     </div>
 </div>

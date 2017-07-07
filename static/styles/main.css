@@ -1,10 +1,11 @@
 
 body{
-    background-color: #D5DDE5;
     overflow: auto;
 }
 
-
+hr{
+    color: black;
+}
 a{
     color: black;
 }
@@ -84,12 +85,32 @@ ul{
 
 /*  playlists   */
 
-.playlist-front{
+.playlists-list{
+    margin-top: 10vh;
+}
+
+.playlists-title{
+    margin-bottom: 5vh;
+}
+
+.playlist{
     margin-top: 5vh;
 }
+
 .playlist-info{
-    padding-left: 5vw;
+    padding-left: 12vw;
 }
+
+.iframe-front{
+    width: 28vw;
+    height: 26vh;
+}
+
+.hr-playlist{
+    margin-top: 8vh;
+    border-top: 1px solid #000;
+}
+
 
 .latest{
     background-color: black;
@@ -132,35 +153,17 @@ ul{
 }
 
 
-
-/*.playlist-tile,*/
-.playlist-tile-special,
-.welcome-tile{
-    background-color: #111135;
-    height: 33vh;
-    margin: 2px;
-    padding-left,
-    padding-right: 2vw;
-    margin: 0;
-    border: 2px solid #515151;
-    border-collapse: collapse;
-}
-
 .playlist-tile-special{
     height: 45vh;
 }
 
-.playlist-tile-text{
-    color: #DCDCDC;
-}
 
 .special-h2{
     font-variant: small-caps;
 }
 
 
-/*,
-.playlist-tile:hover .playlist-tile-text*/
+
 .playlist-tile-special:hover .playlist-tile-text {
     color: #7A4300;
 
@@ -171,11 +174,6 @@ ul{
     display: inline;
 }
 
-.welcome-tile{
-    background-color: #D5DDE5;
-    color: black;
-    border: 0px black solid;
-}
 
 
 .playlist-time{
@@ -322,7 +320,7 @@ ul{
 }
 
 .hr-black{
-    border-top: 1px solid #000;
+    border-top: 5px solid #000;
 }
 
 .error{
