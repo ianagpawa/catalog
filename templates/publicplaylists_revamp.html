@@ -92,7 +92,7 @@
 
         {% for playlist in playlists %}
 
-        <div class='col-md-10 col-md-offset-1'>
+        <div class='col-md-10 col-md-offset-1 playlist-front'>
             <div class='col-md-3'>
                 <iframe
                      class=''
@@ -100,7 +100,7 @@
                      frameborder="0" allowfullscreen>
                  </iframe>
             </div>
-            <div class='col-md-9'>
+            <div class='col-md-9 playlist-info'>
                 <h1>{{playlist.name}}</h1>
                 <h3>{{playlist.description}}</h3>
                 <h4>Latest Song: {{get_latest_song(playlist.id).title}} By {{ get_latest_song(playlist.id).artist }}</h4>

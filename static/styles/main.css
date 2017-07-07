@@ -84,6 +84,12 @@ ul{
 
 /*  playlists   */
 
+.playlist-front{
+    margin-top: 5vh;
+}
+.playlist-info{
+    padding-left: 5vw;
+}
 
 .latest{
     background-color: black;
