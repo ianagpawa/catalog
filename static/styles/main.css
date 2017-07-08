@@ -23,8 +23,9 @@ a:hover{
 
 /*  nav */
 .top-part{
-    padding-top: 3vh;
-    padding-bottom: 2vh;
+    height: 7vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
     background-color: #08081A;
     vertical-align: middle;
 }
@@ -32,7 +33,6 @@ a:hover{
 
 #home{
     font-size: 30px;
-    padding-left: 7vw;
     color: white;
 }
 
@@ -55,9 +55,6 @@ a:hover{
     color: white;
 }
 
-.logit{
-    display: inline;
-}
 
 #username{
     padding-right: 2vw;
