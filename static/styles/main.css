@@ -82,13 +82,9 @@ ul{
 
 /*  playlists   */
 
-.playlists-list{
-    margin-top: 10vh;
-}
-
 .playlists-title{
-    margin-bottom: 5vh;
     font-variant: small-caps;
+    font-size: 50px;
 }
 
 .playlist{
@@ -122,8 +118,6 @@ ul{
 }
 
 .playlist-h1{
-    margin-top: 5vh;
-    margin-bottom: 5vh;
     font-size: 50px;
     font-variant: small-caps;
 }

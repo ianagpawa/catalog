@@ -18,36 +18,7 @@
     <br>
     <br>
     <div class='col-md-12 top-row'>
-        <div class='col-md-4 playlist-tile-special'>
-            <div class='top-playlist text-center'>
-                <a class='' href="{{url_for('showSongs',
-                        playlist_id = latest_song.playlist_id)}}">
-                    <h2 class='text-center playlist-tile-text special-h2'>
-                            Latest Song
-                    </h2>
-                </a>
-                <hr class='hr-black'>
-
-                <div class='playlist-tile-text'>
-                    <h4 class='playlist-description'>{{latest_song.title}}</h4>
-                    <p class='playlist-description'>by {{latest_song.artist}}</p>
-                    <br>
-                    <div id="player" class="youtube-div">
-                        <iframe
-                             class='youtube-iframe-front'
-                             src="https://www.youtube.com/embed/{{latest_song.youtube}}"
-                             frameborder="0" allowfullscreen>
-                         </iframe>
-                    </div>
-
-                </div>
-            </div>
-            <br>
-        </div>
-
-
-
-        <div class='col-md-4 text-center welcome-tile'>
+        <div class='container-fluid text-center welcome-tile'>
             <h1 class="playlist-h1">Welcome</h1>
 
             <div class='container-fluid'>
@@ -61,66 +32,99 @@
             </div>
         </div>
 
-        <div class='col-md-4 playlist-tile-special'>
-            <div class='top-playlist text-center'>
-                <a class="playlist-title" href="{{url_for('showFeaturedSingle',
-                    featured_song_id = featured.id)}}">
-                    <h2 class='text-center playlist-tile-text special-h2'>
-                            Featured Song
-                    </h2>
-                </a>
-                <hr class='hr-black'>
-                <div class='playlist-tile-text'>
-                    <h4 class='playlist-description'>{{featured.title}}</h4>
-                    <p class='playlist-description'>by {{featured.artist}}</p>
-                    <br>
-                    <div id="player" class="youtube-div">
-                        <iframe
-                             class='youtube-iframe-front'
-                             src="https://www.youtube.com/embed/{{featured.youtube}}"
-                             frameborder="0" allowfullscreen>
-                         </iframe>
+        <div>
+            <div class='col-md-offset-2 col-md-4 playlist-tile-special'>
+                <div class='top-playlist text-center'>
+                    <a class='' href="{{url_for('showSongs',
+                            playlist_id = latest_song.playlist_id)}}">
+                        <h2 class='text-center playlist-tile-text special-h2'>
+                                Latest Song
+                        </h2>
+                    </a>
+                    <hr class='hr-black'>
+
+                    <div class='playlist-tile-text'>
+                        <h4 class='playlist-description'>{{latest_song.title}}</h4>
+                        <p class='playlist-description'>by {{latest_song.artist}}</p>
+                        <br>
+                        <div id="player" class="youtube-div">
+                            <iframe
+                                 class='youtube-iframe-front'
+                                 src="https://www.youtube.com/embed/{{latest_song.youtube}}"
+                                 frameborder="0" allowfullscreen>
+                             </iframe>
+                        </div>
 
                     </div>
                 </div>
-            </div>
-            <br>
-        </div>
-
-
-        <div class='container-fluid playlists-list'>
-            <h1 class='playlists-title text-center'>Playlists</h1>
-        {% for playlist in playlists %}
-
-        <div class='col-md-8 col-md-offset-2 playlist'>
-            <div class='col-md-4'>
-                <iframe
-                     class='iframe-front'
-                     src="https://www.youtube.com/embed/{{get_latest_song(playlist.id).youtube}}"
-                     frameborder="0" allowfullscreen>
-                 </iframe>
-            </div>
-            <div class='col-md-8 playlist-info'>
-                <a href="{{ url_for('showSongs', playlist_id = playlist.id) }}">
-                <h2>{{playlist.name}}</h2>
-
-                <p>{{playlist.description}}</p>
-
-                <h4>Latest Song: {{get_latest_song(playlist.id).title}} By {{ get_latest_song(playlist.id).artist }}</h4>
-                <h5>Updated {{playlist.time_updated.strftime('%b %d, %Y')}}</h5>
-                <h4>{{ get_number_of_songs(playlist.id) }} songs</h4>
-
-                </a>
+                <br>
             </div>
 
 
-        </div>
-        <div class='col-md-10 col-md-offset-1'>
-        <hr class='hr-playlist'>
+
+
+            <div class='col-md-4 playlist-tile-special'>
+                <div class='top-playlist text-center'>
+                    <a class="playlist-title" href="{{url_for('showFeaturedSingle',
+                        featured_song_id = featured.id)}}">
+                        <h2 class='text-center playlist-tile-text special-h2'>
+                                Featured Song
+                        </h2>
+                    </a>
+                    <hr class='hr-black'>
+                    <div class='playlist-tile-text'>
+                        <h4 class='playlist-description'>{{featured.title}}</h4>
+                        <p class='playlist-description'>by {{featured.artist}}</p>
+                        <br>
+                        <div id="player" class="youtube-div">
+                            <iframe
+                                 class='youtube-iframe-front'
+                                 src="https://www.youtube.com/embed/{{featured.youtube}}"
+                                 frameborder="0" allowfullscreen>
+                             </iframe>
+
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
         </div>
 
-        {% endfor %}
-        </div>
+        <div class='col-md-12'>
+            <div class='container-fluid playlists-list'>
+                <h1 class='playlists-title text-center'>Playlists</h1>
+            {% for playlist in playlists %}
+
+            <div class='col-md-8 col-md-offset-2 playlist'>
+                <div class='col-md-4'>
+                    <iframe
+                         class='iframe-front'
+                         src="https://www.youtube.com/embed/{{get_latest_song(playlist.id).youtube}}"
+                         frameborder="0" allowfullscreen>
+                     </iframe>
+                </div>
+                <div class='col-md-8 playlist-info'>
+                    <a href="{{ url_for('showSongs', playlist_id = playlist.id) }}">
+                    <h2>{{playlist.name}}</h2>
+
+                    <p>{{playlist.description}}</p>
+
+                    <h4>Latest Song: {{get_latest_song(playlist.id).title}} By {{ get_latest_song(playlist.id).artist }}</h4>
+                    <h5>Updated {{playlist.time_updated.strftime('%b %d, %Y')}}</h5>
+                    <h4>{{ get_number_of_songs(playlist.id) }} songs</h4>
+
+                    </a>
+                </div>
+
+
+            </div>
+            <div class='col-md-10 col-md-offset-1'>
+            <hr class='hr-playlist'>
+            </div>
+
+            {% endfor %}
+            </div>
+        </dvi>
 
     </div>
 </div>
