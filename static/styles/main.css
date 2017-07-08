@@ -88,6 +88,7 @@ ul{
 
 .playlists-title{
     margin-bottom: 5vh;
+    font-variant: small-caps;
 }
 
 .playlist{
@@ -171,12 +172,6 @@ ul{
     display: inline;
 }
 
-
-
-.playlist-time{
-    position: absolute;
-    bottom: 0;
-}
 
 .play-button{
     padding-top: 1vh;
@@ -317,7 +312,7 @@ ul{
 }
 
 .hr-black{
-    border-top: 5px solid #000;
+    border-top: 3px solid #000;
 }
 
 .error{

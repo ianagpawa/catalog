@@ -52,7 +52,11 @@ def add_to_db(obj):
 def my_utility_process():
     def get_latest_song(playlist_id):
         return session.query(Song).filter_by(playlist_id=playlist_id).order_by(desc(Song.id))[0]
-    return dict(get_latest_song=get_latest_song)
+
+    def get_number_of_songs(playlist_id):
+        return session.query(Song).filter_by(playlist_id=playlist_id).count()
+
+    return dict(get_latest_song=get_latest_song, get_number_of_songs=get_number_of_songs)
 
 def login_required(func):
     '''

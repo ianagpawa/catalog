@@ -82,7 +82,6 @@
                          </iframe>
 
                     </div>
-                    <h5 class='playlist-time text-left'>Last Modified: {{featured.time_created.strftime('%b %d, %Y')}}</h5>
                 </div>
             </div>
             <br>
@@ -104,9 +103,13 @@
             <div class='col-md-8 playlist-info'>
                 <a href="{{ url_for('showSongs', playlist_id = playlist.id) }}">
                 <h2>{{playlist.name}}</h2>
+
                 <p>{{playlist.description}}</p>
+
                 <h4>Latest Song: {{get_latest_song(playlist.id).title}} By {{ get_latest_song(playlist.id).artist }}</h4>
                 <h5>Updated {{playlist.time_updated.strftime('%b %d, %Y')}}</h5>
+                <h4>{{ get_number_of_songs(playlist.id) }} songs</h4>
+
                 </a>
             </div>
 
