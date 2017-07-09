@@ -99,7 +99,7 @@ def showPlaylists():
     playlists = session.query(Playlist).all()
     featured = session.query(Featured).order_by(Featured.id.desc()).first()
     if 'username' not in login_session:
-        return render_template('publicplaylists_revamp.html', playlists=playlists,
+        return render_template('publicplaylists.html', playlists=playlists,
                                 latest_song=latest_song, featured=featured)
     else:
         return render_template("playlists.html", playlists=playlists,

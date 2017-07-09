@@ -30,6 +30,9 @@ a:hover{
     vertical-align: middle;
 }
 
+.logit{
+    padding-top: 1vh;
+}
 
 #home{
     font-size: 30px;
@@ -85,6 +88,8 @@ ul{
 .playlists-title{
     font-variant: small-caps;
     font-size: 50px;
+    margin-top: 5vh;
+
 }
 
 .playlist{
@@ -145,8 +150,8 @@ ul{
 }
 
 
-.playlist-tile-special{
-    height: 45vh;
+.playlist-tile{
+    margin-top: 2vh;
 }
 
 
@@ -306,7 +311,7 @@ ul{
 }
 
 .hr-black{
-    border-top: 3px solid #000;
+    border-top: 2px solid #000;
 }
 
 .error{

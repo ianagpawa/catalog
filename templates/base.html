@@ -19,6 +19,7 @@
            crossorigin="anonymous">
 
         <link type='text/css' rel="stylesheet" href="/static/styles/main.css">
+        <link type='text/css' rel="stylesheet" href="/static/styles/media.css">
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
         </script>
@@ -42,7 +43,7 @@
     <body>
         <div class="container-fluid">
             <div class='row top-part'>
-                <div class='col-md-3 text-center logit'>
+                <div class='col-md-3 text-center'>
                     <a id='home' class='linkage' href="{{url_for('showPlaylists')}}">
                         Aural History
                     </a>
@@ -53,7 +54,7 @@
                     {% else %}
                     <ul class="navbar-nav navbar-right">
                         <li><img id='user-image' src="{{session.picture}}"
-                            height="40" width="40">
+                            height="30" width="30">
                         </li>
                         <li id='username'>
                             {{session.username}}

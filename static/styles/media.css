@@ -1,0 +1,13 @@
+@media screen and (max-width: 990px){
+    .playlist-tile-special,
+    .playlist-tile{
+        margin-top: 7vh;
+        margin-bottom: 3vh;
+    }
+
+    .youtube-iframe-front{
+        width: 60vw;
+        height: 30vh;
+
+    }
+}
