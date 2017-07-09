@@ -10,4 +10,8 @@
         height: 30vh;
 
     }
+
+    .logit{
+        display: none;
+    }
 }
