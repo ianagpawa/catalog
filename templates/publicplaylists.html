@@ -62,22 +62,25 @@
 
 
 
+
+
             <div class='col-md-4 playlist-tile-special'>
                 <div class='top-playlist text-center'>
                     <a class="playlist-title" href="{{url_for('showFeaturedSingle',
                         featured_song_id = featured.id)}}">
                         <h2 class='text-center playlist-tile-text special-h2'>
-                                Featured Song
+                                Featured Song:
                         </h2>
+
                     </a>
                     <hr class='hr-black'>
                     <div class='playlist-tile-text'>
                         <h4>{{featured.title}}</h4>
                         <p>by {{featured.artist}}</p>
 
-                        <div id="player" class="youtube-div">
+                        <div class="youtube-div">
                             <iframe
-                                 class='youtube-iframe-front'
+                                 class='youtube-iframe-front featured-youtube'
                                  src="https://www.youtube.com/embed/{{featured.youtube}}"
                                  frameborder="0" allowfullscreen>
                              </iframe>
@@ -123,7 +126,7 @@
 
                     <div class='playlist-tile-text'>
                         {% if get_number_of_songs(playlist.id) %}
-                        <div id="player" class="youtube-div">
+                        <div class="youtube-div">
                             <iframe
                                  class='youtube-iframe-front'
                                  src="https://www.youtube.com/embed/{{get_latest_song(playlist.id).youtube}}"
