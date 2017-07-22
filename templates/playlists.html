@@ -114,17 +114,7 @@
                         </h1>
                         <p>{{playlist.description}}</p>
 
-                        {% if get_number_of_songs(playlist.id) %}
-                        <h6>{{ get_number_of_songs(playlist.id) }} songs</h6>
-                        {% else %}
-                        <h6>0 songs</h6>
-                        {% endif %}
 
-                        {% if playlist.time_updated %}
-                        <h6>Updated on {{playlist.time_updated.strftime('%b %d, %Y')}}</h6>
-                        {% else %}
-                        <h6>Created on {{playlist.time_created.strftime('%b %d, %Y')}}</h6>
-                        {% endif %}
                     </a>
                     <div class='row container-fluid'>
                         <div class='play-button' >
@@ -143,9 +133,6 @@
                     </div>
 
                     <hr class='hr-black'>
-                    {% if get_number_of_songs(playlist.id) %}
-                    <h4>Latest Song: {{get_latest_song(playlist.id).title}} By {{ get_latest_song(playlist.id).artist }}</h4>
-                    {% endif %}
 
                     <div class='playlist-tile-text'>
                         {% if get_number_of_songs(playlist.id) %}
@@ -159,6 +146,17 @@
                         {% endif %}
 
                     </div>
+                    {% if get_number_of_songs(playlist.id) %}
+                    <h6>{{ get_number_of_songs(playlist.id) }} songs</h6>
+                    {% else %}
+                    <h6>0 songs</h6>
+                    {% endif %}
+
+                    {% if playlist.time_updated %}
+                    <h6>Updated on {{playlist.time_updated.strftime('%b %d, %Y')}}</h6>
+                    {% else %}
+                    <h6>Created on {{playlist.time_created.strftime('%b %d, %Y')}}</h6>
+                    {% endif %}
                 </div>
                 <br>
 

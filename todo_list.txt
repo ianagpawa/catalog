@@ -1,1 +1,2 @@
 -Add modification to query for playlists, sort by time modified.
+-tile layout change for publicplaylsit and playlist
