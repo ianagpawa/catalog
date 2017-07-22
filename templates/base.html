@@ -48,9 +48,9 @@
                         Aural History
                     </a>
                 </div>
-                <div class='col-md-4 col-md-offset-5 text-center logit'>
+                <div class='col-md-4 col-md-offset-4 text-center logit'>
                     {% if 'username' not in session %}
-                    <a class='log linkage' id='login' href="{{url_for('showLogin')}}">Log In</a>
+                    <a class='log linkage text-right' id='login' href="{{url_for('showLogin')}}">Log In</a>
                     {% else %}
                     <ul class="navbar-nav navbar-right">
                         <li><img id='user-image' src="{{session.picture}}"
