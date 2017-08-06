@@ -36,7 +36,7 @@
             <div class='col-md-4 col-md-offset-2 playlist-tile-special'>
                 <div class='top-playlist text-center'>
                     <h2 class='text-center playlist-tile-text special-h2'>
-                            Latest Song
+                            Latest Songs
                     </h2>
                     <hr class='hr-black'>
 
@@ -79,8 +79,6 @@
                                  frameborder="0" allowfullscreen>
                              </iframe>
                         </div>
-                        <h4>{{featured.title}}</h4>
-                        <p>by {{featured.artist}}</p>
 
                     </div>
                 </div>
@@ -101,13 +99,11 @@
                         <h1 class='text-center playlist-tile-text special-h2'>
                                 {{playlist.name}}
                         </h1>
-
-
-                        <hr class='hr-black'>
+                        <p>{{playlist.description}}</p>
 
 
                     </a>
-
+                    <hr class='hr-black'>
 
                     <div class='playlist-tile-text'>
                         {% if get_number_of_songs(playlist.id) %}
@@ -121,10 +117,6 @@
                         {% endif %}
 
                     </div>
-                    <br>
-                    <p>{{playlist.description}}</p>
-
-
 
                     {% if get_number_of_songs(playlist.id) == 1 %}
                     <h6>{{ get_number_of_songs(playlist.id) }} song</h6>

@@ -45,9 +45,8 @@
                 <div class='top-playlist text-center'>
 
                     <h2 class='text-center playlist-tile-text special-h2'>
-                            Latest Song
+                            Latest Songs
                     </h2>
-
                     <hr class='hr-black'>
 
                     <div class='playlist-tile-text'>
@@ -77,8 +76,6 @@
                     </a>
                     <hr class='hr-black'>
                     <div class='playlist-tile-text'>
-                        <h4>{{featured.title}}</h4>
-                        <p>by {{featured.artist}}</p>
 
                         <div id="player" class="youtube-div">
                             <iframe
@@ -109,8 +106,7 @@
                         <h1 class='text-center playlist-tile-text special-h2'>
                                 {{playlist.name}}
                         </h1>
-
-
+                        <p>{{playlist.description}}</p>
 
                     </a>
                     <div class='row container-fluid'>
@@ -130,7 +126,7 @@
                     </div>
 
                     <hr class='hr-black'>
-                    <p>{{playlist.description}}</p>
+
 
                     <div class='playlist-tile-text'>
                         {% if get_number_of_songs(playlist.id) %}
@@ -144,7 +140,8 @@
                         {% endif %}
 
                     </div>
-                    
+
+
                     {% if get_number_of_songs(playlist.id) == 1 %}
                     <h6>{{ get_number_of_songs(playlist.id) }} song</h6>
                     {% elif get_number_of_songs(playlist.id) > 1 %}
