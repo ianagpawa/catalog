@@ -95,15 +95,16 @@ def showPlaylists():
         in a playlists page with no 'edit' or 'delete' buttons will be
         returned.
     '''
-    latest_song = session.query(Song).order_by(Song.id.desc()).first()
-    playlists = session.query(Playlist).order_by(Playlist.time_updated).all()
+    songs = session.query(Song).order_by(Song.id.desc())
+    songList = getSongList(songs)
+    playlists = session.query(Playlist).all()
     featured = session.query(Featured).order_by(Featured.id.desc()).first()
     if 'username' not in login_session:
         return render_template('publicplaylists.html', playlists=playlists,
-                                latest_song=latest_song, featured=featured)
+                                songList=songList, featured=featured)
     else:
         return render_template("playlists.html", playlists=playlists,
-                                latest_song=latest_song, featured=featured)
+                                songList=songList, featured=featured)
 
 
 

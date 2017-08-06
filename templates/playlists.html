@@ -43,22 +43,19 @@
         <div>
             <div class='col-md-offset-2 col-md-4 playlist-tile-special'>
                 <div class='top-playlist text-center'>
-                    <a class='' href="{{url_for('showSongs',
-                            playlist_id = latest_song.playlist_id)}}">
-                        <h2 class='text-center playlist-tile-text special-h2'>
-                                Latest Song
-                        </h2>
-                    </a>
+
+                    <h2 class='text-center playlist-tile-text special-h2'>
+                            Latest Song
+                    </h2>
+
                     <hr class='hr-black'>
 
                     <div class='playlist-tile-text'>
-                        <h4>{{latest_song.title}}</h4>
-                        <p>by {{latest_song.artist}}</p>
                         <div id="player" class="youtube-div">
                             <iframe
-                                 class='youtube-iframe-front'
-                                 src="https://www.youtube.com/embed/{{latest_song.youtube}}"
-                                 frameborder="0" allowfullscreen>
+                                class='youtube-iframe-front'
+                                src="https://www.youtube.com/embed/?autoplay=1&iv_load_policy=3&controls=2&playlist={{ songList }}"
+                                frameborder="0" allowfullscreen>
                              </iframe>
                         </div>
 
@@ -112,7 +109,7 @@
                         <h1 class='text-center playlist-tile-text special-h2'>
                                 {{playlist.name}}
                         </h1>
-                        <p>{{playlist.description}}</p>
+
 
 
                     </a>
@@ -133,6 +130,7 @@
                     </div>
 
                     <hr class='hr-black'>
+                    <p>{{playlist.description}}</p>
 
                     <div class='playlist-tile-text'>
                         {% if get_number_of_songs(playlist.id) %}
@@ -146,17 +144,16 @@
                         {% endif %}
 
                     </div>
-                    {% if get_number_of_songs(playlist.id) %}
-                    <h6>{{ get_number_of_songs(playlist.id) }} songs</h6>
+                    
+                    {% if get_number_of_songs(playlist.id) == 1 %}
+                    <h6>{{ get_number_of_songs(playlist.id) }} song</h6>
+                    {% elif get_number_of_songs(playlist.id) > 1 %}
+                    <h6>{{get_number_of_songs(playlist.id)}} songs</h6>
                     {% else %}
                     <h6>0 songs</h6>
                     {% endif %}
 
-                    {% if playlist.time_updated %}
-                    <h6>Updated on {{playlist.time_updated.strftime('%b %d, %Y')}}</h6>
-                    {% else %}
-                    <h6>Created on {{playlist.time_created.strftime('%b %d, %Y')}}</h6>
-                    {% endif %}
+
                 </div>
                 <br>
 
