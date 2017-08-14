@@ -1,9 +1,5 @@
--Add modification to query for playlists, sort by time modified.
--tile layout change for publicplaylsit and playlist
+layout for playlists small screens
 
-add codebreak
-main
-base
-publicplaylists
+public playlistsp
 playlists
-main.css
+media screen
