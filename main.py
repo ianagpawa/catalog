@@ -97,7 +97,7 @@ def showPlaylists():
     '''
     songs = session.query(Song).order_by(Song.id.desc())
     songList = getSongList(songs)
-    playlists = session.query(Playlist).all()
+    playlists = session.query(Playlist).order_by(Playlist.id)
     featured = session.query(Featured).order_by(Featured.id.desc()).first()
     if 'username' not in login_session:
         return render_template('publicplaylists.html', playlists=playlists,
