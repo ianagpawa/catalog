@@ -1,5 +1,1 @@
-layout for playlists small screens
-
-public playlistsp
-playlists
 media screen
