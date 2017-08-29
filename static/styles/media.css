@@ -11,6 +11,10 @@
 
     }
 
+    .public-yp{
+        width: 100%;
+    }
+
     .logit{
         display: none;
     }
