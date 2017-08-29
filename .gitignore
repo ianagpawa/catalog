@@ -1,4 +1,5 @@
 .vagrant
+build
 ref
 musiccatalog.db
 *.pyc
