@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<div class='col-xs-8 col-xs-offset-2 col-md-offset-4 col-md-4 text-center login-page'>
+<div class='col-md-12 text-center login-page'>
     <div class='flash text-center'>
     {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -13,12 +13,12 @@
     {% endwith %}
     </div>
     <br>
-    <div class='text-center'>
+    <div class='col-md-6 col-md-offset-3 text-center'>
         <h3>Log in with either Google or Facebook</h3>
     </div>
     <br>
     <br>
-    <div id='signinButton'>
+    <div class="col-md-4 col-md-offset-4" id='signinButton'>
         <span class='g-signin'
             data-scope="openid email"
             data-clientid ="736076626457-55uu1ocavdc345lhgmbo193vhkk589mu.apps.googleusercontent.com"
@@ -119,12 +119,13 @@
     }
     </script>
 
-
+    <div class="col-md-2 col-md-offset-5">
     <button id='facebook-button'>
         <fb:login-button scope="public_profile,email" onlogin="sendTokenToServer();">
             <a href='javascript:sendTokenToServer()'>Login with Facebook</a>
         </fb:login-button>
     </button>
+    </div>
 </div>
 <!--END FACEBOOK SIGN IN -->
 
