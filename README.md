@@ -12,7 +12,29 @@ Before viewing the app, while the terminal is in the project folder, use command
 #### Viewing the app locally
 In order to run the app locally, `vagrant` must be installed on your system, and your project folder must include the `Vagrantfile` and `pf_config.sh` files.
 
-With the terminal in the project folder, use command `vagrant up`, then command `vagrant ssh`.  When in the virtual desktop environment, use the following commands to change to the project directory, and then run the app locally:
+##### Install Virtualbox and Vagrant
+`virtualbox` needs to be installed on your system before install `vagrant`.  To install `virtualbox` on Ubuntu:
+1.  Edit file `/etc/apt/sources.list` by adding the line below (depends on your distribution - this one is for 16.04 Xenial) to the end of the file:
+```
+deb http://download.virtualbox.org/virtualbox/debian xenial contrib
+```
+2.  Download and import Oracle public key:
+```
+$ wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+$ wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
+
+```
+3.  Install Oracle Virtualbox with the following commands:
+```
+$ sudo apt-get update
+$ sudo apt-get install virtualbox-5.1
+```
+4.  Install vagrant:
+```
+$ sudo apt install vagrant
+```
+
+With the terminal in the project folder, use command `vagrant up`, then command `vagrant ssh` to start the virtual desktop environment.  Then use the following commands to change to the project directory, and then run the app locally:
 ```
 cd /vagrant
 python main.py
