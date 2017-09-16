@@ -29,10 +29,7 @@
         <h4 class='white-letter'>Genre: {{song.genre}}</h4>
         {% endif %}
         <br>
-        <h5 class='white-letter'>Belongs in the {{song.playlist.name}} playlist</h4>
-        <h5 class='white-letter'>Added by {{song.user.name}}</h4>
-        <br>
-        <h5 class='white-letter'>Created on: {{song.time_created}}</h5>
+        <h5 class='white-letter'>Added by {{song.user.name}} to the {{song.playlist.name}} playlist on {{song.time_created.strftime("%B %d, %Y")}}.</h5>
     </div>
 </div>
 {% endblock %}
