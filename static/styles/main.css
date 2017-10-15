@@ -1,6 +1,7 @@
 
 body{
     overflow: auto;
+    font-family: 'Source Serif Pro', serif;
 }
 
 hr{
@@ -23,7 +24,7 @@ a:hover{
 
 /*  nav */
 .top-part{
-    height: 7vh;
+    height: 8vh;
     padding-top: 1vh;
     padding-bottom: 1vh;
     background-color: #08081A;
