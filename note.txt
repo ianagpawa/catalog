@@ -1,4 +1,0 @@
-
-sudo apt-get install libffi-dev libssl-dev
-
-sudo pip install requests[security] --upgrade

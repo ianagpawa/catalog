@@ -3,16 +3,14 @@
 ##### This repo is for my item catalog project from the Udacity Full Stack Nanodegree course.    
 
 
-### Quick Start
+## Quick Start
 -Clone the repo: `git clone https://github.com/ianagpawa/catalog.git`
 
-#### Setting up the database
+### Setting up the database
 Before viewing the app, while the terminal is in the project folder, use command `python db_setup.py` to create the database, `musiccatalog.db`.  Executing commands `python loadsongs.py` and `python loadfeatured.py` will populate the database with dummy data.
 
-#### Viewing the app locally
-In order to run the app locally, `vagrant` must be installed on your system, and your project folder must include the `Vagrantfile` and `pf_config.sh` files.
 
-##### Install Virtualbox and Vagrant
+### Dependencies
 `virtualbox` needs to be installed on your system before install `vagrant`.  To install `virtualbox` on Ubuntu:
 1.  Edit file `/etc/apt/sources.list` by adding the line below (depends on your distribution - this one is for 16.04 Xenial) to the end of the file:
 ```
@@ -34,12 +32,32 @@ $ sudo apt-get install virtualbox-5.1
 $ sudo apt install vagrant
 ```
 
-With the terminal in the project folder, use command `vagrant up`, then command `vagrant ssh` to start the virtual desktop environment.  Then use the following commands to change to the project directory, and then run the app locally:
+5.  Install Modules in the virtual desktop environment:
+Navigate the terminal to the project folder, then use command the following commands to start the virtual desktop environment:
 ```
-cd /vagrant
-python main.py
+$ vagrant up
+$ vagrant ssh
+```
+
+While in the virtual desktop environment, use the following `sudo` commands to install dependencies:
+```
+vagrant@precise32:~$   sudo apt-get install libffi-dev libssl-dev
+vagrant@precise32:~$   sudo pip install requests[security] --upgrade
+```
+
+
+### Running The App Locally
+In order to run the app locally, `vagrant` must be installed on your system (see above), and your project folder must include the `Vagrantfile` and `pf_config.sh` files in the top level of your project folder.
+
+Navigate the terminal to the project folder, and use the following commands to start the start virtual environment and run the app.
+```
+$ vagrant up
+$ vagrant ssh
+$ cd /vagrant
+$ python main.py
 ```
 Point your browser to `localhost:5000` to view the app.
+
 
 ### What's included
 Within the project folder, you will find the following files:
@@ -47,9 +65,13 @@ Within the project folder, you will find the following files:
 ```
 catalog/
     ├── static/
+    |    ├── code-break/
+    |    ├── js/
+    |    |    └── main.js
     |    └── css/
     |         └── styles/
-    |               └── main.css
+    |               ├── main.css
+    |               └── media.css
     ├── templates/
     |    ├── base.html
     |    ├── deleteplaylist.html
@@ -68,6 +90,7 @@ catalog/
     |    ├── publicsongs.html
     |    ├── single.html    
     |    └── songs.html
+    ├── .gitignore
     ├── app.yaml
     ├── Base.py
     ├── client_secrets.json
@@ -81,6 +104,7 @@ catalog/
     ├── pg_config.sh
     ├── Playlist.py
     ├── README.md
+    ├── todo_list.txt
     ├── Song.py
     ├── User.py
     └── Vagrantfile
