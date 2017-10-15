@@ -105,10 +105,10 @@ ul{
     padding-left: 12vw;
 }
 
-.iframe-front{
+/*.iframe-front{
     width: 28vw;
     height: 26vh;
-}
+}*/
 
 .hr-playlist{
     margin-top: 8vh;
@@ -137,7 +137,7 @@ ul{
 .youtube-iframe-front{
     display: block;
     width: 28vw;
-    height: 30vh;
+    height: 35vh;
     padding-top: 2vh;
     margin-left: auto;
     margin-right: auto;
@@ -301,7 +301,7 @@ ul{
 
 }
 
-.youtube-iframe-playlist{
+/*.youtube-iframe-playlist{
     display: inline;
     width: 30vw;
     height: 28vh;
@@ -309,7 +309,7 @@ ul{
     padding-bottom: 2vh;
     margin-left: auto;
     margin-right: auto;
-}
+}*/
 
 
 
