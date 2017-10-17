@@ -353,6 +353,10 @@ def showSingleJSON(playlist_id, song_id):
     return jsonify(Song=song.serialize)
 
 
+def spacing(name):
+    return "%20".join(name.split(' '))
+
+
 @app.route('/playlist/<int:playlist_id>/songs/<int:song_id>/')
 def showSingle(playlist_id, song_id):
     '''
@@ -366,6 +370,9 @@ def showSingle(playlist_id, song_id):
         Page for a single song.
     '''
     song = session.query(Song).filter_by(id=song_id).one()
+    api_key = json.loads(open('last.json', 'r').read())[
+        'web']['api_key']
+    api_root = "http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=%s&artist=%s&track=%s&format=json" % (api_key, spacing(song.artist), spacing(song.title))
     return render_template('single.html', song=song)
 
 
