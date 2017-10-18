@@ -378,7 +378,15 @@ def showSingle(playlist_id, song_id):
     song_info = json.loads(h.request(api_url, "GET")[1])['track']
     album = song_info['album']['title']
     album_link = song_info['album']['url']
-    pprint.pprint(song_info)
+    tags = song_info['toptags']
+    song_url = song_info['url']
+    wiki = song_info['wiki']
+    wiki_content = wiki['content']
+    wiki_summary = wiki['summary']
+    # print wiki_summary + "\n\n"
+
+
+    # pprint.pprint(song_info)
     # print album
     return render_template('single.html', song=song)
 
