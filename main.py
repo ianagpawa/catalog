@@ -14,6 +14,7 @@ import httplib2
 import json
 import requests
 from functools import wraps
+import pprint
 
 CLIENT_ID = json.loads(
     open('client_secrets.json', 'r').read())['web']['client_id']
@@ -372,7 +373,13 @@ def showSingle(playlist_id, song_id):
     song = session.query(Song).filter_by(id=song_id).one()
     api_key = json.loads(open('last.json', 'r').read())[
         'web']['api_key']
-    api_root = "http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=%s&artist=%s&track=%s&format=json" % (api_key, spacing(song.artist), spacing(song.title))
+    api_url = "http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=%s&artist=%s&track=%s&format=json" % (api_key, spacing(song.artist), spacing(song.title))
+    h = httplib2.Http()
+    song_info = json.loads(h.request(api_url, "GET")[1])['track']
+    album = song_info['album']['title']
+    album_link = song_info['album']['url']
+    pprint.pprint(song_info)
+    # print album
     return render_template('single.html', song=song)
 
 
