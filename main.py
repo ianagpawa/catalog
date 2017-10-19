@@ -357,6 +357,10 @@ def showSingleJSON(playlist_id, song_id):
 def spacing(name):
     return "%20".join(name.split(' '))
 
+def appended(string):
+  end = string.find('<a')
+  return string[:end]
+
 
 @app.route('/playlist/<int:playlist_id>/songs/<int:song_id>/')
 def showSingle(playlist_id, song_id):
@@ -400,7 +404,7 @@ def showSingle(playlist_id, song_id):
             except:
                 wiki_content = ''
             try:
-                wiki_summary = wiki['summary']
+                wiki_summary = appended(wiki['summary'])
             except:
                 wiki_summary = ''
         except:
@@ -417,9 +421,7 @@ def showSingle(playlist_id, song_id):
         }
     except:
         retrieved_info = {}
-    # pprint.pprint(song_info)
-    # print album
-    pprint.pprint(retrieved_info)
+
     return render_template('single.html', song=song, retrieved_info=retrieved_info)
 
 
