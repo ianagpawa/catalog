@@ -374,21 +374,53 @@ def showSingle(playlist_id, song_id):
     api_key = json.loads(open('last.json', 'r').read())[
         'web']['api_key']
     api_url = "http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=%s&artist=%s&track=%s&format=json" % (api_key, spacing(song.artist), spacing(song.title))
-    h = httplib2.Http()
-    song_info = json.loads(h.request(api_url, "GET")[1])['track']
-    album = song_info['album']['title']
-    album_link = song_info['album']['url']
-    tags = song_info['toptags']
-    song_url = song_info['url']
-    wiki = song_info['wiki']
-    wiki_content = wiki['content']
-    wiki_summary = wiki['summary']
-    # print wiki_summary + "\n\n"
-
-
+    try:
+        h = httplib2.Http()
+        song_info = json.loads(h.request(api_url, "GET")[1])['track']
+        try:
+            album = song_info['album']['title']
+        except:
+            album = ""
+        try:
+            album_link = song_info['album']['url']
+        except:
+            album_link = ""
+        try:
+            tags = song_info['toptags']['tag']
+        except:
+            tags = []
+        try:
+            song_url = song_info['url']
+        except:
+            song_url = ''
+        try:
+            wiki = song_info['wiki']
+            try:
+                wiki_content = wiki['content']
+            except:
+                wiki_content = ''
+            try:
+                wiki_summary = wiki['summary']
+            except:
+                wiki_summary = ''
+        except:
+            wiki = ''
+            wiki_content = ''
+            wiki_summary = ''
+        retrieved_info = {
+            'album': album,
+            'album_link': album_link,
+            'tags': tags,
+            'song_url': song_url,
+            'wiki_content': wiki_content,
+            'wiki_summary': wiki_summary
+        }
+    except:
+        retrieved_info = {}
     # pprint.pprint(song_info)
     # print album
-    return render_template('single.html', song=song)
+    pprint.pprint(retrieved_info)
+    return render_template('single.html', song=song, retrieved_info=retrieved_info)
 
 
 @app.route('/featured/<int:featured_song_id>/')
