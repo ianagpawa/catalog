@@ -43,7 +43,7 @@
 
             {% if retrieved_info.song_url %}
             <a class='white-letter' href='{{retrieved_info.song_url}}' target='_blank'>
-                Click here to read more at Last.fm
+                Click here visit Last.fm
             </a>
             {% endif %}
 
@@ -64,7 +64,6 @@
         {% if song.rendition %}
         <h4>Rendition Of {{song.rendition}}</h4>
         {% endif %}
-        <br>
         <h5>Added by {{song.user.name}} to the {{song.playlist.name}} playlist on {{song.time_created.strftime("%B %d, %Y")}}.</h5>
 
     </div>
