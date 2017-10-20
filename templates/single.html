@@ -19,38 +19,54 @@
    {% endif %}
 
 
-    <div class='col-md-4 col-md-offset-2 text-left single-info'>
-        <h2 class='white-letter'>{{song.title}}</h2>
-        <h3 class='white-letter'>By {{song.artist}}</h3>
+    <div class='col-md-4 col-md-offset-2 text-left white-letter single-info'>
+        <h2>{{song.title}}</h2>
+        <h4>By {{song.artist}}</h4>
         {% if retrieved_info %}
-            {% if retrieved_info.album and retrieved_info.album_link %}
-            <h3><a class='white-letter' href='{{retrieved_info.album_link}}' target='_blank'>
-                Album: {{retrieved_info.album}}
-            </a></h3>
+            {% if retrieved_info.album %}
+                {% if retrieved_info.album_link %}
+                <h4><a class='white-letter' href='{{retrieved_info.album_link}}' target='_blank'>
+                    Album: {{retrieved_info.album}}
+                </a></h4>
+                {% else %}
+                <h3>Album: {{retrieved_info.album}}</h3>
+                {% endif %}
             {% endif %}
 
             {% if retrieved_info.wiki_summary %}
-                <p class='white-letter'>{{retrieved_info.wiki_summary}}</p>
+                <p>{{retrieved_info.wiki_summary}}</p>
             {% else %}
                 {% if retrieved_info.wiki_content %}
-                <p class='white-letter'>{{retrieved_info.wiki_content}}</p>
+                <p>{{retrieved_info.wiki_content}}</p>
                 {% endif %}
             {% endif %}
+
             {% if retrieved_info.song_url %}
             <a class='white-letter' href='{{retrieved_info.song_url}}' target='_blank'>
                 Click here to read more at Last.fm
             </a>
             {% endif %}
+
         {% endif %}
 
-        {% if song.rendition %}
-        <h4 class='white-letter'>Rendition Of {{song.rendition}}</h4>
-        {% endif %}
+
         {% if song.genre %}
-        <h4 class='white-letter'>Genre: {{song.genre}}</h4>
+        <h4>Genre: {{song.genre}}</h4>
+        {% endif %}
+        {% if retrieved_info.tags %}
+        <h4>Tags</h4>
+        <ul>
+            {% for tag in retrieved_info.tags %}
+            <li class='white-letter inline'>{{tag.name}}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% if song.rendition %}
+        <h4>Rendition Of {{song.rendition}}</h4>
         {% endif %}
         <br>
-        <h5 class='white-letter'>Added by {{song.user.name}} to the {{song.playlist.name}} playlist on {{song.time_created.strftime("%B %d, %Y")}}.</h5>
+        <h5>Added by {{song.user.name}} to the {{song.playlist.name}} playlist on {{song.time_created.strftime("%B %d, %Y")}}.</h5>
+
     </div>
 </div>
 {% endblock %}
