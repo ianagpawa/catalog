@@ -9,6 +9,7 @@
 ### Setting up the database
 Before viewing the app, while the terminal is in the project folder, use command `python db_setup.py` to create the database, `musiccatalog.db`.  Executing commands `python loadsongs.py` and `python loadfeatured.py` will populate the database with dummy data.
 
+### Requirements
 
 ### Dependencies
 `virtualbox` needs to be installed on your system before install `vagrant`.  To install `virtualbox` on Ubuntu:
