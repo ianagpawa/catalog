@@ -10,6 +10,48 @@
 Before viewing the app, while the terminal is in the project folder, use command `python db_setup.py` to create the database, `musiccatalog.db`.  Executing commands `python loadsongs.py` and `python loadfeatured.py` will populate the database with dummy data.
 
 ### Requirements
+This app requires API keys from Facebook, Google, and Last.fm, and you will need to register and get API keys from each.  Each API key should be saved as a `JSON` file and located in the root level of the project.
+
+#### Facebook
+`fb_client_secrets.json`
+```
+{
+  "web": {
+    "api_key": "xxxx",
+    "app_secret": "xxxxx"
+  }
+}
+```
+
+
+#### Google
+`client_secrets.json`
+```
+{
+    "web": {
+        "client_id":"xxxxxx.apps.googleusercontent.com",
+        "project_id":"xxxx",
+        "auth_uri":"https://accounts.google.com/o/oauth2/auth",
+        "token_uri":"https://accounts.google.com/o/oauth2/token",
+        "auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
+        "client_secret":"xxxxxxxx",
+        "redirect_uris":["http://www.example.com/oauth2callback"],"javascript_origins":["http://localhost:5000"]
+    }
+}
+```
+
+
+#### Last.fm
+`last.json`
+```
+{
+  "web": {
+    "api_key": "xxxx",
+    "app_secret": "xxxxx"
+  }
+}
+```
+
 
 ### Dependencies
 `virtualbox` needs to be installed on your system before install `vagrant`.  To install `virtualbox` on Ubuntu:
