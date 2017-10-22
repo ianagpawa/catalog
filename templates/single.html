@@ -41,7 +41,7 @@
                 {% endif %}
             {% endif %}
 
-            {% if retrieved_info.song_url %}
+            {% if retrieved_info.song_url and (retrieved_info.wiki_summary or retrieved_info.wiki_content) %}
             <a class='white-letter' href='{{retrieved_info.song_url}}' target='_blank'>
                 Click here visit Last.fm
             </a>
