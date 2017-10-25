@@ -361,6 +361,9 @@ def appended(string):
   end = string.find('<a')
   return string[:end]
 
+def api_method(method, api_key, artist, title):
+    return "http://ws.audioscrobbler.com/2.0/?method=%s&api_key=%s&artist=%s&track=%s&format=json" % (method, api_key, spacing(artist), spacing(title))
+
 
 @app.route('/playlist/<int:playlist_id>/songs/<int:song_id>/')
 def showSingle(playlist_id, song_id):
@@ -377,7 +380,10 @@ def showSingle(playlist_id, song_id):
     song = session.query(Song).filter_by(id=song_id).one()
     api_key = json.loads(open('last.json', 'r').read())[
         'web']['api_key']
-    api_url = "http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=%s&artist=%s&track=%s&format=json" % (api_key, spacing(song.artist), spacing(song.title))
+    # api_url = "http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=%s&artist=%s&track=%s&format=json" % (api_key, spacing(song.artist), spacing(song.title))
+
+    api_url = api_method('track.getInfo', api_key, song.artist, song.title)
+
     try:
         h = httplib2.Http()
         song_info = json.loads(h.request(api_url, "GET")[1])['track']
@@ -421,6 +427,7 @@ def showSingle(playlist_id, song_id):
         }
     except:
         retrieved_info = {}
+
 
     return render_template('single.html', song=song, retrieved_info=retrieved_info)
 
